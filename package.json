@@ -1,0 +1,15 @@
+{
+  "name": "thesis",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Monorepo: Next.js frontend + Express/Sequelize backend",
+  "scripts": {
+    "install:all": "npm --prefix frontend install && npm --prefix backend install",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:backend": "npm --prefix backend run dev",
+    "build:frontend": "npm --prefix frontend run build",
+    "start:frontend": "npm --prefix frontend run start",
+    "start:backend": "npm --prefix backend run start",
+    "lint:frontend": "npm --prefix frontend run lint"
+  }
+}
