@@ -3,7 +3,17 @@
 const path = require('path'); // node built-in
 const Joi = require('joi');
 
+const envFile = process.env.NODE_ENV === 'test' ? '.env.test' : '.env';
+
 require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
+
+// helper function for Joi config schema
+const requiredUnlessUrl = (base) =>
+	base.when('DATABASE_URL', {
+		is: Joi.exist(),
+		then: Joi.optional(),
+		otherwise: Joi.required(),
+	});
 
 const schema = Joi.object({
 	NODE_ENV: Joi.string()
@@ -17,6 +27,16 @@ const schema = Joi.object({
 	LOG_LEVEL: Joi.string()
 		.valid('trace', 'debug', 'info', 'warn', 'error', 'fatal', 'silent')
 		.default('info'),
+
+	DATABASE_URL: Joi.string().uri(),
+
+	DB_HOST: Joi.string().default('localhost'),
+	DB_PORT: Joi.number().port().default(5433),
+	DB_NAME: requiredUnlessUrl(Joi.string()),
+	DB_USER: requiredUnlessUrl(Joi.string()),
+	DB_PASS: requiredUnlessUrl(Joi.string().allow('')),
+
+	DB_SSL: Joi.boolean().default(false),
 });
 
 // checks process.env against the schema 
@@ -28,7 +48,7 @@ const { value: env, error } =
 	});
 
 if (error) {
-	console.error('Invalid environment configuration: ');
+	console.error('Invalid environment configuration (${envFile}):');
 	for (const detail of error.details) {
 		console.error(`  - ${detail.message}`);
 	}
@@ -38,8 +58,18 @@ if (error) {
 const config = Object.freeze({
 	env: env.NODE_ENV,
 	isProduction: env.NODE_ENV === 'production',
+	isTest: env.NODE_ENV === 'test',
 	port: env.PORT,
 	log: Object.freeze({ level: env.LOG_LEVEL }),
+	db: Object.freeze({
+		url: env.DATABASE_URL,
+		host: env.DB_HOST,
+		port: env.DB_PORT,
+		name: env.DB_NAME,
+		user: env.DB_USER,
+		pass: env.DB_PASS,
+		ssl: env.DB_SSL,
+	}),
 });
 
 module.exports = config;

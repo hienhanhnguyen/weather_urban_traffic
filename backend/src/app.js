@@ -1,5 +1,6 @@
 const express = require('express');
 const { notFoundHandler, errorHandler } = require('./shared/error.handler');
+const { assertConnection } = require('./shared/database');
 
 const app = express();
 
@@ -14,6 +15,15 @@ app.get('/healthz', (req, res) => {
 		uptime: process.uptime(),
 		timestamp: new Date().toISOString()
 	});
+});
+
+app.get('/readyz', async (req, res) => {
+	try {
+		await assertConnection();
+		res.status(200).json({ status: 'ready', database: 'connected' });
+	} catch {
+		res.status(503).json({ status: 'degraded', database: 'disconnected' });
+	}
 });
 
 app.use(notFoundHandler);
