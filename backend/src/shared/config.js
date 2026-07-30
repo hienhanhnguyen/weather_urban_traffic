@@ -5,7 +5,10 @@ const Joi = require('joi');
 
 const envFile = process.env.NODE_ENV === 'test' ? '.env.test' : '.env';
 
-require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
+require('dotenv').config({
+	path: path.resolve(__dirname, '../..', envFile),
+	quiet: true,
+});
 
 // helper function for Joi config schema
 const requiredUnlessUrl = (base) =>
@@ -37,6 +40,15 @@ const schema = Joi.object({
 	DB_PASS: requiredUnlessUrl(Joi.string().allow('')),
 
 	DB_SSL: Joi.boolean().default(false),
+
+	JWT_ACCESS_SECRET: Joi.string().min(32).required(),
+	JWT_ACCESS_TTL: Joi.string().default('15m'),
+	JWT_REFRESH_TTL_DAYS: Joi.number().integer().min(1).default(30),
+	BCRYPT_ROUNDS: Joi.number().integer().min(4).max(15).default(12),
+	OTP_TTL_MINUTES: Joi.number().integer().min(1).default(10),
+	OTP_MAX_ATTEMPTS: Joi.number().integer().min(1).default(5),
+	RESET_TOKEN_TTL_MINUTES: Joi.number().integer().min(1).default(15),
+	GOOGLE_CLIENT_ID: Joi.string().allow('').default(''),
 });
 
 // checks process.env against the schema 
@@ -69,6 +81,16 @@ const config = Object.freeze({
 		user: env.DB_USER,
 		pass: env.DB_PASS,
 		ssl: env.DB_SSL,
+	}),
+	auth: Object.freeze({
+		accessSecret: env.JWT_ACCESS_SECRET,
+		accessTtl: env.JWT_ACCESS_TTL,
+		refreshTtlDays: env.JWT_REFRESH_TTL_DAYS,
+		bcryptRounds: env.BCRYPT_ROUNDS,
+		otpTtlMinutes: env.OTP_TTL_MINUTES,
+		otpMaxAttempts: env.OTP_MAX_ATTEMPTS,
+		resetTokenTtlMinutes: env.RESET_TOKEN_TTL_MINUTES,
+		googleClientId: env.GOOGLE_CLIENT_ID,
 	}),
 });
 
