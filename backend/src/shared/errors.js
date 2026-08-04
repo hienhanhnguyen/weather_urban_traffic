@@ -50,6 +50,16 @@ class TooManyRequestsError extends AppError {
 	}
 }
 
+class ServiceUnavailableError extends AppError {
+	constructor(message = 'Service unavailable', options = {}) {
+		super(message, {
+			code: 'SERVICE_UNAVAILABLE',
+			...options,
+			statusCode: 503,
+		});
+	}
+}
+
 module.exports = {
 	AppError,
 	BadRequestError,
@@ -58,4 +68,5 @@ module.exports = {
 	NotFoundError,
 	ConflictError,
 	TooManyRequestsError,
+	ServiceUnavailableError,
 };

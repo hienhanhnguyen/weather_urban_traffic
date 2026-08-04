@@ -36,4 +36,5 @@ module.exports = {
 		limit: 10,
 		keyGenerator: byIpAndEmail,
 	}),
+	weatherLimiter: build({ windowMs: MINUTE, limit: 60 }),
 };

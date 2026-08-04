@@ -32,6 +32,10 @@ const redactPaths = [
 	'*.resetToken',
 	'idToken',
 	'*.idToken',
+	'appid',
+	'*.appid',
+	'apiKey',
+	'*.apiKey',
 ];
 
 

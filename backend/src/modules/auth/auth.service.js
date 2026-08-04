@@ -16,6 +16,7 @@ const {
 	signAccessToken,
 } = require('./auth.tokens');
 const { verifyGoogleIdToken } = require('./google');
+const { publicUser } = require('../users/user.presenter');
 
 const DEFAULT_ROLE = 'user';
 const OTP_PURPOSE = 'password_reset';
@@ -29,13 +30,6 @@ const normaliseEmail = (email) => email.trim().toLowerCase();
 
 const roleNames = (user) => (user.roles ?? []).map((role) => role.name);
 
-const publicUser = (user, roles) => ({
-	id: user.user_id,
-	email: user.email,
-	username: user.username,
-	accountType: user.account_type,
-	roles,
-});
 
 async function issueTokens(user, roles, transaction) {
 	const accessToken = signAccessToken(user, roles);

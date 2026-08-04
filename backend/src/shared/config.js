@@ -49,6 +49,12 @@ const schema = Joi.object({
 	OTP_MAX_ATTEMPTS: Joi.number().integer().min(1).default(5),
 	RESET_TOKEN_TTL_MINUTES: Joi.number().integer().min(1).default(15),
 	GOOGLE_CLIENT_ID: Joi.string().allow('').default(''),
+
+	OPENWEATHER_API_KEY: Joi.string().required(),
+	WEATHER_TIMEOUT_MS: Joi.number().integer().min(1000).default(15_000),
+	WEATHER_CACHE_CURRENT_TTL_MS: Joi.number().integer().min(0).default(600_000),
+	WEATHER_CACHE_FORECAST_TTL_MS: Joi.number().integer().min(0).default(3_600_000),
+	MAX_SAVED_LOCATIONS: Joi.number().integer().min(1).default(50),
 });
 
 // checks process.env against the schema 
@@ -91,6 +97,16 @@ const config = Object.freeze({
 		otpMaxAttempts: env.OTP_MAX_ATTEMPTS,
 		resetTokenTtlMinutes: env.RESET_TOKEN_TTL_MINUTES,
 		googleClientId: env.GOOGLE_CLIENT_ID,
+	}),
+	weather: Object.freeze({
+		apiKey: env.OPENWEATHER_API_KEY,
+		timeoutMs: env.WEATHER_TIMEOUT_MS,
+		currentTtlMs: env.WEATHER_CACHE_CURRENT_TTL_MS,
+		forecastTtlMs: env.WEATHER_CACHE_FORECAST_TTL_MS,
+	}),
+
+	limits: Object.freeze({
+		maxSavedLocations: env.MAX_SAVED_LOCATIONS,
 	}),
 });
 

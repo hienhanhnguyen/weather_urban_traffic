@@ -2,11 +2,19 @@ const express = require('express');
 const { notFoundHandler, errorHandler } = require('./shared/error.handler');
 const { assertConnection } = require('./shared/database');
 
+const authRoutes = require('./modules/auth/auth.routes');
+const userRoutes = require('./modules/users/users.routes');
+const locationRoutes = require('./modules/locations/locations.routes');
+const weatherRoutes = require('./modules/weather/weather.routes');
+const alertRoutes = require('./modules/alerts/alerts.routes');
+
 const app = express();
 
+// settings
+app.set('trust proxy', 1);
 
 // middleware
-app.use(express.json());
+app.use(express.json({ limit: '100kb' }));
 
 // Deployment health checks 
 app.get('/healthz', (req, res) => {
@@ -26,16 +34,15 @@ app.get('/readyz', async (req, res) => {
 	}
 });
 
-const authRoutes = require('./modules/auth/auth.routes');
-app.set('trust proxy', 1);
-app.use(express.json({ limit: '100kb' }));
-
+// routes
 app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/locations', locationRoutes);
+app.use('/api/weather', weatherRoutes);
+app.use('/api/alerts', alertRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);
-
-
 
 module.exports = app;
 
