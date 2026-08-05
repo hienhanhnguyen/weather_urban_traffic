@@ -9,6 +9,8 @@ const {
 	OtpCode,
 	PasswordResetToken,
 } = require('../modules/auth/auth.models');
+const PushSubscription = require('../modules/alerts/push.subscription.model');
+
 
 User.belongsToMany(Role, {
 	through: 'user_role',
@@ -49,6 +51,7 @@ for (const model of [
 	SavedLocation,
 	AlertRule,
 	AlertEvent,
+	PushSubscription,
 ]) {
 	model.belongsTo(User, { foreignKey: 'user_id', onDelete: 'CASCADE' });
 	User.hasMany(model, { foreignKey: 'user_id' });
@@ -65,4 +68,5 @@ module.exports = {
 	RefreshToken,
 	OtpCode,
 	PasswordResetToken,
+	PushSubscription,
 };

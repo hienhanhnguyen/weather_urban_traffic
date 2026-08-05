@@ -1,6 +1,7 @@
 const config = require('../../src/shared/config');
 const { sequelize } = require('../../src/shared/database');
 const { migrator } = require('../../src/db/umzug');
+const { clearOutbox } = require('../../src/shared/mailer');
 
 const ROLES = ['user', 'moderator', 'admin'];
 
@@ -23,6 +24,7 @@ async function setupTestDatabase() {
 }
 
 async function truncateAll() {
+	clearOutbox();
 	assertTestDatabase();
 
 	const [rows] = await sequelize.query(`

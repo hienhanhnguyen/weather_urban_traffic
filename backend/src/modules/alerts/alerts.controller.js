@@ -1,4 +1,5 @@
 const service = require('./alerts.service');
+const pushService = require('./push.service');
 
 module.exports = {
 	listRules: async (req, res) => {
@@ -43,5 +44,21 @@ module.exports = {
 
 	markAllEventsRead: async (req, res) => {
 		res.status(200).json(await service.markAllEventsRead(req.user.id));
+	},
+	subscribePush: async (req, res) => {
+		res.status(201).json({
+			subscription: await pushService.subscribe(req.user.id, req.body),
+		});
+	},
+
+	listPush: async (req, res) => {
+		res.status(200).json({
+			subscriptions: await pushService.list(req.user.id),
+		});
+	},
+
+	unsubscribePush: async (req, res) => {
+		await pushService.unsubscribe(req.user.id, Number(req.params.id));
+		res.status(204).send();
 	},
 };

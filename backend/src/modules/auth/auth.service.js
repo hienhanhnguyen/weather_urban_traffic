@@ -17,6 +17,8 @@ const {
 } = require('./auth.tokens');
 const { verifyGoogleIdToken } = require('./google');
 const { publicUser } = require('../users/user.presenter');
+const { sendMail } = require('../../shared/mailer');
+const passwordResetTemplate = require('../../shared/templates/password.reset');
 
 const DEFAULT_ROLE = 'user';
 const OTP_PURPOSE = 'password_reset';
@@ -269,14 +271,18 @@ async function requestPasswordReset({ email }) {
 		expires_at: new Date(Date.now() + config.auth.otpTtlMinutes * 60_000),
 	});
 
-	if (config.isProduction) {
-		logger.info({ userId: user.user_id }, 'password reset code issued');
-	} else {
-		logger.info(
-			{ userId: user.user_id, devOnlyCode: code },
-			'password reset code issued (delivery not implemented)'
+	const template = passwordResetTemplate({ code });
+
+	try {
+		await sendMail({ to: user.email, ...template });
+		logger.info({ userId: user.user_id }, 'password reset code sent');
+	} catch (err) {
+		logger.error(
+			{ err, userId: user.user_id },
+			'password reset code could not be delivered'
 		);
-	}
+	};
+
 }
 
 async function verifyResetOtp({ email, code }) {

@@ -36,6 +36,14 @@ const redactPaths = [
 	'*.appid',
 	'apiKey',
 	'*.apiKey',
+	'p256dh',
+	'*.p256dh',
+	'auth',
+	'*.auth',
+	'privateKey',
+	'*.privateKey',
+	'endpoint',
+	'*.endpoint',
 ];
 
 

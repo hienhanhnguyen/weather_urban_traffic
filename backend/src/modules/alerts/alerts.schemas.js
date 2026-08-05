@@ -41,4 +41,12 @@ module.exports = {
 	idParam: Joi.object({
 		id: Joi.number().integer().min(1).required(),
 	}),
+	pushSubscription: Joi.object({
+		endpoint: Joi.string().uri({ scheme: ['https'] }).max(2000).required(),
+		keys: Joi.object({
+			p256dh: Joi.string().max(255).required(),
+			auth: Joi.string().max(255).required(),
+		}).required(),
+		user_agent: Joi.string().max(255).allow('', null),
+	}),
 };

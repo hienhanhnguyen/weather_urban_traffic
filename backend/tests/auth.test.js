@@ -47,7 +47,9 @@ test('unknown email and wrong password are indistinguishable', async () => {
 
 	assert.equal(wrongPassword.status, 401);
 	assert.equal(unknownEmail.status, 401);
-	assert.deepEqual(wrongPassword.body, unknownEmail.body);
+	const shape = ({ error }) => ({ code: error.code, message: error.message });
+	assert.deepEqual(shape(wrongPassword.body), shape(unknownEmail.body));
+	assert.notEqual(wrongPassword.body.error.requestId, undefined);
 });
 
 test('an account with no password cannot be signed into (C3)', async () => {
@@ -209,4 +211,3 @@ test('otp attempts are counted and the code dies after the limit', async () => {
 		.send({ email: CREDENTIALS.email, code: realCode })
 		.expect(401);
 });
-

@@ -36,6 +36,7 @@ function errorHandler(err, req, res, next) {
 		statusCode: error.statusCode,
 		method: req.method,
 		url: req.originalUrl,
+		requestId: req.id,
 	};
 
 	if (error.isOperational) {
@@ -45,6 +46,8 @@ function errorHandler(err, req, res, next) {
 	}
 
 	const body = { error: { code: error.code, message: error.message } };
+	if (req.id) body.error.requestId = req.id;
+
 	if (error.details !== undefined) {
 		body.error.details = error.details;
 	}

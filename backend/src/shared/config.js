@@ -55,6 +55,34 @@ const schema = Joi.object({
 	WEATHER_CACHE_CURRENT_TTL_MS: Joi.number().integer().min(0).default(600_000),
 	WEATHER_CACHE_FORECAST_TTL_MS: Joi.number().integer().min(0).default(3_600_000),
 	MAX_SAVED_LOCATIONS: Joi.number().integer().min(1).default(50),
+
+	SMTP_HOST: Joi.string().allow('').default(''),
+	SMTP_PORT: Joi.number().port().default(587),
+	SMTP_USER: Joi.string().allow('').default(''),
+	SMTP_PASS: Joi.string().allow('').default(''),
+	SMTP_FROM: Joi.string().default('no-reply@example.com'),
+	SMTP_SECURE: Joi.boolean().default(false),
+
+	PUSH_ENABLED: Joi.boolean().default(false),
+	VAPID_PUBLIC_KEY: Joi.string().allow('').default('').when('PUSH_ENABLED', {
+		is: Joi.any().valid(true, 'true'),
+		then: Joi.string().min(1).required(),
+	}),
+	VAPID_PRIVATE_KEY: Joi.string().allow('').default('').when('PUSH_ENABLED', {
+		is: Joi.any().valid(true, 'true'),
+		then: Joi.string().min(1).required(),
+	}),
+	VAPID_SUBJECT: Joi.string().default('mailto:admin@example.com'),
+
+	WS_ALLOWED_ORIGINS: Joi.string().allow('').default(''),
+	WS_MAX_CONNECTIONS_PER_USER: Joi.number().integer().min(1).default(5),
+	WS_HEARTBEAT_MS: Joi.number().integer().min(1000).default(30_000),
+
+	ALERT_WORKER_ENABLED: Joi.boolean().default(true),
+	ALERT_EVAL_INTERVAL_MINUTES: Joi.number().integer().min(1).default(15),
+	CLEANUP_INTERVAL_MINUTES: Joi.number().integer().min(1).default(60),
+	CLEANUP_GRACE_DAYS: Joi.number().integer().min(1).default(30),
+	SHUTDOWN_TIMEOUT_MS: Joi.number().integer().min(1000).default(10_000),
 });
 
 // checks process.env against the schema 
@@ -108,6 +136,41 @@ const config = Object.freeze({
 	limits: Object.freeze({
 		maxSavedLocations: env.MAX_SAVED_LOCATIONS,
 	}),
+
+	mail: Object.freeze({
+		host: env.SMTP_HOST,
+		port: env.SMTP_PORT,
+		user: env.SMTP_USER,
+		pass: env.SMTP_PASS,
+		from: env.SMTP_FROM,
+		secure: env.SMTP_SECURE,
+	}),
+
+	push: Object.freeze({
+		enabled: env.PUSH_ENABLED,
+		publicKey: env.VAPID_PUBLIC_KEY,
+		privateKey: env.VAPID_PRIVATE_KEY,
+		subject: env.VAPID_SUBJECT,
+	}),
+
+	realtime: Object.freeze({
+		allowedOrigins: Object.freeze(
+			env.WS_ALLOWED_ORIGINS.split(',')
+				.map((origin) => origin.trim())
+				.filter(Boolean)
+		),
+		maxConnectionsPerUser: env.WS_MAX_CONNECTIONS_PER_USER,
+		heartbeatMs: env.WS_HEARTBEAT_MS,
+	}),
+
+	jobs: Object.freeze({
+		alertWorkerEnabled: env.ALERT_WORKER_ENABLED,
+		alertIntervalMinutes: env.ALERT_EVAL_INTERVAL_MINUTES,
+		cleanupIntervalMinutes: env.CLEANUP_INTERVAL_MINUTES,
+		cleanupGraceDays: env.CLEANUP_GRACE_DAYS,
+	}),
+
+	shutdownTimeoutMs: env.SHUTDOWN_TIMEOUT_MS,
 });
 
 module.exports = config;

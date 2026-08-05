@@ -7,11 +7,14 @@ const userRoutes = require('./modules/users/users.routes');
 const locationRoutes = require('./modules/locations/locations.routes');
 const weatherRoutes = require('./modules/weather/weather.routes');
 const alertRoutes = require('./modules/alerts/alerts.routes');
+const requestId = require('./shared/request.id');
+
 
 const app = express();
 
 // settings
 app.set('trust proxy', 1);
+app.use(requestId);
 
 // middleware
 app.use(express.json({ limit: '100kb' }));

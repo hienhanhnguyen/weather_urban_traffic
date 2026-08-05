@@ -40,4 +40,16 @@ router.patch(
 	controller.markEventRead
 );
 
+router.get('/push-subscriptions', controller.listPush);
+router.post(
+	'/push-subscriptions',
+	validate(schemas.pushSubscription),
+	controller.subscribePush
+);
+router.delete(
+	'/push-subscriptions/:id',
+	validate(schemas.idParam, 'params'),
+	controller.unsubscribePush
+);
+
 module.exports = router;
