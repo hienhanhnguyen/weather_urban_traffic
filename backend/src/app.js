@@ -1,5 +1,8 @@
 const express = require('express');
+const cors = require('cors');
+const config = require('./shared/config');
 const { notFoundHandler, errorHandler } = require('./shared/error.handler');
+const { ForbiddenError } = require('./shared/errors');
 const { assertConnection } = require('./shared/database');
 
 const authRoutes = require('./modules/auth/auth.routes');
@@ -17,6 +20,23 @@ app.set('trust proxy', 1);
 app.use(requestId);
 
 // middleware
+app.use(
+	cors({
+		origin(origin, callback) {
+			if (!origin || config.http.allowedOrigins.includes(origin)) {
+				return callback(null, true);
+			}
+			callback(new ForbiddenError('Origin not allowed', {
+				code: 'ORIGIN_NOT_ALLOWED',
+			}));
+		},
+		credentials: false,
+		methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+		allowedHeaders: ['Content-Type', 'Authorization'],
+		maxAge: 86_400,
+	})
+);
+
 app.use(express.json({ limit: '100kb' }));
 
 // Deployment health checks 

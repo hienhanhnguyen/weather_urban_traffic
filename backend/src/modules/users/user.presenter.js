@@ -3,6 +3,7 @@ const publicUser = (user, roles) => ({
 	email: user.email,
 	username: user.username,
 	accountType: user.account_type,
+	emailVerified: user.email_verified,
 	roles,
 });
 

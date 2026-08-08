@@ -211,3 +211,142 @@ test('otp attempts are counted and the code dies after the limit', async () => {
 		.send({ email: CREDENTIALS.email, code: realCode })
 		.expect(401);
 });
+test('sign-up accepts a business account type and rejects a privileged one', async () => {
+	const business = await signUp({
+		email: 'shop@example.com',
+		accountType: 'business',
+	});
+	assert.equal(business.status, 201);
+	assert.equal(business.body.user.accountType, 'business');
+
+	const escalation = await signUp({
+		email: 'attacker@example.com',
+		accountType: 'admin_officer',
+	});
+	assert.equal(escalation.status, 400);
+	assert.equal(escalation.body.error.code, 'VALIDATION_ERROR');
+});
+
+test('a new password account starts unverified', async () => {
+	const res = await signUp();
+	assert.equal(res.body.user.emailVerified, false);
+});
+
+const emailVerifyOtp = async (email) => {
+	const user = await User.findOne({ where: { email } });
+	const otp = await OtpCode.findOne({
+		where: { user_id: user.user_id, purpose: 'email_verify' },
+		order: [['created_at', 'DESC']],
+	});
+	return findOtpCode(otp.code_hash);
+};
+
+test('email verification requires a valid access token', async () => {
+	await request(app).post('/api/auth/email/send-verification').expect(401);
+	await request(app)
+		.post('/api/auth/email/verify')
+		.send({ code: '000000' })
+		.expect(401);
+});
+
+test('a mailed code verifies the token owner and only once', async () => {
+	const created = await signUp();
+	const auth = { Authorization: `Bearer ${created.body.accessToken}` };
+
+	await request(app)
+		.post('/api/auth/email/send-verification')
+		.set(auth)
+		.expect(202);
+
+	const code = await emailVerifyOtp(CREDENTIALS.email);
+
+	const verified = await request(app)
+		.post('/api/auth/email/verify')
+		.set(auth)
+		.send({ code })
+		.expect(200);
+
+	assert.equal(verified.body.user.emailVerified, true);
+
+	const me = await request(app).get('/api/auth/me').set(auth).expect(200);
+	assert.equal(me.body.user.emailVerified, true);
+
+	// The code is consumed, and a verified address cannot be re-verified.
+	const replay = await request(app)
+		.post('/api/auth/email/verify')
+		.set(auth)
+		.send({ code })
+		.expect(409);
+	assert.equal(replay.body.error.code, 'EMAIL_ALREADY_VERIFIED');
+
+	await request(app)
+		.post('/api/auth/email/send-verification')
+		.set(auth)
+		.expect(409);
+});
+
+test('a wrong verification code is counted and leaves the account unverified', async () => {
+	const created = await signUp();
+	const auth = { Authorization: `Bearer ${created.body.accessToken}` };
+
+	await request(app)
+		.post('/api/auth/email/send-verification')
+		.set(auth)
+		.expect(202);
+
+	const code = await emailVerifyOtp(CREDENTIALS.email);
+	const wrong = code === '000000' ? '111111' : '000000';
+
+	const rejected = await request(app)
+		.post('/api/auth/email/verify')
+		.set(auth)
+		.send({ code: wrong })
+		.expect(401);
+	assert.equal(rejected.body.error.code, 'INVALID_OTP');
+
+	const user = await User.findOne({ where: { email: CREDENTIALS.email } });
+	assert.equal(user.email_verified, false);
+
+	const otp = await OtpCode.findOne({
+		where: { user_id: user.user_id, purpose: 'email_verify' },
+	});
+	assert.equal(otp.attempts, 1);
+
+	// The real code still works while attempts remain.
+	await request(app)
+		.post('/api/auth/email/verify')
+		.set(auth)
+		.send({ code })
+		.expect(200);
+});
+
+test('re-sending a verification code invalidates the previous one', async () => {
+	const created = await signUp();
+	const auth = { Authorization: `Bearer ${created.body.accessToken}` };
+
+	await request(app)
+		.post('/api/auth/email/send-verification')
+		.set(auth)
+		.expect(202);
+	const first = await emailVerifyOtp(CREDENTIALS.email);
+
+	await request(app)
+		.post('/api/auth/email/send-verification')
+		.set(auth)
+		.expect(202);
+	const second = await emailVerifyOtp(CREDENTIALS.email);
+
+	assert.notEqual(first, second);
+
+	await request(app)
+		.post('/api/auth/email/verify')
+		.set(auth)
+		.send({ code: first })
+		.expect(401);
+
+	await request(app)
+		.post('/api/auth/email/verify')
+		.set(auth)
+		.send({ code: second })
+		.expect(200);
+});

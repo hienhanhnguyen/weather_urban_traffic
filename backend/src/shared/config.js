@@ -74,6 +74,10 @@ const schema = Joi.object({
 	}),
 	VAPID_SUBJECT: Joi.string().default('mailto:admin@example.com'),
 
+	CORS_ALLOWED_ORIGINS: Joi.string()
+		.allow('')
+		.default('http://localhost:3001'),
+
 	WS_ALLOWED_ORIGINS: Joi.string().allow('').default(''),
 	WS_MAX_CONNECTIONS_PER_USER: Joi.number().integer().min(1).default(5),
 	WS_HEARTBEAT_MS: Joi.number().integer().min(1000).default(30_000),
@@ -100,6 +104,14 @@ if (error) {
 	}
 	process.exit(1);
 }
+
+const csv = (value) =>
+	Object.freeze(
+		value
+			.split(',')
+			.map((item) => item.trim())
+			.filter(Boolean)
+	);
 
 const config = Object.freeze({
 	env: env.NODE_ENV,
@@ -153,12 +165,12 @@ const config = Object.freeze({
 		subject: env.VAPID_SUBJECT,
 	}),
 
+	http: Object.freeze({
+		allowedOrigins: csv(env.CORS_ALLOWED_ORIGINS),
+	}),
+
 	realtime: Object.freeze({
-		allowedOrigins: Object.freeze(
-			env.WS_ALLOWED_ORIGINS.split(',')
-				.map((origin) => origin.trim())
-				.filter(Boolean)
-		),
+		allowedOrigins: csv(env.WS_ALLOWED_ORIGINS),
 		maxConnectionsPerUser: env.WS_MAX_CONNECTIONS_PER_USER,
 		heartbeatMs: env.WS_HEARTBEAT_MS,
 	}),

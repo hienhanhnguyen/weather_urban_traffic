@@ -29,6 +29,11 @@ User.init(
 			allowNull: false,
 			defaultValue: 'individual',
 		},
+		email_verified: {
+			type: DataTypes.BOOLEAN,
+			allowNull: false,
+			defaultValue: false,
+		},
 	},
 	{
 		sequelize,

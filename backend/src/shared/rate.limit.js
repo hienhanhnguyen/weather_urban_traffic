@@ -4,6 +4,7 @@ const { TooManyRequestsError } = require('./errors');
 
 const MINUTE = 60_000;
 
+// x => expr returns expr directly, so build function returns whatever rateLimit({...}) returns
 const build = ({ windowMs, limit, keyGenerator }) =>
 	rateLimit({
 		windowMs,
@@ -23,6 +24,9 @@ const build = ({ windowMs, limit, keyGenerator }) =>
 const byIpAndEmail = (req) =>
 	`${ipKeyGenerator(req.ip)}:${String(req.body?.email ?? '').toLowerCase()}`;
 
+const byUserId = (req) =>
+	req.user?.id ? `user:${req.user.id}` : ipKeyGenerator(req.ip);
+
 module.exports = {
 	signUpLimiter: build({ windowMs: 60 * MINUTE, limit: 5 }),
 	signInLimiter: build({ windowMs: 15 * MINUTE, limit: 10 }),
@@ -35,6 +39,16 @@ module.exports = {
 		windowMs: 15 * MINUTE,
 		limit: 10,
 		keyGenerator: byIpAndEmail,
+	}),
+	emailVerifySendLimiter: build({
+		windowMs: 60 * MINUTE,
+		limit: 5,
+		keyGenerator: byUserId,
+	}),
+	emailVerifyCheckLimiter: build({
+		windowMs: 15 * MINUTE,
+		limit: 10,
+		keyGenerator: byUserId,
 	}),
 	weatherLimiter: build({ windowMs: MINUTE, limit: 60 }),
 };

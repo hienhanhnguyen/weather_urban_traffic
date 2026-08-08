@@ -7,11 +7,22 @@ const email = Joi.string()
 
 const newPassword = Joi.string().min(8).max(72).required();
 
+const otpCode = Joi.string()
+	.length(6)
+	.pattern(/^\d+$/)
+	.required();
+
 module.exports = {
 	signUp: Joi.object({
 		email,
 		password: newPassword,
 		username: Joi.string().alphanum().min(3).max(64),
+		// Sign up only for normal users
+		// Privileged access: ('admin_officer' and the 'admin'/'moderator' roles)
+		// Granted through PUT /users/:id/roles 
+		accountType: Joi.string()
+			.valid('individual', 'business')
+			.default('individual'),
 	}),
 
 	signIn: Joi.object({
@@ -33,14 +44,15 @@ module.exports = {
 
 	verifyOtp: Joi.object({
 		email,
-		code: Joi.string()
-			.length(6)
-			.pattern(/^\d+$/)
-			.required(),
+		code: otpCode,
 	}),
 
 	resetPassword: Joi.object({
 		resetToken: Joi.string().required(),
 		newPassword,
+	}),
+
+	verifyEmail: Joi.object({
+		code: otpCode,
 	}),
 };

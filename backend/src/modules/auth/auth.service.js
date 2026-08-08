@@ -19,9 +19,11 @@ const { verifyGoogleIdToken } = require('./google');
 const { publicUser } = require('../users/user.presenter');
 const { sendMail } = require('../../shared/mailer');
 const passwordResetTemplate = require('../../shared/templates/password.reset');
+const emailVerifyTemplate = require('../../shared/templates/email.verify');
 
 const DEFAULT_ROLE = 'user';
 const OTP_PURPOSE = 'password_reset';
+const VERIFY_PURPOSE = 'email_verify';
 const INVALID_CREDENTIALS = 'Invalid email or password';
 
 const withRoles = {
@@ -49,6 +51,68 @@ async function issueTokens(user, roles, transaction) {
 	);
 
 	return { accessToken, refreshToken, refreshTokenId: record.id };
+}
+
+async function issueOtp({ userId, purpose }) {
+	await OtpCode.update(
+		{ consumed_at: new Date() },
+		{ where: { user_id: userId, purpose, consumed_at: null } }
+	);
+
+	const code = generateOtp();
+
+	await OtpCode.create({
+		user_id: userId,
+		purpose,
+		code_hash: sha256(code),
+		expires_at: new Date(Date.now() + config.auth.otpTtlMinutes * 60_000),
+	});
+
+	return code;
+}
+
+async function redeemOtp({ userId, purpose, code }, onValid) {
+	return sequelize.transaction(async (transaction) => {
+		const otp = await OtpCode.findOne({
+			where: { user_id: userId, purpose, consumed_at: null },
+			order: [['created_at', 'DESC']],
+			transaction,
+			lock: transaction.LOCK.UPDATE,
+		});
+
+		if (!otp || otp.expires_at <= new Date()) return { status: 'invalid' };
+
+		if (otp.attempts >= config.auth.otpMaxAttempts) {
+			await otp.update({ consumed_at: new Date() }, { transaction });
+			return { status: 'invalid' };
+		}
+
+		if (!safeEqual(otp.code_hash, sha256(code))) {
+			const attempts = otp.attempts + 1;
+			await otp.update(
+				{
+					attempts,
+					consumed_at:
+						attempts >= config.auth.otpMaxAttempts ? new Date() : null,
+				},
+				{ transaction }
+			);
+			return { status: 'invalid' };
+		}
+
+		await otp.update({ consumed_at: new Date() }, { transaction });
+
+		return { status: 'ok', value: await onValid(transaction) };
+	});
+}
+
+async function deliverOtpMail({ to, template, userId, kind }) {
+	try {
+		await sendMail({ to, ...template });
+		logger.info({ userId }, `${kind} code sent`);
+	} catch (err) {
+		logger.error({ err, userId }, `${kind} code could not be delivered`);
+	}
 }
 
 async function findOrCreateWithRole(attributes, transaction) {
@@ -80,7 +144,7 @@ async function findOrCreateWithRole(attributes, transaction) {
 	return user;
 }
 
-async function signUp({ email, password, username }) {
+async function signUp({ email, password, username, accountType }) {
 	const password_hash = await hashPassword(password);
 
 	return sequelize.transaction(async (transaction) => {
@@ -89,6 +153,8 @@ async function signUp({ email, password, username }) {
 				email: normaliseEmail(email),
 				username: username ?? null,
 				password_hash,
+				account_type: accountType,
+				email_verified: false,
 			},
 			transaction
 		);
@@ -149,8 +215,14 @@ async function signInWithGoogle({ idToken }) {
 		});
 
 		if (!user) {
+			// verifyGoogleIdToken already refused an unverified address above, so Google has done the round trip
 			await findOrCreateWithRole(
-				{ email, username: null, password_hash: null },
+				{
+					email,
+					username: null,
+					password_hash: null,
+					email_verified: true,
+				},
 				transaction
 			);
 			user = await User.findOne({
@@ -251,38 +323,14 @@ async function requestPasswordReset({ email }) {
 		return;
 	}
 
-	await OtpCode.update(
-		{ consumed_at: new Date() },
-		{
-			where: {
-				user_id: user.user_id,
-				purpose: OTP_PURPOSE,
-				consumed_at: null,
-			},
-		}
-	);
+	const code = await issueOtp({ userId: user.user_id, purpose: OTP_PURPOSE });
 
-	const code = generateOtp();
-
-	await OtpCode.create({
-		user_id: user.user_id,
-		purpose: OTP_PURPOSE,
-		code_hash: sha256(code),
-		expires_at: new Date(Date.now() + config.auth.otpTtlMinutes * 60_000),
+	await deliverOtpMail({
+		to: user.email,
+		template: passwordResetTemplate({ code }),
+		userId: user.user_id,
+		kind: 'password reset',
 	});
-
-	const template = passwordResetTemplate({ code });
-
-	try {
-		await sendMail({ to: user.email, ...template });
-		logger.info({ userId: user.user_id }, 'password reset code sent');
-	} catch (err) {
-		logger.error(
-			{ err, userId: user.user_id },
-			'password reset code could not be delivered'
-		);
-	};
-
 }
 
 async function verifyResetOtp({ email, code }) {
@@ -292,58 +340,77 @@ async function verifyResetOtp({ email, code }) {
 	const user = await User.findOne({ where: { email: normaliseEmail(email) } });
 	if (!user) throw invalid();
 
-	const outcome = await sequelize.transaction(async (transaction) => {
-		const otp = await OtpCode.findOne({
-			where: {
-				user_id: user.user_id,
-				purpose: OTP_PURPOSE,
-				consumed_at: null,
-			},
-			order: [['created_at', 'DESC']],
-			transaction,
-			lock: transaction.LOCK.UPDATE,
-		});
+	const outcome = await redeemOtp(
+		{ userId: user.user_id, purpose: OTP_PURPOSE, code },
+		async (transaction) => {
+			const resetToken = randomToken();
 
-		if (!otp || otp.expires_at <= new Date()) return { status: 'invalid' };
-
-		if (otp.attempts >= config.auth.otpMaxAttempts) {
-			await otp.update({ consumed_at: new Date() }, { transaction });
-			return { status: 'invalid' };
-		}
-
-		if (!safeEqual(otp.code_hash, sha256(code))) {
-			const attempts = otp.attempts + 1;
-			await otp.update(
+			await PasswordResetToken.create(
 				{
-					attempts,
-					consumed_at:
-						attempts >= config.auth.otpMaxAttempts ? new Date() : null,
+					user_id: user.user_id,
+					token_hash: sha256(resetToken),
+					expires_at: new Date(
+						Date.now() + config.auth.resetTokenTtlMinutes * 60_000
+					),
 				},
 				{ transaction }
 			);
-			return { status: 'invalid' };
+
+			return resetToken;
 		}
-
-		await otp.update({ consumed_at: new Date() }, { transaction });
-
-		const resetToken = randomToken();
-
-		await PasswordResetToken.create(
-			{
-				user_id: user.user_id,
-				token_hash: sha256(resetToken),
-				expires_at: new Date(
-					Date.now() + config.auth.resetTokenTtlMinutes * 60_000
-				),
-			},
-			{ transaction }
-		);
-
-		return { status: 'ok', resetToken };
-	});
+	);
 
 	if (outcome.status === 'invalid') throw invalid();
-	return { resetToken: outcome.resetToken };
+	return { resetToken: outcome.value };
+}
+
+async function sendEmailVerification(userId) {
+	const user = await User.findByPk(userId);
+	if (!user) throw new NotFoundError('User not found');
+
+	if (user.email_verified) {
+		throw new ConflictError('This email address is already verified', {
+			code: 'EMAIL_ALREADY_VERIFIED',
+		});
+	}
+
+	const code = await issueOtp({ userId, purpose: VERIFY_PURPOSE });
+
+	await deliverOtpMail({
+		to: user.email,
+		template: emailVerifyTemplate({ code }),
+		userId,
+		kind: 'email verification',
+	});
+}
+
+async function verifyEmail(userId, { code }) {
+	const user = await User.findByPk(userId, withRoles);
+	if (!user) throw new NotFoundError('User not found');
+
+	if (user.email_verified) {
+		throw new ConflictError('This email address is already verified', {
+			code: 'EMAIL_ALREADY_VERIFIED',
+		});
+	}
+
+	const outcome = await redeemOtp(
+		{ userId, purpose: VERIFY_PURPOSE, code },
+		(transaction) =>
+			User.update(
+				{ email_verified: true },
+				{ where: { user_id: userId }, transaction }
+			)
+	);
+
+	if (outcome.status === 'invalid') {
+		throw new UnauthorizedError('Invalid or expired code', {
+			code: 'INVALID_OTP',
+		});
+	}
+
+	user.email_verified = true;
+	return { user: publicUser(user, roleNames(user)) };
 }
 
 async function resetPassword({ resetToken, newPassword }) {
@@ -396,5 +463,7 @@ module.exports = {
 	requestPasswordReset,
 	verifyResetOtp,
 	resetPassword,
+	sendEmailVerification,
+	verifyEmail,
 	getProfile,
 };
