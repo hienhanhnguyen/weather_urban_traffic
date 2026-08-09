@@ -10,6 +10,9 @@
     "build:frontend": "npm --prefix frontend run build",
     "start:frontend": "npm --prefix frontend run start",
     "start:backend": "npm --prefix backend run start",
-    "lint:frontend": "npm --prefix frontend run lint"
+    "lint:frontend": "npm --prefix frontend run lint",
+    "typecheck:frontend": "npm --prefix frontend run typecheck",
+    "test:frontend": "npm --prefix frontend run test",
+    "test:backend": "npm --prefix backend run test"
   }
 }
