@@ -1,5 +1,5 @@
-import { PlaceholderPage } from "@/features/shell/PlaceholderPage";
+import { WeatherPanel } from "@/features/weather/WeatherPanel";
 
 export default function WeatherPage() {
-  return <PlaceholderPage titleKey="weather" descriptionKey="weather" />;
+  return <WeatherPanel />;
 }

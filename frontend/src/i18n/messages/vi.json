@@ -1107,44 +1107,67 @@
     "title": "Xác minh email của bạn"
   },
   "weather": {
-    "current": {
-      "aqi": "AQI",
-      "aqiStatus": "Tốt",
-      "desc": "Trời nắng, ít mây",
-      "humidity": "Độ ẩm",
-      "rain": "Lượng mưa",
-      "wind": "Gió"
+    "compass": {
+      "e": "Đ",
+      "n": "B",
+      "ne": "ĐB",
+      "nw": "TB",
+      "s": "N",
+      "se": "ĐN",
+      "sw": "TN",
+      "w": "T"
     },
-    "hourly": {
-      "intensity": {
-        "1": "Nhẹ",
-        "2": "Vừa",
-        "3": "Nặng",
-        "4": "Rất nặng"
-      },
-      "title": "Dự báo 24 giờ tới"
+    "conditions": {
+      "clear": "Trời quang",
+      "drizzleDense": "Mưa phùn nặng hạt",
+      "drizzleLight": "Mưa phùn nhẹ",
+      "drizzleModerate": "Mưa phùn",
+      "fog": "Sương mù",
+      "freezingDrizzleDense": "Mưa phùn đóng băng",
+      "freezingDrizzleLight": "Mưa phùn đóng băng nhẹ",
+      "freezingRainHeavy": "Mưa đóng băng",
+      "freezingRainLight": "Mưa đóng băng nhẹ",
+      "mainlyClear": "Chủ yếu quang mây",
+      "overcast": "Nhiều mây",
+      "partlyCloudy": "Có mây rải rác",
+      "rainHeavy": "Mưa to",
+      "rainModerate": "Mưa",
+      "rainSlight": "Mưa nhẹ",
+      "rimeFog": "Sương mù đóng băng",
+      "showersModerate": "Mưa rào",
+      "showersSlight": "Mưa rào nhẹ",
+      "showersViolent": "Mưa rào rất to",
+      "snowGrains": "Hạt tuyết",
+      "snowHeavy": "Tuyết dày",
+      "snowModerate": "Tuyết",
+      "snowShowersHeavy": "Mưa tuyết to",
+      "snowShowersSlight": "Mưa tuyết nhẹ",
+      "snowSlight": "Tuyết nhẹ",
+      "thunderstorm": "Dông",
+      "thunderstormHailHeavy": "Dông mạnh kèm mưa đá",
+      "thunderstormHailSlight": "Dông kèm mưa đá",
+      "unknown": "Không rõ thời tiết"
     },
-    "search": {
-      "browserError": "Trình duyệt không hỗ trợ GPS",
-      "currentLocation": "Vị trí hiện tại",
-      "gpsBtn": "GPS",
-      "gpsError": "Không thể lấy vị trí GPS. Vui lòng cho phép quyền truy cập vị trí.",
-      "gpsLoading": "...",
-      "placeholder": "Nhập địa chỉ hoặc chọn từ danh sách",
-      "searchBtn": "Tìm kiếm"
-    },
-    "timeline": {
-      "title": "Timeline 6 giờ"
-    },
-    "title": "Dự báo thời tiết",
-    "tooltips": {
-      "convert": "Chuyển đổi đơn vị",
-      "save": "Lưu vị trí",
-      "share": "Chia sẻ",
-      "subscribe": "Đăng ký cảnh báo"
-    },
-    "week": {
-      "title": "Dự báo 7 ngày"
-    }
+    "dailyTitle": "Dự báo 7 ngày",
+    "feelsLike": "Cảm giác như {value}",
+    "hourlyTitle": "24 giờ tới",
+    "humidity": "Độ ẩm",
+    "loadFailed": "Không tải được dữ liệu thời tiết.",
+    "locateFailed": "Không lấy được vị trí. Hãy kiểm tra quyền truy cập vị trí.",
+    "locateUnsupported": "Trình duyệt này không hỗ trợ định vị.",
+    "myLocation": "Vị trí của tôi",
+    "noPlace": "Chưa chọn địa điểm",
+    "noPlaceHint": "Hãy tìm ở trên, dùng vị trí của bạn, hoặc lưu một địa điểm trước.",
+    "observedAt": "Lúc {time}",
+    "precipitation": "Lượng mưa: {value}",
+    "pressure": "Áp suất",
+    "rainChance": "Khả năng mưa",
+    "savedLabel": "Địa điểm đã lưu",
+    "savedPlaceholder": "Chọn địa điểm đã lưu",
+    "searchPlaceholder": "Tìm địa điểm",
+    "subtitle": "Chọn một địa điểm để xem dự báo.",
+    "title": "Thời tiết",
+    "useMyLocation": "Dùng vị trí của tôi",
+    "wind": "Gió"
   }
 }

@@ -1107,44 +1107,67 @@
     "title": "Verify your email"
   },
   "weather": {
-    "current": {
-      "aqi": "AQI",
-      "aqiStatus": "Good",
-      "desc": "Sunny, few clouds",
-      "humidity": "Humidity",
-      "rain": "Rainfall",
-      "wind": "Wind"
+    "compass": {
+      "e": "E",
+      "n": "N",
+      "ne": "NE",
+      "nw": "NW",
+      "s": "S",
+      "se": "SE",
+      "sw": "SW",
+      "w": "W"
     },
-    "hourly": {
-      "intensity": {
-        "1": "Light",
-        "2": "Moderate",
-        "3": "Heavy",
-        "4": "Very Heavy"
-      },
-      "title": "24-Hour Forecast"
+    "conditions": {
+      "clear": "Clear sky",
+      "drizzleDense": "Heavy drizzle",
+      "drizzleLight": "Light drizzle",
+      "drizzleModerate": "Drizzle",
+      "fog": "Fog",
+      "freezingDrizzleDense": "Freezing drizzle",
+      "freezingDrizzleLight": "Light freezing drizzle",
+      "freezingRainHeavy": "Freezing rain",
+      "freezingRainLight": "Light freezing rain",
+      "mainlyClear": "Mainly clear",
+      "overcast": "Overcast",
+      "partlyCloudy": "Partly cloudy",
+      "rainHeavy": "Heavy rain",
+      "rainModerate": "Rain",
+      "rainSlight": "Light rain",
+      "rimeFog": "Freezing fog",
+      "showersModerate": "Showers",
+      "showersSlight": "Light showers",
+      "showersViolent": "Violent showers",
+      "snowGrains": "Snow grains",
+      "snowHeavy": "Heavy snow",
+      "snowModerate": "Snow",
+      "snowShowersHeavy": "Heavy snow showers",
+      "snowShowersSlight": "Light snow showers",
+      "snowSlight": "Light snow",
+      "thunderstorm": "Thunderstorm",
+      "thunderstormHailHeavy": "Severe thunderstorm with hail",
+      "thunderstormHailSlight": "Thunderstorm with hail",
+      "unknown": "Unknown conditions"
     },
-    "search": {
-      "browserError": "Browser does not support GPS",
-      "currentLocation": "Current Location",
-      "gpsBtn": "GPS",
-      "gpsError": "Cannot get GPS location. Please allow location access.",
-      "gpsLoading": "...",
-      "placeholder": "Enter address or select from list",
-      "searchBtn": "Search"
-    },
-    "timeline": {
-      "title": "6-Hour Timeline"
-    },
-    "title": "Weather Forecast",
-    "tooltips": {
-      "convert": "Convert Unit",
-      "save": "Save Location",
-      "share": "Share",
-      "subscribe": "Subscribe Alerts"
-    },
-    "week": {
-      "title": "7-Day Forecast"
-    }
+    "dailyTitle": "7-day forecast",
+    "feelsLike": "Feels like {value}",
+    "hourlyTitle": "Next 24 hours",
+    "humidity": "Humidity",
+    "loadFailed": "Could not load the weather.",
+    "locateFailed": "Could not get your location. Check that location access is allowed.",
+    "locateUnsupported": "This browser cannot report your location.",
+    "myLocation": "My location",
+    "noPlace": "No place selected",
+    "noPlaceHint": "Search above, use your location, or save a location first.",
+    "observedAt": "As of {time}",
+    "precipitation": "Precipitation: {value}",
+    "pressure": "Pressure",
+    "rainChance": "Chance of rain",
+    "savedLabel": "Saved locations",
+    "savedPlaceholder": "Choose a saved location",
+    "searchPlaceholder": "Search for a place",
+    "subtitle": "Pick a place to see its forecast.",
+    "title": "Weather",
+    "useMyLocation": "Use my location",
+    "wind": "Wind"
   }
 }
