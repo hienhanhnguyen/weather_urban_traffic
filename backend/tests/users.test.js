@@ -49,11 +49,27 @@ test('preferences are created on first read with sane defaults', async () => {
 	const updated = await request(app)
 		.put('/api/users/me/preferences')
 		.set(user.auth)
-		.send({ min_severity: 'critical', email_alerts_enabled: false })
+		.send({ minSeverity: 'critical', emailAlertsEnabled: false })
 		.expect(200);
 
 	assert.equal(updated.body.preferences.minSeverity, 'critical');
 	assert.equal(updated.body.preferences.emailAlertsEnabled, false);
+});
+
+test('preferences reject column names and unknown keys', async () => {
+	const user = await createUser();
+
+	await request(app)
+		.put('/api/users/me/preferences')
+		.set(user.auth)
+		.send({ min_severity: 'critical' })
+		.expect(400);
+
+	await request(app)
+		.put('/api/users/me/preferences')
+		.set(user.auth)
+		.send({ language: 'klingon' })
+		.expect(400);
 });
 
 test('only an admin may list users or change roles', async () => {

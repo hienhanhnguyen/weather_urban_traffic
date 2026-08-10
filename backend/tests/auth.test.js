@@ -271,7 +271,7 @@ test('a mailed code verifies the token owner and only once', async () => {
 	const me = await request(app).get('/api/auth/me').set(auth).expect(200);
 	assert.equal(me.body.user.emailVerified, true);
 
-	// The code is consumed, and a verified address cannot be re-verified.
+	// The code is consumed, and a verified address cannot be re-verified
 	const replay = await request(app)
 		.post('/api/auth/email/verify')
 		.set(auth)
@@ -312,7 +312,6 @@ test('a wrong verification code is counted and leaves the account unverified', a
 	});
 	assert.equal(otp.attempts, 1);
 
-	// The real code still works while attempts remain.
 	await request(app)
 		.post('/api/auth/email/verify')
 		.set(auth)
@@ -348,5 +347,69 @@ test('re-sending a verification code invalidates the previous one', async () => 
 		.post('/api/auth/email/verify')
 		.set(auth)
 		.send({ code: second })
+		.expect(200);
+});
+
+test('changing a password requires the current one and rotates every token', async () => {
+	const created = await signUp();
+	const auth = { Authorization: `Bearer ${created.body.accessToken}` };
+	const NEW_PASSWORD = 'a-much-better-one-2';
+
+	await request(app)
+		.post('/api/auth/password/change')
+		.send({ currentPassword: CREDENTIALS.password, newPassword: NEW_PASSWORD })
+		.expect(401);
+
+	const wrong = await request(app)
+		.post('/api/auth/password/change')
+		.set(auth)
+		.send({ currentPassword: 'not-my-password', newPassword: NEW_PASSWORD })
+		.expect(401);
+	assert.equal(wrong.body.error.code, 'INVALID_CREDENTIALS');
+
+	const changed = await request(app)
+		.post('/api/auth/password/change')
+		.set(auth)
+		.send({ currentPassword: CREDENTIALS.password, newPassword: NEW_PASSWORD })
+		.expect(200);
+
+	await request(app)
+		.post('/api/auth/refresh')
+		.send({ refreshToken: changed.body.refreshToken })
+		.expect(200);
+
+	const replayed = await request(app)
+		.post('/api/auth/refresh')
+		.send({ refreshToken: created.body.refreshToken })
+		.expect(401);
+	assert.equal(replayed.body.error.code, 'REFRESH_TOKEN_REUSED');
+
+	// Only the new password signs in
+	await request(app)
+		.post('/api/auth/signin')
+		.send({ email: CREDENTIALS.email, password: CREDENTIALS.password })
+		.expect(401);
+
+	await request(app)
+		.post('/api/auth/signin')
+		.send({ email: CREDENTIALS.email, password: NEW_PASSWORD })
+		.expect(200);
+});
+
+test('a too-short new password is rejected before anything changes', async () => {
+	const created = await signUp();
+	const auth = { Authorization: `Bearer ${created.body.accessToken}` };
+
+	const res = await request(app)
+		.post('/api/auth/password/change')
+		.set(auth)
+		.send({ currentPassword: CREDENTIALS.password, newPassword: 'short' })
+		.expect(400);
+
+	assert.equal(res.body.error.code, 'VALIDATION_ERROR');
+
+	await request(app)
+		.post('/api/auth/signin')
+		.send(CREDENTIALS)
 		.expect(200);
 });

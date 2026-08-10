@@ -57,12 +57,26 @@ async function getPreferences(userId) {
 	return publicPreferences(preference);
 }
 
+const PREFERENCE_COLUMNS = {
+	language: 'language',
+	timezone: 'timezone',
+	emailAlertsEnabled: 'email_alerts_enabled',
+	pushAlertsEnabled: 'push_alerts_enabled',
+	minSeverity: 'min_severity',
+};
+
 async function updatePreferences(userId, patch) {
 	const [preference] = await UserPreference.findOrCreate({
 		where: { user_id: userId },
 		defaults: { user_id: userId },
 	});
-	await preference.update(patch);
+
+	const columns = {};
+	for (const [key, column] of Object.entries(PREFERENCE_COLUMNS)) {
+		if (patch[key] !== undefined) columns[column] = patch[key];
+	}
+
+	await preference.update(columns);
 	return publicPreferences(preference);
 }
 

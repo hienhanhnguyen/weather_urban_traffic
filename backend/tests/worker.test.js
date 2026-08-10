@@ -99,7 +99,7 @@ test('a rule below the user minimum severity is skipped', async () => {
 	await request(app)
 		.put('/api/users/me/preferences')
 		.set(user.auth)
-		.send({ min_severity: 'critical' })
+		.send({ minSeverity: 'critical' })
 		.expect(200);
 
 	stubWeather(38);
