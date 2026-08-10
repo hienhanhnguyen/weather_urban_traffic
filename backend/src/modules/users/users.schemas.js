@@ -6,11 +6,11 @@ module.exports = {
 	}).min(1),
 
 	updatePreferences: Joi.object({
-		language: Joi.string().max(8),
+		language: Joi.string().valid('en', 'vi'),
 		timezone: Joi.string().max(64),
-		email_alerts_enabled: Joi.boolean(),
-		push_alerts_enabled: Joi.boolean(),
-		min_severity: Joi.string().valid('info', 'warning', 'critical'),
+		emailAlertsEnabled: Joi.boolean(),
+		pushAlertsEnabled: Joi.boolean(),
+		minSeverity: Joi.string().valid('info', 'warning', 'critical'),
 	}).min(1),
 
 	listUsers: Joi.object({

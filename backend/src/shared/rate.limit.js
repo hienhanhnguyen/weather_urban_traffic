@@ -50,5 +50,10 @@ module.exports = {
 		limit: 10,
 		keyGenerator: byUserId,
 	}),
+	passwordChangeLimiter: build({
+		windowMs: 15 * MINUTE,
+		limit: 10,
+		keyGenerator: byUserId,
+	}),
 	weatherLimiter: build({ windowMs: MINUTE, limit: 60 }),
 };

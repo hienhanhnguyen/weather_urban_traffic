@@ -10,6 +10,7 @@ const {
 	otpLimiter,
 	emailVerifySendLimiter,
 	emailVerifyCheckLimiter,
+	passwordChangeLimiter,
 } = require('../../shared/rate.limit');
 
 const router = express.Router();
@@ -46,6 +47,13 @@ router.post(
 	'/password/reset',
 	validate(schemas.resetPassword),
 	controller.resetPassword
+);
+router.post(
+	'/password/change',
+	authenticate,
+	passwordChangeLimiter,
+	validate(schemas.changePassword),
+	controller.changePassword
 );
 
 

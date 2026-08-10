@@ -52,6 +52,11 @@ module.exports = {
 		newPassword,
 	}),
 
+	changePassword: Joi.object({
+		currentPassword: Joi.string().max(72).required(),
+		newPassword,
+	}),
+
 	verifyEmail: Joi.object({
 		code: otpCode,
 	}),

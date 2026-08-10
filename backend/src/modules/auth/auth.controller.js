@@ -37,6 +37,10 @@ const resetPassword = async (req, res) => {
 	res.status(200).json({ message: 'Password updated.' });
 };
 
+const changePassword = async (req, res) => {
+	res.status(200).json(await service.changePassword(req.user.id, req.body));
+};
+
 const sendEmailVerification = async (req, res) => {
 	await service.sendEmailVerification(req.user.id);
 	res.status(202).json({ message: 'A verification code has been sent.' });
@@ -59,6 +63,7 @@ module.exports = {
 	forgotPassword,
 	verifyOtp,
 	resetPassword,
+	changePassword,
 	sendEmailVerification,
 	verifyEmail,
 	me,

@@ -448,6 +448,42 @@ async function resetPassword({ resetToken, newPassword }) {
 	});
 }
 
+async function changePassword(userId, { currentPassword, newPassword }) {
+	const user = await User.scope('withPassword').findByPk(userId, withRoles);
+	if (!user) throw new NotFoundError('User not found');
+
+	const matches = await verifyPassword(
+		currentPassword,
+		user.password_hash ?? null
+	);
+
+	if (!matches) {
+		throw new UnauthorizedError('Current password is incorrect', {
+			code: 'INVALID_CREDENTIALS',
+		});
+	}
+
+	const password_hash = await hashPassword(newPassword);
+	const roles = roleNames(user);
+
+	return sequelize.transaction(async (transaction) => {
+		await user.update({ password_hash }, { transaction });
+
+		await RefreshToken.update(
+			{ revoked_at: new Date() },
+			{ where: { user_id: userId, revoked_at: null }, transaction }
+		);
+
+		const { accessToken, refreshToken } = await issueTokens(
+			user,
+			roles,
+			transaction
+		);
+
+		return { user: publicUser(user, roles), accessToken, refreshToken };
+	});
+}
+
 async function getProfile(userId) {
 	const user = await User.findByPk(userId, withRoles);
 	if (!user) throw new NotFoundError('User not found');
@@ -463,6 +499,7 @@ module.exports = {
 	requestPasswordReset,
 	verifyResetOtp,
 	resetPassword,
+	changePassword,
 	sendEmailVerification,
 	verifyEmail,
 	getProfile,
