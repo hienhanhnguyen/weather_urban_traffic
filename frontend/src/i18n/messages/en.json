@@ -384,6 +384,7 @@
     "title": "Reports & Analysis"
   },
   "common": {
+    "add": "Add",
     "cancel": "Cancel",
     "close": "Close",
     "days": {
@@ -395,6 +396,8 @@
       "Tue": "Tue",
       "Wed": "Wed"
     },
+    "delete": "Delete",
+    "edit": "Edit",
     "hideMap": "Hide Map",
     "hours": "hours",
     "language": "Language",
@@ -409,6 +412,7 @@
     },
     "profile": "Profile",
     "refresh": "Refresh",
+    "save": "Save",
     "showMap": "Show Map",
     "signOut": "Sign out",
     "theme": "Theme",
@@ -610,6 +614,38 @@
     "en": "English",
     "label": "Language",
     "vi": "Tiếng Việt"
+  },
+  "locations": {
+    "add": "Add location",
+    "addTitle": "Add a location",
+    "count": "{count, plural, =0 {No saved locations} one {# saved location} other {# saved locations}}",
+    "delete": {
+      "confirm": "Delete “{name}”?",
+      "title": "Delete location",
+      "warning": "Alert rules attached to this location are removed with it. This cannot be undone."
+    },
+    "deleteOne": "Delete {name}",
+    "editOne": "Edit {name}",
+    "editTitle": "Edit location",
+    "empty": "No saved locations yet",
+    "emptyHint": "Save the places you check often and they will show up here.",
+    "favoritesTitle": "Saved locations",
+    "form": {
+      "address": "Address",
+      "addressHint": "Filled in from the map, and you can edit it.",
+      "addressPlaceholder": "Street, ward, district",
+      "name": "Name",
+      "namePlaceholder": "Home, Office, District 1…",
+      "place": "Location",
+      "placeRequired": "Pick a place on the map first"
+    },
+    "limitReached": "You have reached the maximum number of saved locations. Delete one to add another.",
+    "loadFailed": "Could not load your locations.",
+    "openInMap": "Show {name} on the map",
+    "showAll": "Show all {count}",
+    "subtitle": "Places you have saved.",
+    "title": "My locations",
+    "truncated": "Showing {shown} of {total}."
   },
   "map": {
     "explore": {
@@ -1038,12 +1074,15 @@
     "system": "System"
   },
   "validation": {
+    "addressTooLong": "Use at most 1000 characters",
     "codeDigits": "Digits only",
     "codeLength": "The code is 6 digits",
     "currentPasswordRequired": "Enter your current password",
     "emailInvalid": "Enter a valid email address",
     "emailRequired": "Email is required",
     "emailTooLong": "Email is too long",
+    "nameRequired": "A name is required",
+    "nameTooLong": "Use at most 255 characters",
     "newPasswordReused": "Choose a password you have not used here before",
     "passwordMax": "Use at most 72 characters",
     "passwordMin": "Use at least 8 characters",

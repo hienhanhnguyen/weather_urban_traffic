@@ -15,4 +15,7 @@ export type ValidationKey =
   | "codeDigits"
   | "currentPasswordRequired"
   | "newPasswordReused"
-  | "timezoneMax";
+  | "timezoneMax"
+  | "nameRequired"
+  | "nameTooLong"
+  | "addressTooLong";

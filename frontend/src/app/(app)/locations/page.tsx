@@ -1,5 +1,5 @@
-import { PlaceholderPage } from "@/features/shell/PlaceholderPage";
+import { LocationsPanel } from "@/features/locations/LocationsPanel";
 
 export default function LocationsPage() {
-  return <PlaceholderPage titleKey="locations" descriptionKey="locations" />;
+  return <LocationsPanel />;
 }

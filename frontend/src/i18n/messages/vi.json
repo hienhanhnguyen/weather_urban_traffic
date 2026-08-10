@@ -384,6 +384,7 @@
     "title": "Báo cáo & Phân tích"
   },
   "common": {
+    "add": "Thêm",
     "cancel": "Hủy",
     "close": "Đóng",
     "days": {
@@ -395,6 +396,8 @@
       "Tue": "Thứ 3",
       "Wed": "Thứ 4"
     },
+    "delete": "Xóa",
+    "edit": "Sửa",
     "hideMap": "Ẩn bản đồ",
     "hours": "giờ",
     "language": "Ngôn ngữ",
@@ -409,6 +412,7 @@
     },
     "profile": "Hồ sơ",
     "refresh": "Làm mới",
+    "save": "Lưu",
     "showMap": "Hiện bản đồ",
     "signOut": "Đăng xuất",
     "theme": "Giao diện",
@@ -610,6 +614,38 @@
     "en": "English",
     "label": "Ngôn ngữ",
     "vi": "Tiếng Việt"
+  },
+  "locations": {
+    "add": "Thêm địa điểm",
+    "addTitle": "Thêm địa điểm",
+    "count": "{count, plural, =0 {Chưa có địa điểm nào} other {# địa điểm đã lưu}}",
+    "delete": {
+      "confirm": "Xóa “{name}”?",
+      "title": "Xóa địa điểm",
+      "warning": "Các quy tắc cảnh báo gắn với địa điểm này cũng bị xóa theo. Thao tác không thể hoàn tác."
+    },
+    "deleteOne": "Xóa {name}",
+    "editOne": "Sửa {name}",
+    "editTitle": "Sửa địa điểm",
+    "empty": "Chưa có địa điểm nào được lưu",
+    "emptyHint": "Lưu những nơi bạn hay theo dõi, chúng sẽ hiện ở đây.",
+    "favoritesTitle": "Địa điểm đã lưu",
+    "form": {
+      "address": "Địa chỉ",
+      "addressHint": "Được điền từ bản đồ, bạn có thể chỉnh lại.",
+      "addressPlaceholder": "Đường, phường, quận",
+      "name": "Tên",
+      "namePlaceholder": "Nhà, Văn phòng, Quận 1…",
+      "place": "Vị trí",
+      "placeRequired": "Hãy chọn một vị trí trên bản đồ"
+    },
+    "limitReached": "Bạn đã lưu tối đa số địa điểm cho phép. Hãy xóa bớt một địa điểm để thêm mới.",
+    "loadFailed": "Không tải được danh sách địa điểm.",
+    "openInMap": "Xem {name} trên bản đồ",
+    "showAll": "Xem tất cả {count}",
+    "subtitle": "Những địa điểm bạn đã lưu.",
+    "title": "Địa điểm của tôi",
+    "truncated": "Đang hiển thị {shown} trong {total}."
   },
   "map": {
     "explore": {
@@ -1038,12 +1074,15 @@
     "system": "Theo hệ thống"
   },
   "validation": {
+    "addressTooLong": "Tối đa 1000 ký tự",
     "codeDigits": "Chỉ nhập chữ số",
     "codeLength": "Mã gồm 6 chữ số",
     "currentPasswordRequired": "Nhập mật khẩu hiện tại của bạn",
     "emailInvalid": "Nhập địa chỉ email hợp lệ",
     "emailRequired": "Vui lòng nhập email",
     "emailTooLong": "Email quá dài",
+    "nameRequired": "Vui lòng nhập tên",
+    "nameTooLong": "Tối đa 255 ký tự",
     "newPasswordReused": "Hãy chọn mật khẩu bạn chưa từng dùng ở đây",
     "passwordMax": "Dùng tối đa 72 ký tự",
     "passwordMin": "Dùng ít nhất 8 ký tự",
