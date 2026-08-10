@@ -1,6 +1,6 @@
 const config = require('../../shared/config');
 const { request } = require('./weather.client');
-const { TtlCache } = require('./weather.cache');
+const { TtlCache } = require('../../shared/ttl.cache');
 
 const cache = new TtlCache(500);
 

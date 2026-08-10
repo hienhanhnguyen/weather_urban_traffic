@@ -56,6 +56,14 @@ const schema = Joi.object({
 	WEATHER_CACHE_FORECAST_TTL_MS: Joi.number().integer().min(0).default(3_600_000),
 	MAX_SAVED_LOCATIONS: Joi.number().integer().min(1).default(50),
 
+	GEOCODER_URL: Joi.string().uri().default('https://photon.komoot.io'),
+	ROUTER_URL: Joi.string().uri().default('https://router.project-osrm.org'),
+	GEO_USER_AGENT: Joi.string().default('SWTIS/1.0 (thesis project)'),
+	GEO_TIMEOUT_MS: Joi.number().integer().min(1000).default(8_000),
+	GEO_CACHE_SEARCH_TTL_MS: Joi.number().integer().min(0).default(600_000),
+	GEO_CACHE_REVERSE_TTL_MS: Joi.number().integer().min(0).default(86_400_000),
+	GEO_CACHE_ROUTE_TTL_MS: Joi.number().integer().min(0).default(600_000),
+
 	SMTP_HOST: Joi.string().allow('').default(''),
 	SMTP_PORT: Joi.number().port().default(587),
 	SMTP_USER: Joi.string().allow('').default(''),
@@ -89,8 +97,6 @@ const schema = Joi.object({
 	SHUTDOWN_TIMEOUT_MS: Joi.number().integer().min(1000).default(10_000),
 });
 
-// checks process.env against the schema 
-// returns object with two properties: value and error.
 const { value: env, error } =
 	schema.validate(process.env, {
 		abortEarly: false,
@@ -143,6 +149,16 @@ const config = Object.freeze({
 		timeoutMs: env.WEATHER_TIMEOUT_MS,
 		currentTtlMs: env.WEATHER_CACHE_CURRENT_TTL_MS,
 		forecastTtlMs: env.WEATHER_CACHE_FORECAST_TTL_MS,
+	}),
+
+	geo: Object.freeze({
+		geocoderUrl: env.GEOCODER_URL.replace(/\/+$/, ''),
+		routerUrl: env.ROUTER_URL.replace(/\/+$/, ''),
+		userAgent: env.GEO_USER_AGENT,
+		timeoutMs: env.GEO_TIMEOUT_MS,
+		searchTtlMs: env.GEO_CACHE_SEARCH_TTL_MS,
+		reverseTtlMs: env.GEO_CACHE_REVERSE_TTL_MS,
+		routeTtlMs: env.GEO_CACHE_ROUTE_TTL_MS,
 	}),
 
 	limits: Object.freeze({
