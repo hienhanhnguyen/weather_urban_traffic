@@ -50,7 +50,7 @@ const schema = Joi.object({
 	RESET_TOKEN_TTL_MINUTES: Joi.number().integer().min(1).default(15),
 	GOOGLE_CLIENT_ID: Joi.string().allow('').default(''),
 
-	OPENWEATHER_API_KEY: Joi.string().required(),
+	WEATHER_URL: Joi.string().uri().default('https://api.open-meteo.com'),
 	WEATHER_TIMEOUT_MS: Joi.number().integer().min(1000).default(15_000),
 	WEATHER_CACHE_CURRENT_TTL_MS: Joi.number().integer().min(0).default(600_000),
 	WEATHER_CACHE_FORECAST_TTL_MS: Joi.number().integer().min(0).default(3_600_000),
@@ -145,7 +145,7 @@ const config = Object.freeze({
 		googleClientId: env.GOOGLE_CLIENT_ID,
 	}),
 	weather: Object.freeze({
-		apiKey: env.OPENWEATHER_API_KEY,
+		baseUrl: env.WEATHER_URL.replace(/\/+$/, ''),
 		timeoutMs: env.WEATHER_TIMEOUT_MS,
 		currentTtlMs: env.WEATHER_CACHE_CURRENT_TTL_MS,
 		forecastTtlMs: env.WEATHER_CACHE_FORECAST_TTL_MS,

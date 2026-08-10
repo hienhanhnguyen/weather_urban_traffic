@@ -15,9 +15,30 @@ const { createUser } = require('./helpers/auth');
 
 const originalFetch = global.fetch;
 
+// The shape Open-Meteo returns for `current=` with `timeformat=unixtime`.
+const weatherPayload = (temp) => ({
+	latitude: 21,
+	longitude: 105.8,
+	timezone: 'Asia/Bangkok',
+	utc_offset_seconds: 25200,
+	current: {
+		time: Math.floor(Date.now() / 1000),
+		is_day: 1,
+		temperature_2m: temp,
+		apparent_temperature: temp,
+		relative_humidity_2m: 70,
+		precipitation: 0,
+		weather_code: 0,
+		wind_speed_10m: 5,
+		wind_direction_10m: 180,
+		pressure_msl: 1010,
+	},
+	hourly: { time: [], precipitation_probability: [] },
+});
+
 const stubWeather = (temp) => {
 	global.fetch = async () =>
-		new Response(JSON.stringify({ main: { temp } }), {
+		new Response(JSON.stringify(weatherPayload(temp)), {
 			status: 200,
 			headers: { 'content-type': 'application/json' },
 		});
@@ -138,7 +159,7 @@ test('one failing rule does not abort the tick', async () => {
 	global.fetch = async () => {
 		call += 1;
 		if (call === 1) throw new Error('network down');
-		return new Response(JSON.stringify({ main: { temp: 38 } }), {
+		return new Response(JSON.stringify(weatherPayload(38)), {
 			status: 200,
 			headers: { 'content-type': 'application/json' },
 		});

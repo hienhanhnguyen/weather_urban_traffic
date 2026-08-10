@@ -3,58 +3,40 @@ const logger = require('../../shared/logger');
 const {
 	AppError,
 	BadRequestError,
-	NotFoundError,
 	ServiceUnavailableError,
 } = require('../../shared/errors');
 
-const BASE_URL = 'https://api.openweathermap.org';
 const UNAVAILABLE = 'Weather service is temporarily unavailable';
 
 function mapUpstreamError(status, payload, path) {
-	const upstreamMessage = payload?.message ?? 'unknown upstream error';
-
-	if (status === 401 || status === 403) {
-		logger.error(
-			{ status, path, upstreamMessage },
-			'OpenWeather rejected our API key'
-		);
-		return new ServiceUnavailableError(UNAVAILABLE);
-	}
-
-	if (status === 404) {
-		return new NotFoundError('No weather data for that location');
-	}
+	const reason = payload?.reason ?? 'unknown upstream error';
 
 	if (status === 429) {
-		logger.warn({ status, path }, 'OpenWeather rate limit reached');
+		logger.warn({ status, path }, 'Weather provider rate limit reached');
 		return new ServiceUnavailableError(UNAVAILABLE);
 	}
 
 	if (status >= 500) {
-		logger.warn({ status, path, upstreamMessage }, 'OpenWeather is failing');
+		logger.warn({ status, path, reason }, 'Weather provider is failing');
 		return new ServiceUnavailableError(UNAVAILABLE);
 	}
 
-	return new BadRequestError(`Weather request rejected: ${upstreamMessage}`, {
+	logger.warn({ status, path, reason }, 'Weather provider rejected a request');
+	return new BadRequestError('Weather request rejected', {
 		code: 'WEATHER_BAD_REQUEST',
 	});
 }
 
 async function request(path, query) {
-	const params = new URLSearchParams({
-		...query,
-		appid: config.weather.apiKey,
-	});
+	const params = new URLSearchParams(query);
 
 	const controller = new AbortController();
-	const timer = setTimeout(
-		() => controller.abort(),
-		config.weather.timeoutMs
-	);
+	const timer = setTimeout(() => controller.abort(), config.weather.timeoutMs);
 
 	try {
-		const response = await fetch(`${BASE_URL}${path}?${params}`, {
+		const response = await fetch(`${config.weather.baseUrl}${path}?${params}`, {
 			signal: controller.signal,
+			headers: { Accept: 'application/json' },
 		});
 
 		const payload = await response.json().catch(() => null);
@@ -70,12 +52,12 @@ async function request(path, query) {
 		if (err.name === 'AbortError' || err.name === 'TimeoutError') {
 			logger.warn(
 				{ path, timeoutMs: config.weather.timeoutMs },
-				'OpenWeather request timed out'
+				'Weather request timed out'
 			);
 			throw new ServiceUnavailableError(UNAVAILABLE);
 		}
 
-		logger.error({ err, path }, 'OpenWeather request failed');
+		logger.error({ err, path }, 'Weather request failed');
 		throw new ServiceUnavailableError(UNAVAILABLE);
 	} finally {
 		clearTimeout(timer);

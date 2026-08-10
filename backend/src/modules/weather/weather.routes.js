@@ -15,6 +15,5 @@ router.get(
 	validate(schemas.forecast, 'query'),
 	controller.forecast
 );
-router.get('/geocode', validate(schemas.geocode, 'query'), controller.geocode);
 
 module.exports = router;

@@ -23,7 +23,7 @@ const DEFAULT_PREFERENCES = {
 	push_alerts_enabled: true,
 };
 
-const FORECAST_SLOTS_24H = 8; // the forecast endpoint is 3-hourly
+const FORECAST_SLOTS_24H = 24; // the forecast endpoint is hourly
 
 const compare = (value, operator, threshold) => {
 	switch (operator) {
@@ -40,42 +40,29 @@ const compare = (value, operator, threshold) => {
 	}
 };
 
-const currentMetric = (metric, payload) => {
-	const main = payload?.main ?? {};
-	const rain = payload?.rain ?? {};
-
-	switch (metric) {
-		case 'temp':
-			return typeof main.temp === 'number' ? main.temp : null;
-		case 'feelslike':
-			return typeof main.feels_like === 'number' ? main.feels_like : null;
-		case 'precip':
-			return Number(rain['1h'] ?? rain['3h'] ?? 0);
-		case 'precipprob':
-			return null; // not exposed by the current-weather endpoint
-		default:
-			return null;
-	}
+const METRIC_FIELD = {
+	temp: 'temp',
+	feelslike: 'feelsLike',
+	precip: 'precip',
+	precipprob: 'precipProb',
 };
 
-const forecastMetric = (metric, list, operator) => {
-	const slots = Array.isArray(list) ? list.slice(0, FORECAST_SLOTS_24H) : [];
+const currentMetric = (metric, current) => {
+	const field = METRIC_FIELD[metric];
+	if (!field) return null;
+
+	const value = current?.[field];
+	return typeof value === 'number' ? value : null;
+};
+
+const forecastMetric = (metric, hourly, operator) => {
+	const field = METRIC_FIELD[metric];
+	if (!field) return null;
+
+	const slots = Array.isArray(hourly) ? hourly.slice(0, FORECAST_SLOTS_24H) : [];
 
 	const values = slots
-		.map((slot) => {
-			switch (metric) {
-				case 'temp':
-					return slot.main?.temp;
-				case 'feelslike':
-					return slot.main?.feels_like;
-				case 'precip':
-					return Number(slot.rain?.['3h'] ?? slot.rain?.['1h'] ?? 0);
-				case 'precipprob':
-					return typeof slot.pop === 'number' ? slot.pop * 100 : null;
-				default:
-					return null;
-			}
-		})
+		.map((slot) => slot?.[field])
 		.filter((value) => Number.isFinite(value));
 
 	if (values.length === 0) return null;
@@ -113,22 +100,20 @@ async function readMetric(rule) {
 	const { latitude, longitude } = rule.location;
 
 	if (rule.scope === 'current') {
-		const payload = await weather.getCurrent({
+		const current = await weather.getCurrent({
 			lat: latitude,
 			lon: longitude,
 			units: 'metric',
-			lang: 'en',
 		});
-		return currentMetric(rule.metric, payload);
+		return currentMetric(rule.metric, current);
 	}
 
-	const payload = await weather.getForecast({
+	const forecast = await weather.getForecast({
 		lat: latitude,
 		lon: longitude,
 		units: 'metric',
-		lang: 'en',
 	});
-	return forecastMetric(rule.metric, payload?.list, rule.operator);
+	return forecastMetric(rule.metric, forecast?.hourly, rule.operator);
 }
 
 async function deliver(rule, preference, message, value) {
