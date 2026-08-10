@@ -751,8 +751,9 @@
       "body": "{metric} is {value} ({operator} {threshold}).",
       "title": "{metric} alert: {location}"
     },
-    "bellAria": "Notifications",
+    "dismiss": "Dismiss",
     "empty": "No notifications yet",
+    "loadFailed": "Could not load notifications.",
     "markAllRead": "Mark all read",
     "metrics": {
       "feelslike": "Feels like",
@@ -770,6 +771,7 @@
       "title": "Browser alerts",
       "unsupported": "Your browser does not support web push notifications."
     },
+    "reconnecting": "Reconnecting…",
     "rules": {
       "addBtn": "Add rule",
       "cooldown": "Cooldown (min)",
@@ -796,7 +798,9 @@
       "info": "Info",
       "warning": "Warning"
     },
-    "title": "Notifications"
+    "title": "Notifications",
+    "unreadCount": "{count, plural, =0 {Notifications} other {Notifications, # unread}}",
+    "unreadItem": "Unread"
   },
   "personalPage": {
     "addAlert": "Add new location function",

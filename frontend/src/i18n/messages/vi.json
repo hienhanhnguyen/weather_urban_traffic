@@ -751,8 +751,9 @@
       "body": "{metric} hiện tại {value} ({operator} {threshold}).",
       "title": "Cảnh báo {metric}: {location}"
     },
-    "bellAria": "Thông báo",
+    "dismiss": "Đóng",
     "empty": "Chưa có thông báo nào",
+    "loadFailed": "Không tải được thông báo.",
     "markAllRead": "Đánh dấu đã đọc",
     "metrics": {
       "feelslike": "Nhiệt độ cảm nhận",
@@ -770,6 +771,7 @@
       "title": "Thông báo trình duyệt",
       "unsupported": "Trình duyệt của bạn không hỗ trợ web push."
     },
+    "reconnecting": "Đang kết nối lại…",
     "rules": {
       "addBtn": "Thêm quy tắc",
       "cooldown": "Khoảng nghỉ (phút)",
@@ -796,7 +798,9 @@
       "info": "Thông tin",
       "warning": "Cảnh báo"
     },
-    "title": "Thông báo"
+    "title": "Thông báo",
+    "unreadCount": "{count, plural, =0 {Thông báo} other {Thông báo, # chưa đọc}}",
+    "unreadItem": "Chưa đọc"
   },
   "personalPage": {
     "addAlert": "Chức năng thêm vị trí mới",

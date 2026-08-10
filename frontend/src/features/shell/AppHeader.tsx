@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Menu } from "lucide-react";
 import { useSession } from "@/lib/auth/session";
+import { NotificationBell } from "@/features/notifications/NotificationBell";
 import { Button } from "@/components/ui/Button";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 import { ThemeToggle } from "./ThemeToggle";
@@ -38,6 +39,7 @@ export function AppHeader() {
         </Link>
 
         <div className="ml-auto flex items-center gap-3">
+          <NotificationBell />
           <LocaleSwitcher />
           <ThemeToggle />
 
