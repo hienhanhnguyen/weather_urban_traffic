@@ -400,6 +400,7 @@
     "language": "Ngôn ngữ",
     "loading": "Đang tải",
     "minutes": "phút",
+    "noResults": "Không có kết quả",
     "pagination": {
       "next": "Trang sau",
       "of": "trên",
@@ -611,6 +612,10 @@
     "vi": "Tiếng Việt"
   },
   "map": {
+    "explore": {
+      "subtitle": "Tìm một địa điểm, hoặc nhấp vào bất kỳ đâu để xem có gì ở đó.",
+      "title": "Bản đồ"
+    },
     "inputs": {
       "capacity": "Tải trọng (kg)",
       "currentLocation": "Vị trí hiện tại",
@@ -642,6 +647,13 @@
       "trafficGreen": "Giao thông: Xanh - thông thoáng",
       "trafficRed": "Giao thông: Đỏ - tắc nghẽn",
       "trafficYellow": "Giao thông: Vàng - chậm"
+    },
+    "loadFailed": "Không tải được bản đồ. Hãy kiểm tra kết nối và tải lại trang.",
+    "picker": {
+      "hint": "Nhấp vào bản đồ để đặt ghim, hoặc kéo ghim để chỉnh chính xác.",
+      "nothingSelected": "Chưa chọn vị trí nào.",
+      "resolving": "(đang tra cứu địa chỉ…)",
+      "searchPlaceholder": "Tìm địa điểm hoặc địa chỉ"
     },
     "title": "Bản đồ kết hợp",
     "visualization": {
@@ -679,6 +691,7 @@
       "lastSearch": "Tìm kiếm gần đây"
     },
     "search": {
+      "failed": "Hiện không thể tìm kiếm.",
       "history": "Lịch sử",
       "placeholder": "Tìm kiếm địa điểm...",
       "results": "Kết quả"
@@ -687,7 +700,7 @@
       "distance": "Khoảng cách",
       "time": "Thời gian"
     },
-    "title": "VietMap Toàn diện"
+    "title": "Bản đồ toàn màn hình"
   },
   "nav": {
     "closeMenu": "Đóng menu",

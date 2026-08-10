@@ -400,6 +400,7 @@
     "language": "Language",
     "loading": "Loading",
     "minutes": "minutes",
+    "noResults": "No results",
     "pagination": {
       "next": "Next",
       "of": "of",
@@ -611,6 +612,10 @@
     "vi": "Tiếng Việt"
   },
   "map": {
+    "explore": {
+      "subtitle": "Search for a place, or click anywhere to see what is there.",
+      "title": "Map"
+    },
     "inputs": {
       "capacity": "Capacity (kg)",
       "currentLocation": "Current Location",
@@ -642,6 +647,13 @@
       "trafficGreen": "Traffic: Green - Clear",
       "trafficRed": "Traffic: Red - Congested",
       "trafficYellow": "Traffic: Yellow - Slow"
+    },
+    "loadFailed": "The map could not be loaded. Check your connection and reload the page.",
+    "picker": {
+      "hint": "Click the map to drop a pin, or drag it to fine-tune.",
+      "nothingSelected": "No location selected yet.",
+      "resolving": "(looking up address…)",
+      "searchPlaceholder": "Search for a place or address"
     },
     "title": "Combined Map",
     "visualization": {
@@ -679,6 +691,7 @@
       "lastSearch": "Recent searches"
     },
     "search": {
+      "failed": "Search is unavailable right now.",
       "history": "History",
       "placeholder": "Search for locations...",
       "results": "Results"
@@ -687,7 +700,7 @@
       "distance": "Distance",
       "time": "Time"
     },
-    "title": "VietMap Full"
+    "title": "Full map"
   },
   "nav": {
     "closeMenu": "Close menu",
