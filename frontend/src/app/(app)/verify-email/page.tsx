@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useTranslations } from "next-intl";
 import { sendEmailVerification, verifyEmail } from "@/features/auth/api";
 import { otpSchema, type OtpValues } from "@/features/auth/schemas";
 import { SESSION_QUERY_KEY, useSession } from "@/lib/auth/session";
@@ -14,12 +15,19 @@ import { Callout } from "@/components/ui/Callout";
 import { TextField } from "@/components/ui/TextField";
 
 export default function VerifyEmailPage() {
+  const t = useTranslations("verifyEmail");
+  const tAuth = useTranslations("auth");
+  const tv = useTranslations("validation");
+  const tError = useTranslations("errors");
+
   const { user } = useSession();
   const queryClient = useQueryClient();
   const router = useRouter();
 
   const [formError, setFormError] = useState("");
-  const [notice, setNotice] = useState("");
+  const [sent, setSent] = useState(false);
+
+  const schema = useMemo(() => otpSchema(tv), [tv]);
 
   const {
     register,
@@ -27,19 +35,21 @@ export default function VerifyEmailPage() {
     setError,
     formState: { errors },
   } = useForm<OtpValues>({
-    resolver: zodResolver(otpSchema),
+    resolver: zodResolver(schema),
     defaultValues: { code: "" },
   });
 
   const send = useMutation({
     mutationFn: sendEmailVerification,
-    onSuccess: (response) => {
+    onSuccess: () => {
+      // The server's own message is English-only, so the confirmation comes
+      // from the catalogue instead.
       setFormError("");
-      setNotice(response.message);
+      setSent(true);
     },
     onError: (error) => {
-      setNotice("");
-      setFormError(applyApiError(error, setError, []));
+      setSent(false);
+      setFormError(applyApiError(error, setError, [], tError("generic")));
     },
   });
 
@@ -50,12 +60,12 @@ export default function VerifyEmailPage() {
       router.replace("/home");
     },
     onError: (error) => {
-      setNotice("");
-      setFormError(applyApiError(error, setError, ["code"]));
+      setSent(false);
+      setFormError(applyApiError(error, setError, ["code"], tError("generic")));
     },
   });
 
-  // Already verified or verified in another tab
+  // Already verified, or verified in another tab.
   useEffect(() => {
     if (user?.emailVerified) router.replace("/home");
   }, [user?.emailVerified, router]);
@@ -63,17 +73,17 @@ export default function VerifyEmailPage() {
   return (
     <div className="mx-auto flex w-full max-w-sm flex-col gap-4">
       <div>
-        <h1 className="text-xl font-semibold tracking-tight">
-          Verify your email
-        </h1>
+        <h1 className="text-xl font-semibold tracking-tight">{t("title")}</h1>
         <p className="mt-1 text-sm opacity-70">
-          We need to confirm <strong>{user?.email}</strong> before sending you
-          alerts.
+          {t.rich("description", {
+            email: user?.email ?? "",
+            strong: (chunks) => <strong>{chunks}</strong>,
+          })}
         </p>
       </div>
 
       <Callout tone="error">{formError}</Callout>
-      <Callout tone="success">{notice}</Callout>
+      {sent && <Callout tone="success">{t("codeSent")}</Callout>}
 
       <Button
         type="button"
@@ -81,7 +91,7 @@ export default function VerifyEmailPage() {
         loading={send.isPending}
         onClick={() => send.mutate()}
       >
-        {send.isSuccess ? "Send another code" : "Send verification code"}
+        {send.isSuccess ? t("sendAnother") : t("sendCode")}
       </Button>
 
       <form
@@ -90,10 +100,10 @@ export default function VerifyEmailPage() {
           verify.mutate(values);
         })}
         noValidate
-        className="flex flex-col gap-4 rounded-lg border border-black/10 p-6 dark:border-white/15"
+        className="flex flex-col gap-4 rounded-lg border border-border p-6"
       >
         <TextField
-          label="6-digit code"
+          label={tAuth("fields.code")}
           inputMode="numeric"
           autoComplete="one-time-code"
           maxLength={6}
@@ -102,16 +112,12 @@ export default function VerifyEmailPage() {
         />
 
         <Button type="submit" loading={verify.isPending}>
-          Verify email
+          {t("submit")}
         </Button>
       </form>
 
-      <Button
-        type="button"
-        variant="ghost"
-        onClick={() => router.push("/home")}
-      >
-        Skip for now
+      <Button type="button" variant="ghost" onClick={() => router.push("/home")}>
+        {t("skip")}
       </Button>
     </div>
   );

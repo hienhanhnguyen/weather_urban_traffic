@@ -1,39 +1,49 @@
 import { z } from "zod";
+import type { TranslateValidation } from "@/lib/forms/translate";
 
-export const profileSchema = z.object({
-  username: z
-    .string()
-    .regex(/^[a-zA-Z0-9]*$/, "Letters and numbers only")
-    .max(64, "Use at most 64 characters")
-    .refine((v) => v === "" || v.length >= 3, "Use at least 3 characters"),
-});
-
-export const preferencesSchema = z.object({
-  language: z.enum(["en", "vi"]),
-  timezone: z.string().max(64, "Use at most 64 characters"),
-  emailAlertsEnabled: z.boolean(),
-  pushAlertsEnabled: z.boolean(),
-  minSeverity: z.enum(["info", "warning", "critical"]),
-});
-
-export const changePasswordSchema = z
-  .object({
-    currentPassword: z.string().min(1, "Enter your current password").max(72),
-    newPassword: z
+export const profileSchema = (t: TranslateValidation) =>
+  z.object({
+    // Blank means "remove my username", which the API models as null.
+    username: z
       .string()
-      .min(8, "Use at least 8 characters")
-      .max(72, "Use at most 72 characters"),
-    confirmPassword: z.string(),
-  })
-  .refine((values) => values.newPassword === values.confirmPassword, {
-    path: ["confirmPassword"],
-    message: "Passwords do not match",
-  })
-  .refine((values) => values.newPassword !== values.currentPassword, {
-    path: ["newPassword"],
-    message: "Choose a password you have not used here before",
+      .regex(/^[a-zA-Z0-9]*$/, t("usernameAlnum"))
+      .max(64, t("usernameMax"))
+      .refine((v) => v === "" || v.length >= 3, t("usernameMin")),
   });
 
-export type ProfileValues = z.infer<typeof profileSchema>;
-export type PreferencesValues = z.infer<typeof preferencesSchema>;
-export type ChangePasswordValues = z.infer<typeof changePasswordSchema>;
+export const preferencesSchema = (t: TranslateValidation) =>
+  z.object({
+    language: z.enum(["en", "vi"]),
+    timezone: z.string().max(64, t("timezoneMax")),
+    emailAlertsEnabled: z.boolean(),
+    pushAlertsEnabled: z.boolean(),
+    minSeverity: z.enum(["info", "warning", "critical"]),
+  });
+
+export const changePasswordSchema = (t: TranslateValidation) =>
+  z
+    .object({
+      currentPassword: z
+        .string()
+        .min(1, t("currentPasswordRequired"))
+        .max(72),
+      newPassword: z
+        .string()
+        .min(8, t("passwordMin"))
+        .max(72, t("passwordMax")),
+      confirmPassword: z.string(),
+    })
+    .refine((values) => values.newPassword === values.confirmPassword, {
+      path: ["confirmPassword"],
+      message: t("passwordsNoMatch"),
+    })
+    .refine((values) => values.newPassword !== values.currentPassword, {
+      path: ["newPassword"],
+      message: t("newPasswordReused"),
+    });
+
+export type ProfileValues = z.infer<ReturnType<typeof profileSchema>>;
+export type PreferencesValues = z.infer<ReturnType<typeof preferencesSchema>>;
+export type ChangePasswordValues = z.infer<
+  ReturnType<typeof changePasswordSchema>
+>;

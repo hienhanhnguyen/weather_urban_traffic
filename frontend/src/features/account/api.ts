@@ -1,6 +1,8 @@
 import { apiRequest } from "@/lib/api/client";
 import type { AuthResponse, User } from "@/lib/auth/types";
 
+export const PREFERENCES_QUERY_KEY = ["users", "me", "preferences"] as const;
+
 export type Language = "en" | "vi";
 export type Severity = "info" | "warning" | "critical";
 

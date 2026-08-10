@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef } from "react";
+import { useTranslations } from "next-intl";
 import { X } from "lucide-react";
 
 export interface ModalProps {
@@ -11,6 +12,7 @@ export interface ModalProps {
 }
 
 export function Modal({ open, title, onClose, children }: ModalProps) {
+  const t = useTranslations("common");
   const ref = useRef<HTMLDialogElement>(null);
   const titleId = useId();
 
@@ -39,7 +41,7 @@ export function Modal({ open, title, onClose, children }: ModalProps) {
         <button
           type="button"
           onClick={onClose}
-          aria-label="Close"
+          aria-label={t("close")}
           className="rounded-md p-1.5 hover:bg-black/5 dark:hover:bg-white/10"
         >
           <X aria-hidden="true" className="size-4" />

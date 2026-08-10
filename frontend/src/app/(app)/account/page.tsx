@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { Callout } from "@/components/ui/Callout";
 import { Modal } from "@/components/ui/Modal";
@@ -27,41 +28,35 @@ function Section({
 }
 
 export default function AccountPage() {
+  const t = useTranslations("account");
   const [passwordModalOpen, setPasswordModalOpen] = useState(false);
   const [passwordChanged, setPasswordChanged] = useState(false);
 
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-xl font-semibold">Account</h1>
-        <p className="mt-1 text-sm opacity-70">
-          Manage your profile, how alerts reach you, and your password.
-        </p>
+        <h1 className="text-xl font-semibold">{t("title")}</h1>
+        <p className="mt-1 text-sm opacity-70">{t("subtitle")}</p>
       </div>
 
-      <Section
-        title="Profile"
-        description="How you are identified in the application."
-      >
+      <Section title={t("profile.title")} description={t("profile.description")}>
         <ProfileForm />
       </Section>
 
       <Section
-        title="Preferences"
-        description="Language, timezone, and which alerts are delivered to you."
+        title={t("preferences.title")}
+        description={t("preferences.description")}
       >
         <PreferencesForm />
       </Section>
 
       <Section
-        title="Password"
-        description="Changing your password revokes every other signed-in session."
+        title={t("password.title")}
+        description={t("password.description")}
       >
         <div className="flex flex-col items-start gap-3">
           {passwordChanged && (
-            <Callout tone="success">
-              Password changed. Other devices have been signed out.
-            </Callout>
+            <Callout tone="success">{t("password.changed")}</Callout>
           )}
 
           <Button
@@ -71,14 +66,14 @@ export default function AccountPage() {
               setPasswordModalOpen(true);
             }}
           >
-            Change password
+            {t("password.open")}
           </Button>
         </div>
       </Section>
 
       <Modal
         open={passwordModalOpen}
-        title="Change password"
+        title={t("password.open")}
         onClose={() => setPasswordModalOpen(false)}
       >
         <ChangePasswordForm

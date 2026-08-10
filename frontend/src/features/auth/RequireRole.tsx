@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useSession } from "@/lib/auth/session";
 import type { AccountType, Role } from "@/lib/auth/types";
 
@@ -16,6 +17,7 @@ export function RequireRole({
   accountTypes,
   children,
 }: RequireRoleProps) {
+  const t = useTranslations("access");
   const { user } = useSession();
 
   if (!user) return null;
@@ -28,16 +30,13 @@ export function RequireRole({
 
   return (
     <div className="mx-auto max-w-md py-16 text-center">
-      <h1 className="text-xl font-semibold">You do not have access</h1>
-      <p className="mt-2 text-sm opacity-70">
-        This area is limited to accounts with different permissions. If you
-        believe this is wrong, contact an administrator.
-      </p>
+      <h1 className="text-xl font-semibold">{t("title")}</h1>
+      <p className="mt-2 text-sm opacity-70">{t("description")}</p>
       <Link
         href="/home"
         className="mt-6 inline-block text-sm text-sky-700 underline underline-offset-4 dark:text-sky-300"
       >
-        Back to overview
+        {t("back")}
       </Link>
     </div>
   );

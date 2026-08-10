@@ -1,0 +1,1094 @@
+{
+  "access": {
+    "back": "Back to overview",
+    "description": "This area is limited to accounts with different permissions. If you believe this is wrong, contact an administrator.",
+    "title": "You do not have access"
+  },
+  "account": {
+    "password": {
+      "changed": "Password changed. Other devices have been signed out.",
+      "current": "Current password",
+      "description": "Changing your password revokes every other signed-in session.",
+      "open": "Change password",
+      "submit": "Change password",
+      "title": "Password",
+      "warning": "Changing your password signs you out everywhere else. This device stays signed in."
+    },
+    "preferences": {
+      "description": "Language, timezone, and which alerts are delivered to you.",
+      "emailAlerts": "Email alerts",
+      "emailAlertsHint": "Send matching alerts to your email address.",
+      "loadError": "Could not load your preferences.",
+      "loading": "Loading preferences…",
+      "minSeverity": "Minimum alert severity",
+      "minSeverityHint": "Alerts below this level are not delivered to you at all.",
+      "pushAlerts": "Push alerts",
+      "pushAlertsHint": "Send matching alerts to your subscribed browsers.",
+      "saved": "Preferences saved.",
+      "submit": "Save preferences",
+      "timezone": "Timezone",
+      "timezoneHint": "An IANA timezone name. Used for the timestamps on your alerts.",
+      "title": "Preferences"
+    },
+    "profile": {
+      "description": "How you are identified in the application.",
+      "emailHint": "Your email address cannot be changed here.",
+      "saved": "Profile updated.",
+      "submit": "Save profile",
+      "title": "Profile",
+      "usernameHint": "Letters and numbers only. Leave blank to remove it."
+    },
+    "severity": {
+      "critical": "Critical only",
+      "info": "Info — everything",
+      "warning": "Warning and above"
+    },
+    "subtitle": "Manage your profile, how alerts reach you, and your password.",
+    "title": "Account"
+  },
+  "accountType": {
+    "admin_officer": "Government",
+    "business": "Business",
+    "individual": "Individual"
+  },
+  "alertHistory": {
+    "actions": {
+      "export": "Export CSV",
+      "list": "List",
+      "map": "Map",
+      "reset": "Reset",
+      "search": "Search"
+    },
+    "category": "History & Incidents",
+    "detail": {
+      "area": "Area",
+      "attachment": "(Images/Attachments will appear here)",
+      "desc": "Alert Content",
+      "noSelection": "Select a record to view details and response actions.",
+      "response": "Response Actions",
+      "title": "Incident Details",
+      "type": "Alert Type"
+    },
+    "filter": {
+      "all": "All",
+      "area": "Area",
+      "dateRange": "Time Range",
+      "severity": "Severity",
+      "title": "Lookup Filters",
+      "type": "Alert Type"
+    },
+    "list": {
+      "found": "records found",
+      "mapView": "Showing incident points"
+    },
+    "severity": {
+      "High": "High",
+      "Low": "Low",
+      "Medium": "Medium"
+    },
+    "status": {
+      "Handled": "Handled",
+      "Pending": "Pending"
+    },
+    "subtitle": "Quick lookup of events and response actions",
+    "template": {
+      "desc": {
+        "rain": "Rainfall = {value}{unit} crossed the threshold ({threshold}{unit}) for \"{area}\".",
+        "temp": "Temperature = {value}{unit} crossed the threshold ({threshold}{unit}) for \"{area}\"."
+      },
+      "title": {
+        "rain": "Rainfall alert {area}",
+        "temp": "Temperature alert {area}"
+      }
+    },
+    "title": "Alert History & Incidents",
+    "type": {
+      "flood": "Flood",
+      "other": "Other",
+      "rain": "Rain",
+      "storm": "Storm",
+      "traffic": "Traffic"
+    }
+  },
+  "app": {
+    "name": "SWTIS",
+    "tagline": "Real-time weather forecasting system for urban transport networks in Ho Chi Minh City"
+  },
+  "areaManagement": {
+    "actions": {
+      "delete": "Delete",
+      "edit": "Edit",
+      "quickAdd": "Add New Area"
+    },
+    "addAlertRuleModal": {
+      "baseThreshold": "Base threshold",
+      "cooldown": "Cooldown (minutes)",
+      "createBtn": "Create Rule",
+      "createError": "Failed to create alert rule.",
+      "desc": "Create a Low/Medium/High alert rule for {name}.",
+      "dirAbove": "Above threshold",
+      "dirBelow": "Below threshold",
+      "direction": "Direction",
+      "enabled": "Enabled",
+      "existingLoaded": "Editing existing alert rule for this area.",
+      "high": "High",
+      "loadingExisting": "Loading existing settings...",
+      "low": "Low",
+      "medium": "Medium",
+      "metric": "Metric",
+      "metricRain": "Rainfall",
+      "metricTemp": "Temperature",
+      "modeAdvanced": "Advanced (manual)",
+      "modeSimple": "Simple (auto)",
+      "off": "Off",
+      "on": "On",
+      "orderAbove": "Must satisfy: Low < Medium < High",
+      "orderBelow": "Must satisfy: Low > Medium > High",
+      "orderError": "Thresholds are not in the required order.",
+      "rainAboveOnly": "Rain alerts only support 'above'.",
+      "saving": "Saving...",
+      "scope": "Scope",
+      "scopeCurrent": "Current weather",
+      "scopeForecast": "Next 24h forecast",
+      "stepHint": "Auto step: {step}{unit} per level",
+      "thresholdMode": "Threshold mode",
+      "thresholds": "Thresholds",
+      "title": "Add Alert Rule",
+      "updateBtn": "Update Rule"
+    },
+    "alertSettingModal": {
+      "desc": "Set automated alerts for {name} when criteria are met.",
+      "pushBlocked": "Browser notifications are blocked. Re-enable them in your browser site settings.",
+      "pushDisabled": "Browser notifications are not enabled — you won't get a popup when the test fires.",
+      "pushEnableBtn": "Enable",
+      "pushEnabling": "Enabling…",
+      "rainDesc": "Notify when hourly rainfall exceeds threshold",
+      "rainLabel": "Rainfall Warning Alert",
+      "rainThreshold": "Rainfall Threshold",
+      "saveBtn": "Save Configuration",
+      "tempDesc": "Notify when regional temperature exceeds threshold",
+      "tempLabel": "Weather Temperature Alert",
+      "tempThreshold": "Temperature Threshold",
+      "testBtn": "Send test",
+      "testDesc": "Evaluate this area's current weather against the thresholds and push a notification if any metric crosses.",
+      "testEmpty": "No metrics evaluated.",
+      "testFired": "Fired",
+      "testMetric": {
+        "area": "Area",
+        "rain": "Rainfall",
+        "temp": "Temperature"
+      },
+      "testReason": {
+        "below-threshold": "Current reading is below the configured threshold.",
+        "cooldown": "A previous alert is still inside the cooldown window.",
+        "no-center": "Area has no center coordinates set.",
+        "no-officer": "Area has no officer assigned — assign one before sending notifications.",
+        "no-thresholds": "No temperature or rainfall threshold is configured.",
+        "no-value": "Weather data has no usable value for this metric.",
+        "weather-fetch-failed": "Weather service request failed. Try again later."
+      },
+      "testRunning": "Sending…",
+      "testSkipped": "Skipped",
+      "testTitle": "Send test notification",
+      "title": "Alert & Threshold Settings"
+    },
+    "deleteModal": {
+      "areaLabel": "Area to delete",
+      "confirmBtn": "Delete",
+      "desc": "Are you sure you want to delete this area?",
+      "title": "Delete Area",
+      "warning": "This action cannot be undone. All data associated with this area will be permanently removed."
+    },
+    "editModal": {
+      "desc": "Update area information",
+      "title": "Edit Area",
+      "updateBtn": "Update Area"
+    },
+    "editor": {
+      "areaStatus": "Area Status",
+      "boundaryData": "Boundary Data",
+      "boundaryDetails": "Boundary Details",
+      "centerPoint": "Center Point",
+      "clearCenter": "Clear Center",
+      "clickToMove": "Click to move center point",
+      "clickToSet": "Click to set center point",
+      "editDesc": "Update geographic boundary and area details.",
+      "notSet": "Not set",
+      "pickOnMap": "Pick on Map",
+      "radiusLabel": "Boundary Radius (km)",
+      "ready": "Ready",
+      "status": "Status",
+      "updateArea": "Update Area"
+    },
+    "form": {
+      "desc": "Fill info",
+      "nameLabel": "Area Name",
+      "namePlaceholder": "Ex: Ward 1",
+      "saveBtn": "Save Area",
+      "selectedTitle": "Selected Area",
+      "title": "Add New Area",
+      "typeLabel": "Area Type",
+      "unitLabel": "Admin Unit",
+      "unitPlaceholder": "District/County"
+    },
+    "table": {
+      "actions": "Actions",
+      "adminUnit": "Admin Unit",
+      "areaName": "Area Name",
+      "boundary": "Boundary",
+      "hotspots": "Hotspots",
+      "type": "Type"
+    },
+    "title": "Area List",
+    "type": {
+      "District": "District",
+      "Ward": "Ward"
+    }
+  },
+  "auth": {
+    "fields": {
+      "code": "6-digit code",
+      "confirmNewPassword": "Confirm new password",
+      "confirmPassword": "Confirm password",
+      "email": "Email",
+      "newPassword": "New password",
+      "password": "Password",
+      "passwordHint": "At least 8 characters.",
+      "username": "Username",
+      "usernameHint": "Optional. Letters and numbers, 3-64 characters."
+    },
+    "forgot": {
+      "request": {
+        "backToSignIn": "Back to sign in",
+        "description": "Enter your email and we will send you a 6-digit code.",
+        "submit": "Send code",
+        "title": "Reset your password"
+      },
+      "reset": {
+        "submit": "Update password",
+        "title": "Choose a new password"
+      },
+      "verify": {
+        "description": "If an account exists for <strong>{email}</strong>, a code is on its way. It expires in a few minutes.",
+        "submit": "Verify code",
+        "title": "Enter your code",
+        "useDifferentEmail": "Use a different email"
+      }
+    },
+    "signIn": {
+      "createAccount": "Create an account",
+      "forgotPassword": "Forgot password?",
+      "submit": "Sign in",
+      "title": "Sign in"
+    },
+    "signUp": {
+      "accountTypeLegend": "Account type",
+      "haveAccount": "Already have an account?",
+      "signInLink": "Sign in",
+      "submit": "Create account",
+      "title": "Create an account",
+      "types": {
+        "business": {
+          "blurb": "Everything personal has, plus risk assessment and reports.",
+          "title": "Business"
+        },
+        "individual": {
+          "blurb": "Saved places, weather alerts and route warnings for your commute.",
+          "title": "Personal"
+        }
+      }
+    }
+  },
+  "businessReports": {
+    "buttons": {
+      "analyze": "Analyze",
+      "analyzing": "Analyzing...",
+      "exportImage": "Image",
+      "exportPdf": "PDF",
+      "fullscreen": "Fullscreen",
+      "hide": "Hide",
+      "saveResult": "Save Result",
+      "saveSchedule": "Save Schedule",
+      "sendNow": "Send Now",
+      "show": "Show"
+    },
+    "charts": {
+      "incidents": "incidents",
+      "types": {
+        "clearCloudy": "Clear",
+        "cloudy": "Cloudy",
+        "extremeTemp": "Extreme Temperature",
+        "fog": "Fog",
+        "heavyRain": "Heavy Rain",
+        "rain": "Rain",
+        "strongWind": "Strong Wind",
+        "sunny_clear": "Sunny/Clear"
+      },
+      "weatherDistribution": "Weather Distribution",
+      "weatherTrend": "Weather Trend (Past 7 Days)"
+    },
+    "filters": {
+      "allData": "All",
+      "allRoutes": "All Routes",
+      "apply": "Apply",
+      "aqi": "AQI",
+      "customDate": "Custom",
+      "dataType": "Data Type",
+      "fromDate": "From Date",
+      "rain": "Rain",
+      "route": "By Route",
+      "temp": "Temperature",
+      "time": "By Time",
+      "title": "Filters",
+      "toDate": "To Date",
+      "wind": "Wind"
+    },
+    "kpi": {
+      "alertCount": "Alert Count",
+      "avgHumidity": "Humidity",
+      "avgRain": "Rainfall",
+      "avgTemp": "Temperature",
+      "avgWind": "Wind",
+      "selectRoute": "Select a route to view detailed analysis"
+    },
+    "risk": {
+      "flood": "Flood",
+      "from": "Origin (A)",
+      "landslide": "Landslide",
+      "level": {
+        "high": "High",
+        "low": "Low",
+        "medium": "Medium"
+      },
+      "none": "None",
+      "recommendations": "Recommendations:",
+      "resultTitle": "Analysis Result",
+      "time": "Departure Time",
+      "title": "Route Risk Assessment",
+      "to": "Destination (B)",
+      "today": "Today",
+      "tomorrow": "Tomorrow"
+    },
+    "settings": {
+      "both": "Both",
+      "content": "Select Content",
+      "format": "Format",
+      "monthly": "Day of month",
+      "scheduleDay": "Select Send Day",
+      "title": "Periodic Report Settings",
+      "traffic": "Traffic",
+      "weather": "Weather",
+      "weekly": "Day of week"
+    },
+    "subtitle": "Monitor and analyze weather data on {count} routes",
+    "title": "Reports & Analysis"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "close": "Close",
+    "days": {
+      "Fri": "Fri",
+      "Mon": "Mon",
+      "Sat": "Sat",
+      "Sun": "Sun",
+      "Thu": "Thu",
+      "Tue": "Tue",
+      "Wed": "Wed"
+    },
+    "hideMap": "Hide Map",
+    "hours": "hours",
+    "language": "Language",
+    "loading": "Loading",
+    "minutes": "minutes",
+    "pagination": {
+      "next": "Next",
+      "of": "of",
+      "page": "Page",
+      "prev": "Previous"
+    },
+    "profile": "Profile",
+    "refresh": "Refresh",
+    "showMap": "Show Map",
+    "signOut": "Sign out",
+    "theme": "Theme",
+    "tryAgain": "Try again",
+    "viewAll": "View All",
+    "welcome": "Welcome to SWTIS"
+  },
+  "dashboard": {
+    "alertType": {
+      "flood": "Flood",
+      "rain": "Heavy Rain",
+      "storm": "Storm"
+    },
+    "chart": {
+      "alertDistribution": "Alert Type Distribution",
+      "alertsByRegion": "Alerts by Region",
+      "flood": "Flood",
+      "other": "Other",
+      "rain": "Heavy Rain",
+      "riskDistribution": "Risk Level Distribution",
+      "storm": "Storm",
+      "totalAlerts": "Total Alerts",
+      "weatherTrend": "Weather Trend"
+    },
+    "filter": {
+      "24h": "24h",
+      "30days": "30 Days",
+      "7days": "7 Days",
+      "alertType": "Alert Type",
+      "allRegions": "All",
+      "allTypes": "All",
+      "region": "By Region",
+      "timeframe": "By Time",
+      "title": "Filters"
+    },
+    "kpi": {
+      "avgRainfall": "Avg Rainfall",
+      "highRiskAreas": "High Risk Areas",
+      "maxWind": "Max Wind",
+      "totalAlerts": "Total Alerts"
+    },
+    "map": {
+      "addAlertRule": "Add Alert Rule",
+      "details": {
+        "activeAlerts": "Active Alerts",
+        "avgTemp": "Avg Temp",
+        "deleteRule": "Delete rule",
+        "deleteRuleConfirm": "Delete this alert rule?",
+        "directionAbove": "≥",
+        "directionBelow": "≤",
+        "noData": "No data",
+        "noRules": "No alert rules configured for this area.",
+        "rainfall": "Rainfall",
+        "rulesTitle": "Alert Rules",
+        "scopeCurrent": "Current",
+        "scopeForecast": "Next 24h",
+        "selectPrompt": "Select an area on the map to view details.",
+        "thresholdsHint": "Low / Medium / High",
+        "title": "Area Details",
+        "viewResponseRoute": "View Response Route",
+        "windSpeed": "Wind Speed"
+      },
+      "noAreaSelected": "Select an area on the map to view detailed analytics.",
+      "risk": {
+        "high": "High",
+        "label": "Risk Level",
+        "low": "Low",
+        "medium": "Medium",
+        "noRules": "No rules"
+      },
+      "showAll": "Show All Polygons",
+      "subtitle": "Colors indicate risk level (Low -> Medium -> High)",
+      "title": "Alert Heatmap",
+      "zoomToBound": "Zoom to Boundary"
+    },
+    "modal": {
+      "route": {
+        "action": "Deploy Units",
+        "currentRisk": "Current Risk Level",
+        "step": {
+          "arrival": "Estimated arrival at key checkpoints",
+          "dispatch": "Units dispatched from Central Station",
+          "resolution": "Projected situation control"
+        },
+        "subtitle": "Emergency response for",
+        "timeline": "Response Timeline",
+        "title": "Response Route Plan"
+      }
+    },
+    "role": "Administrative Officer",
+    "subtitle": "Monitoring alerts in {count} managed areas",
+    "title": "Dashboard",
+    "view": {
+      "charts": "Charts",
+      "map": "Map"
+    }
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again."
+  },
+  "government": {
+    "scenarioManagement": {
+      "activeModal": {
+        "all": "Other available scenarios",
+        "confirm": "Confirm Activation",
+        "emptyMatching": "No specific scenario found for this alert type.",
+        "recommended": "Recommended for this incident type",
+        "steps": "{count} STEPS",
+        "title": "Activate Scenario"
+      },
+      "scenarios": {
+        "flood_05m": {
+          "desc": "Activate pump stations, block critical areas",
+          "name": "Flood level > 0.5m",
+          "steps": {
+            "notify": "Notify citizens to relocate",
+            "pump": "Activate backup pump stations",
+            "respond": "Dispatch rapid response team"
+          }
+        },
+        "storm_level_10": {
+          "desc": "Reinforce structures, evacuate coastal residents",
+          "name": "Level 10 Storm Warning",
+          "steps": {
+            "boats": "Call boats to seek shelter",
+            "evacuate": "Evacuate high-risk areas",
+            "reinforce": "Reinforce houses and structures"
+          }
+        }
+      }
+    }
+  },
+  "home": {
+    "alert": {
+      "desc": "Heavy rain forecast from 15:00 - 18:00 today",
+      "title": "Heavy Rain Alert"
+    },
+    "current": {
+      "humidity": "Humidity",
+      "rain": "Rainfall",
+      "wind": "Wind"
+    },
+    "favorite": {
+      "add": "Add New",
+      "addLocation": "Add Location",
+      "addModal": {
+        "addBtn": "Add Favorite",
+        "addressLabel": "Address",
+        "addressPlaceholder": "Ex: District 1, HCMC",
+        "coordinates": "Coordinates",
+        "desc": "Add a new favorite to your list",
+        "placeNameLabel": "Place Name",
+        "placeNamePlaceholder": "Ex: Home, Office",
+        "routeAddressLabel": "Route Description",
+        "routeAddressPlaceholder": "Ex: District 1 - District 3",
+        "routeNameLabel": "Route Name",
+        "routeNamePlaceholder": "Ex: Route A - Route B",
+        "searchPlaceholder": "Search for a place (e.g., District 1, Airport)",
+        "selectLocation": "Select Location on Map",
+        "titleBusiness": "Add Favorite Route",
+        "titlePersonal": "Add Favorite Place"
+      },
+      "businessTitle": "Favorite Routes",
+      "personalTitle": "Favorite Locations",
+      "showAll": "Show all",
+      "viewAllModal": {
+        "closeBtn": "Close",
+        "empty": "No favorites yet. Add your first one!",
+        "places": "places",
+        "routes": "routes",
+        "titleBusiness": "All Favorite Routes",
+        "titlePersonal": "All Favorite Places"
+      },
+      "weatherForecast": "Weather Forecast"
+    },
+    "forecast": {
+      "desc": "Sunny, few clouds",
+      "searchBtn": "Search",
+      "searchPlaceholder": "District 1, HCMC",
+      "timeline": "6-Hour Timeline",
+      "title": "Weather Forecast",
+      "week": "7-Day Forecast"
+    },
+    "greeting": "Welcome",
+    "greetingNamed": "Welcome, {name}",
+    "personal": {
+      "title": "Personal"
+    },
+    "quick": {
+      "forecast": "Detailed Forecast",
+      "forecastDesc": "7-day outlook",
+      "map": "Map",
+      "mapDesc": "Rain & Traffic Radar"
+    },
+    "summary": "Signed in as {email} · {accountType} account · roles: {roles}",
+    "welcome": "Welcome back!"
+  },
+  "locale": {
+    "en": "English",
+    "label": "Language",
+    "vi": "Tiếng Việt"
+  },
+  "map": {
+    "inputs": {
+      "capacity": "Capacity (kg)",
+      "currentLocation": "Current Location",
+      "filter": "Filter",
+      "findRoute": "Find Route",
+      "from": "Origin",
+      "recentRoutes": "Recent Routes",
+      "suggestRoute": "Suggest Route",
+      "to": "Destination",
+      "vehicle": {
+        "car": "Car",
+        "motorcycle": "Motorcycle",
+        "truck": "Truck"
+      }
+    },
+    "layers": {
+      "hide": "Hide",
+      "legend": "Legend",
+      "radar": "Rain Radar",
+      "show": "Show",
+      "temp": "Temperature",
+      "title": "Data Layers",
+      "traffic": "Traffic",
+      "uv": "UV"
+    },
+    "legend": {
+      "radar": "Rain Radar: Light Blue - Light, Dark Blue - Heavy",
+      "title": "Legend:",
+      "trafficGreen": "Traffic: Green - Clear",
+      "trafficRed": "Traffic: Red - Congested",
+      "trafficYellow": "Traffic: Yellow - Slow"
+    },
+    "title": "Combined Map",
+    "visualization": {
+      "advision": "Advision",
+      "clear": "Clear",
+      "cloudy": "Cloudy",
+      "danger": "Danger",
+      "departNow": "Safe to depart now",
+      "distance": "Distance",
+      "heavy": "Heavy",
+      "heavyRain": "Heavy Rain",
+      "interactiveTitle": "Interactive Map Rain Radar & Traffic",
+      "low": "Low",
+      "normal": "Normal",
+      "rainy": "Rainy",
+      "routeStatus": "Route Status:",
+      "safe": "Safe",
+      "startAfter": "Should start after {minutes} minutes",
+      "status": "Status",
+      "sunny": "Sunny",
+      "time": "Time",
+      "timelineTitle": "Rain Forecast Timeline (1-2h):",
+      "warning": "Warning"
+    }
+  },
+  "mapFull": {
+    "actions": {
+      "currentLocation": "Current Location",
+      "details": "Details",
+      "focusRoute": "Focus on Route",
+      "startNavigation": "Start Navigation"
+    },
+    "history": {
+      "empty": "No search history",
+      "lastSearch": "Recent searches"
+    },
+    "search": {
+      "history": "History",
+      "placeholder": "Search for locations...",
+      "results": "Results"
+    },
+    "summary": {
+      "distance": "Distance",
+      "time": "Time"
+    },
+    "title": "VietMap Full"
+  },
+  "nav": {
+    "closeMenu": "Close menu",
+    "collapse": "Collapse",
+    "expand": "Expand",
+    "items": {
+      "account": "Account",
+      "businessReports": "Reports",
+      "businessRisk": "Risk assessment",
+      "govAreas": "Areas",
+      "govDashboard": "Dashboard",
+      "govIncidents": "Incidents",
+      "govReports": "Reports",
+      "govScenarios": "Scenarios",
+      "history": "Alert history",
+      "locations": "My locations",
+      "map": "Map",
+      "overview": "Overview",
+      "weather": "Weather"
+    },
+    "main": "Main",
+    "openMenu": "Open menu",
+    "sections": {
+      "business": "Business",
+      "government": "Government"
+    }
+  },
+  "normalHistory": {
+    "empty": "No history found",
+    "filters": {
+      "all": "All",
+      "location": "Location",
+      "route": "Route",
+      "searchBtn": "Search"
+    },
+    "recentHistory": "Recent History",
+    "title": "History",
+    "weather": {
+      "cloudy": "Cloudy",
+      "label": "Weather",
+      "rain_light": "Light Rain",
+      "sunny": "Sunny"
+    },
+    "weatherSearchTitle": "Weather Search History"
+  },
+  "notifications": {
+    "alert": {
+      "body": "{metric} is {value} ({operator} {threshold}).",
+      "title": "{metric} alert: {location}"
+    },
+    "bellAria": "Notifications",
+    "empty": "No notifications yet",
+    "markAllRead": "Mark all read",
+    "metrics": {
+      "feelslike": "Feels like",
+      "precip": "Rainfall",
+      "precipprob": "Rain probability",
+      "temp": "Temperature"
+    },
+    "push": {
+      "denied": "Notifications are blocked. Re-enable them in your browser site settings.",
+      "desc": "Receive OS-level alerts even when the tab is closed.",
+      "devices": "Subscribed devices",
+      "enable": "Enable browser alerts",
+      "noDevices": "No devices registered yet.",
+      "refresh": "Re-register this device",
+      "title": "Browser alerts",
+      "unsupported": "Your browser does not support web push notifications."
+    },
+    "rules": {
+      "addBtn": "Add rule",
+      "cooldown": "Cooldown (min)",
+      "cooldownShort": "cooldown {m}m",
+      "empty": "No alert rules for this location yet.",
+      "existing": "Active rules",
+      "hideAdvanced": "Hide advanced",
+      "metric": "Metric",
+      "newTitle": "Add a rule",
+      "operator": "Operator",
+      "scope": "Scope",
+      "scope24h": "Next 24h",
+      "scopeNow": "Now",
+      "severity": "Severity",
+      "showAdvanced": "Advanced",
+      "threshold": "Threshold"
+    },
+    "scopes": {
+      "current": "Now",
+      "forecast_24h": "Next 24h"
+    },
+    "severities": {
+      "critical": "Critical",
+      "info": "Info",
+      "warning": "Warning"
+    },
+    "title": "Notifications"
+  },
+  "personalPage": {
+    "addAlert": "Add new location function",
+    "addLocation": "Add Location",
+    "alert": "Alert",
+    "delete": "Delete",
+    "deleteConfirm": "Are you sure you want to delete this location?",
+    "edit": "Edit",
+    "empty": "No favorite locations yet. Add a new one!",
+    "limit": "Maximum limit of {max} locations reached. Delete one to add new.",
+    "modals": {
+      "alert": {
+        "desc": "Choose which weather conditions to receive alerts for",
+        "rainAlert": "Rain Alert",
+        "rainDesc": "Notify when rain is forecast",
+        "saveBtn": "Save Alerts",
+        "savingBtn": "Saving...",
+        "tempAlert": "High Temperature Alert",
+        "tempDesc": "Notify when temperature exceeds threshold",
+        "title": "Set Alerts",
+        "windAlert": "Strong Wind Alert",
+        "windDesc": "Notify when wind speed exceeds threshold"
+      },
+      "alertHistory": {
+        "levels": {
+          "danger": "Danger",
+          "info": "Info",
+          "warning": "Warning"
+        },
+        "title": "Alert History"
+      },
+      "delete": {
+        "confirmation": "Are you sure you want to proceed?",
+        "deleteBtn": "Delete Location",
+        "locationLabel": "Location to delete",
+        "subtitle": "This action cannot be undone",
+        "title": "Delete Location",
+        "warning": "Permanent Deletion",
+        "warningDesc": "This location and all associated alerts will be permanently removed."
+      },
+      "edit": {
+        "addressLabel": "Address",
+        "addressPlaceholder": "Ex: District 1, HCMC",
+        "desc": "Update location information",
+        "descBusiness": "Update route information",
+        "nameLabel": "Location Name",
+        "namePlaceholder": "Ex: Home, Office",
+        "saveBtn": "Save Changes",
+        "title": "Edit Location",
+        "titleBusiness": "Edit Route"
+      }
+    },
+    "settings": {
+      "alertType": "Alert Type",
+      "days": "days",
+      "duration": "Alert Duration",
+      "minutes": "m",
+      "save": "Save Settings",
+      "timeRange": "Alert Time Range",
+      "title": "Alert Settings",
+      "to": "to",
+      "traffic": {
+        "desc": "Status monitoring",
+        "heavy": "Heavy",
+        "moderate": "Moderate",
+        "title": "Traffic Alert"
+      },
+      "types": {
+        "airQuality": "Air Quality",
+        "traffic": "Traffic",
+        "weather": "Weather"
+      },
+      "weather": {
+        "desc": "Temperature threshold",
+        "title": "Weather Alert"
+      }
+    },
+    "title": "Personal"
+  },
+  "placeholder": {
+    "businessReports": "Charted summaries of risk and alerts over a period, exportable to PDF.",
+    "businessRisk": "Rule-based operational risk scoring for your business locations.",
+    "govAreas": "Draw and maintain the monitored areas that city-wide alerts are attached to.",
+    "govDashboard": "City-wide situational overview for operations staff.",
+    "govIncidents": "Reported incidents, their status and who is handling them.",
+    "govReports": "Aggregate reporting across areas, incidents and alerts.",
+    "govScenarios": "What-if modelling against recorded conditions.",
+    "history": "Every alert that has fired for you, filterable and searchable.",
+    "locations": "Save, rename and favourite the places you want watched.",
+    "map": "An interactive map of conditions across the city, with a location picker.",
+    "notBuilt": "Not built yet",
+    "weather": "Current conditions and the forecast for each of your saved locations."
+  },
+  "reports": {
+    "config": {
+      "allTopics": "All",
+      "createBtn": "Generate Now",
+      "dayLabel": "Select Day",
+      "dayPlaceholder": "Day of month",
+      "days": {
+        "2": "Monday",
+        "3": "Tuesday",
+        "4": "Wednesday",
+        "5": "Thursday",
+        "6": "Friday",
+        "7": "Saturday",
+        "8": "Sunday"
+      },
+      "emailLabel": "Recipient Email",
+      "emailPlaceholder": "email@agency.gov.vn",
+      "frequencyLabel": "Select Frequency",
+      "monthEndNote": "If the month does not have that day, the last day of the month will be chosen.",
+      "monthly": "Monthly",
+      "saveBtn": "Save Config",
+      "savedMessage": "Periodic report configuration saved!",
+      "title": "Report Configuration",
+      "topicsLabel": "Select Report Topics",
+      "weekly": "Weekly"
+    },
+    "header": {
+      "category": "Periodic Reports",
+      "downloadFullReport": "Download Full Report",
+      "subtitle": "Set up schedule and track report history",
+      "title": "Business Reports"
+    },
+    "history": {
+      "empty": "(Detailed report list will appear here)",
+      "sentDate": "Sent Date",
+      "status": {
+        "failed": "Failed",
+        "pending": "Pending",
+        "sent": "Sent"
+      },
+      "suggestionText": "Sending summary reports on Monday morning helps staff grasp the situation quickly",
+      "suggestionTitle": "Optimization Tip",
+      "title": "Report History"
+    },
+    "pdf": {
+      "generatedAt": "Generated {at}",
+      "page": "Page {n} / {total}"
+    },
+    "topics": {
+      "alerts": "Alerts",
+      "incidents": "Incidents",
+      "weather": "Weather"
+    },
+    "type": {
+      "alert": "Alert",
+      "alertCount": "Alert count",
+      "avgHumidity": "Average humidity",
+      "avgRain": "Average rainfall",
+      "avgTemp": "Average temperature",
+      "avgWind": "Average wind speed",
+      "incident": "Incident",
+      "summary": "Summary"
+    }
+  },
+  "scenarioManagement": {
+    "addStepModal": {
+      "addBtn": "Add Step",
+      "desc": "Add a new step to the checklist",
+      "descLabel": "Step Description",
+      "title": "Add Step"
+    },
+    "checklist": {
+      "priority": "Priority",
+      "title": "Action Checklist"
+    },
+    "createTitle": "Create New Scenario",
+    "deleteModal": {
+      "confirmBtn": "Delete",
+      "desc": "Are you sure you want to delete this scenario?",
+      "scenarioLabel": "Scenario to delete",
+      "title": "Delete Scenario",
+      "warning": "This action cannot be undone. All data associated with this scenario will be permanently removed."
+    },
+    "detailTitle": "Scenario Details",
+    "editButton": "Edit Scenario",
+    "editModal": {
+      "desc": "Update scenario information and checklist",
+      "title": "Edit Scenario",
+      "updateBtn": "Save Changes"
+    },
+    "filter": "Quick Filter",
+    "filterModal": {
+      "allStatuses": "All Statuses",
+      "allTypes": "All Types",
+      "applyBtn": "Apply Filters",
+      "desc": "Filter scenarios by criteria",
+      "resetBtn": "Reset",
+      "searchLabel": "Search",
+      "searchPlaceholder": "Search by name or description",
+      "statusLabel": "Status",
+      "title": "Filter Scenarios",
+      "typeLabel": "Scenario Type"
+    },
+    "form": {
+      "addStep": "Add Step",
+      "descLabel": "Description",
+      "descPlaceholder": "Enter short description",
+      "nameLabel": "Scenario Name",
+      "namePlaceholder": "Ex: \"Flood level > 0.5m\"",
+      "priorityLabel": "Priority",
+      "stepPlaceholder": "Action description",
+      "stepsLabel": "Action Checklist"
+    },
+    "list": {
+      "steps": "Steps",
+      "times": "times",
+      "usage": "Usage history"
+    },
+    "priority": {
+      "High": "High",
+      "Low": "Low",
+      "Medium": "Medium"
+    },
+    "saveButton": "Save Scenario",
+    "status": {
+      "active": "Active",
+      "archived": "Archived",
+      "draft": "Draft"
+    },
+    "title": "Scenario List",
+    "type": {
+      "earthquake": "Earthquake",
+      "fire": "Fire",
+      "flood": "Flood",
+      "storm": "Storm"
+    }
+  },
+  "theme": {
+    "dark": "Dark",
+    "label": "Colour theme",
+    "light": "Light",
+    "system": "System"
+  },
+  "validation": {
+    "codeDigits": "Digits only",
+    "codeLength": "The code is 6 digits",
+    "currentPasswordRequired": "Enter your current password",
+    "emailInvalid": "Enter a valid email address",
+    "emailRequired": "Email is required",
+    "emailTooLong": "Email is too long",
+    "newPasswordReused": "Choose a password you have not used here before",
+    "passwordMax": "Use at most 72 characters",
+    "passwordMin": "Use at least 8 characters",
+    "passwordRequired": "Password is required",
+    "passwordsNoMatch": "Passwords do not match",
+    "timezoneMax": "Use at most 64 characters",
+    "usernameAlnum": "Letters and numbers only",
+    "usernameMax": "Use at most 64 characters",
+    "usernameMin": "Use at least 3 characters"
+  },
+  "verifyEmail": {
+    "banner": {
+      "action": "Verify it now",
+      "message": "Your email address is not verified yet."
+    },
+    "codeSent": "We sent a code to your email address. It expires in a few minutes.",
+    "description": "We need to confirm <strong>{email}</strong> before sending you alerts.",
+    "sendAnother": "Send another code",
+    "sendCode": "Send verification code",
+    "skip": "Skip for now",
+    "submit": "Verify email",
+    "title": "Verify your email"
+  },
+  "weather": {
+    "current": {
+      "aqi": "AQI",
+      "aqiStatus": "Good",
+      "desc": "Sunny, few clouds",
+      "humidity": "Humidity",
+      "rain": "Rainfall",
+      "wind": "Wind"
+    },
+    "hourly": {
+      "intensity": {
+        "1": "Light",
+        "2": "Moderate",
+        "3": "Heavy",
+        "4": "Very Heavy"
+      },
+      "title": "24-Hour Forecast"
+    },
+    "search": {
+      "browserError": "Browser does not support GPS",
+      "currentLocation": "Current Location",
+      "gpsBtn": "GPS",
+      "gpsError": "Cannot get GPS location. Please allow location access.",
+      "gpsLoading": "...",
+      "placeholder": "Enter address or select from list",
+      "searchBtn": "Search"
+    },
+    "timeline": {
+      "title": "6-Hour Timeline"
+    },
+    "title": "Weather Forecast",
+    "tooltips": {
+      "convert": "Convert Unit",
+      "save": "Save Location",
+      "share": "Share",
+      "subscribe": "Subscribe Alerts"
+    },
+    "week": {
+      "title": "7-Day Forecast"
+    }
+  }
+}

@@ -3,12 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { PanelLeftClose, PanelLeftOpen, X } from "lucide-react";
 import { useSession } from "@/lib/auth/session";
 import { isActive, visibleSections } from "./nav";
 import { useSidebar } from "./sidebar-state";
 
 function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
+  const t = useTranslations("nav");
   const { user } = useSession();
   const { collapsed } = useSidebar();
   const pathname = usePathname();
@@ -16,18 +18,19 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
   if (!user) return null;
 
   return (
-    <nav aria-label="Main" className="flex flex-col gap-6 px-2 py-4">
+    <nav aria-label={t("main")} className="flex flex-col gap-6 px-2 py-4">
       {visibleSections(user).map((section) => (
         <div key={section.id} className="flex flex-col gap-1">
-          {section.label && !collapsed && (
+          {section.labelKey && !collapsed && (
             <h2 className="px-3 pb-1 text-xs font-semibold uppercase tracking-wide opacity-50">
-              {section.label}
+              {t(`sections.${section.labelKey}`)}
             </h2>
           )}
 
           {section.items.map((item) => {
             const active = isActive(pathname, item.href);
             const Icon = item.icon;
+            const label = t(`items.${item.labelKey}`);
 
             return (
               <Link
@@ -35,7 +38,7 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
                 href={item.href}
                 onClick={onNavigate}
                 aria-current={active ? "page" : undefined}
-                title={collapsed ? item.label : undefined}
+                title={collapsed ? label : undefined}
                 className={
                   "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors " +
                   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 " +
@@ -46,7 +49,7 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
               >
                 <Icon aria-hidden="true" className="size-4 shrink-0" />
                 <span className={collapsed ? "sr-only" : undefined}>
-                  {item.label}
+                  {label}
                 </span>
               </Link>
             );
@@ -58,6 +61,7 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
 }
 
 export function Sidebar() {
+  const t = useTranslations("nav");
   const { collapsed, toggleCollapsed, mobileOpen, closeMobile } = useSidebar();
 
   useEffect(() => {
@@ -96,7 +100,9 @@ export function Sidebar() {
             ) : (
               <PanelLeftClose aria-hidden="true" className="size-4" />
             )}
-            <span className={collapsed ? "sr-only" : undefined}>Collapse</span>
+            <span className={collapsed ? "sr-only" : undefined}>
+              {collapsed ? t("expand") : t("collapse")}
+            </span>
           </button>
         </div>
       </aside>
@@ -106,7 +112,7 @@ export function Sidebar() {
         <div className="fixed inset-0 z-40 md:hidden">
           <button
             type="button"
-            aria-label="Close menu"
+            aria-label={t("closeMenu")}
             onClick={closeMobile}
             className="absolute inset-0 bg-black/50"
           />
@@ -114,14 +120,14 @@ export function Sidebar() {
           <div
             role="dialog"
             aria-modal="true"
-            aria-label="Main menu"
+            aria-label={t("main")}
             className="absolute inset-y-0 left-0 w-64 overflow-y-auto border-r border-border bg-background"
           >
             <div className="flex justify-end p-2">
               <button
                 type="button"
                 onClick={closeMobile}
-                aria-label="Close menu"
+                aria-label={t("closeMenu")}
                 className="rounded-md p-2 hover:bg-black/5 dark:hover:bg-white/10"
               >
                 <X aria-hidden="true" className="size-4" />

@@ -1,26 +1,29 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Monitor, Moon, Sun } from "lucide-react";
 import { useTheme } from "@/lib/theme/ThemeProvider";
 import type { ThemePreference } from "@/lib/theme/theme";
 
-const OPTIONS: { value: ThemePreference; label: string; icon: typeof Sun }[] = [
-  { value: "light", label: "Light", icon: Sun },
-  { value: "dark", label: "Dark", icon: Moon },
-  { value: "system", label: "System", icon: Monitor },
+const OPTIONS: { value: ThemePreference; icon: typeof Sun }[] = [
+  { value: "light", icon: Sun },
+  { value: "dark", icon: Moon },
+  { value: "system", icon: Monitor },
 ];
 
 export function ThemeToggle() {
+  const t = useTranslations("theme");
   const { preference, setPreference } = useTheme();
 
   return (
     <div
       role="radiogroup"
-      aria-label="Colour theme"
+      aria-label={t("label")}
       className="flex items-center gap-0.5 rounded-md border border-border p-0.5"
     >
-      {OPTIONS.map(({ value, label, icon: Icon }) => {
+      {OPTIONS.map(({ value, icon: Icon }) => {
         const selected = preference === value;
+        const label = t(value);
 
         return (
           <button

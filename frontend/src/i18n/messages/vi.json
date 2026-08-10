@@ -1,0 +1,1094 @@
+{
+  "access": {
+    "back": "Quay lại tổng quan",
+    "description": "Khu vực này chỉ dành cho tài khoản có quyền khác. Nếu bạn cho rằng đây là nhầm lẫn, hãy liên hệ quản trị viên.",
+    "title": "Bạn không có quyền truy cập"
+  },
+  "account": {
+    "password": {
+      "changed": "Đã đổi mật khẩu. Các thiết bị khác đã bị đăng xuất.",
+      "current": "Mật khẩu hiện tại",
+      "description": "Đổi mật khẩu sẽ thu hồi mọi phiên đăng nhập khác.",
+      "open": "Đổi mật khẩu",
+      "submit": "Đổi mật khẩu",
+      "title": "Mật khẩu",
+      "warning": "Đổi mật khẩu sẽ đăng xuất bạn khỏi mọi nơi khác. Thiết bị này vẫn được giữ đăng nhập."
+    },
+    "preferences": {
+      "description": "Ngôn ngữ, múi giờ và những cảnh báo được gửi tới bạn.",
+      "emailAlerts": "Cảnh báo qua email",
+      "emailAlertsHint": "Gửi các cảnh báo phù hợp tới địa chỉ email của bạn.",
+      "loadError": "Không tải được tùy chọn của bạn.",
+      "loading": "Đang tải tùy chọn…",
+      "minSeverity": "Mức độ cảnh báo tối thiểu",
+      "minSeverityHint": "Cảnh báo dưới mức này sẽ không được gửi tới bạn.",
+      "pushAlerts": "Cảnh báo đẩy",
+      "pushAlertsHint": "Gửi các cảnh báo phù hợp tới những trình duyệt đã đăng ký.",
+      "saved": "Đã lưu tùy chọn.",
+      "submit": "Lưu tùy chọn",
+      "timezone": "Múi giờ",
+      "timezoneHint": "Tên múi giờ theo chuẩn IANA. Dùng cho dấu thời gian trên cảnh báo của bạn.",
+      "title": "Tùy chọn"
+    },
+    "profile": {
+      "description": "Cách bạn được nhận diện trong ứng dụng.",
+      "emailHint": "Không thể thay đổi địa chỉ email tại đây.",
+      "saved": "Đã cập nhật hồ sơ.",
+      "submit": "Lưu hồ sơ",
+      "title": "Hồ sơ",
+      "usernameHint": "Chỉ chữ và số. Để trống để xóa tên người dùng."
+    },
+    "severity": {
+      "critical": "Chỉ nghiêm trọng",
+      "info": "Thông tin — tất cả",
+      "warning": "Cảnh báo trở lên"
+    },
+    "subtitle": "Quản lý hồ sơ, cách nhận cảnh báo và mật khẩu của bạn.",
+    "title": "Tài khoản"
+  },
+  "accountType": {
+    "admin_officer": "Chính quyền",
+    "business": "Doanh nghiệp",
+    "individual": "Cá nhân"
+  },
+  "alertHistory": {
+    "actions": {
+      "export": "Xuất CSV",
+      "list": "Danh sách",
+      "map": "Bản đồ",
+      "reset": "Đặt lại",
+      "search": "Tìm kiếm"
+    },
+    "category": "Lịch sử & sự cố",
+    "detail": {
+      "area": "Khu vực",
+      "attachment": "(Hình ảnh/tài liệu đính kèm sẽ hiển thị tại đây)",
+      "desc": "Nội dung cảnh báo",
+      "noSelection": "Chọn một bản ghi để xem chi tiết diễn biến và hành động ứng phó.",
+      "response": "Hành động ứng phó",
+      "title": "Chi tiết sự cố",
+      "type": "Loại cảnh báo"
+    },
+    "filter": {
+      "all": "Tất cả",
+      "area": "Khu vực",
+      "dateRange": "Khoảng thời gian",
+      "severity": "Mức độ",
+      "title": "Bộ lọc tra cứu",
+      "type": "Loại cảnh báo"
+    },
+    "list": {
+      "found": "cảnh báo phù hợp",
+      "mapView": "Hiển thị điểm sự cố"
+    },
+    "severity": {
+      "High": "Cao",
+      "Low": "Thấp",
+      "Medium": "Trung bình"
+    },
+    "status": {
+      "Handled": "Đã xử lý",
+      "Pending": "Chưa xử lý"
+    },
+    "subtitle": "Tra cứu nhanh diễn biến và hành động ứng phó",
+    "template": {
+      "desc": {
+        "rain": "Lượng mưa = {value}{unit} đã vượt ngưỡng ({threshold}{unit}) tại \"{area}\".",
+        "temp": "Nhiệt độ = {value}{unit} đã vượt ngưỡng ({threshold}{unit}) tại \"{area}\"."
+      },
+      "title": {
+        "rain": "Cảnh báo lượng mưa {area}",
+        "temp": "Cảnh báo nhiệt độ {area}"
+      }
+    },
+    "title": "Lịch sử cảnh báo & sự cố",
+    "type": {
+      "flood": "Ngập",
+      "other": "Khác",
+      "rain": "Mưa",
+      "storm": "Bão",
+      "traffic": "Giao thông"
+    }
+  },
+  "app": {
+    "name": "SWTIS",
+    "tagline": "Hệ thống dự báo thời tiết thời gian thực cho mạng lưới giao thông đô thị TP. Hồ Chí Minh"
+  },
+  "areaManagement": {
+    "actions": {
+      "delete": "Xóa",
+      "edit": "Chỉnh sửa",
+      "quickAdd": "Thêm khu vực mới"
+    },
+    "addAlertRuleModal": {
+      "baseThreshold": "Ngưỡng cơ sở",
+      "cooldown": "Thời gian chờ (phút)",
+      "createBtn": "Tạo quy tắc",
+      "createError": "Không thể tạo quy tắc cảnh báo.",
+      "desc": "Tạo quy tắc cảnh báo cho khu vực {name}.",
+      "dirAbove": "Cao hơn ngưỡng",
+      "dirBelow": "Thấp hơn ngưỡng",
+      "direction": "Hướng so sánh",
+      "enabled": "Kích hoạt",
+      "existingLoaded": "Đang chỉnh sửa quy tắc cảnh báo đã có cho khu vực này.",
+      "high": "Cao",
+      "loadingExisting": "Đang tải cấu hình hiện có...",
+      "low": "Thấp",
+      "medium": "Trung bình",
+      "metric": "Chỉ số đo",
+      "metricRain": "Lượng mưa",
+      "metricTemp": "Nhiệt độ",
+      "modeAdvanced": "Nâng cao (thủ công)",
+      "modeSimple": "Đơn giản (tự động)",
+      "off": "Tắt",
+      "on": "Bật",
+      "orderAbove": "Phải thỏa: Thấp < Trung bình < Cao",
+      "orderBelow": "Phải thỏa: Thấp > Trung bình > Cao",
+      "orderError": "Các ngưỡng chưa đúng thứ tự yêu cầu.",
+      "rainAboveOnly": "Cảnh báo mưa chỉ hỗ trợ 'cao hơn'.",
+      "saving": "Đang lưu...",
+      "scope": "Phạm vi",
+      "scopeCurrent": "Thời tiết hiện tại",
+      "scopeForecast": "Dự báo 24 giờ tới",
+      "stepHint": "Bước tự động: {step}{unit} mỗi mức",
+      "thresholdMode": "Chế độ ngưỡng",
+      "thresholds": "Ngưỡng",
+      "title": "Thêm quy tắc cảnh báo",
+      "updateBtn": "Cập nhật quy tắc"
+    },
+    "alertSettingModal": {
+      "desc": "Thiết lập cảnh báo tự động cho khu vực {name} khi đạt các điều kiện.",
+      "pushBlocked": "Thông báo trình duyệt đang bị chặn. Hãy bật lại trong cài đặt trình duyệt cho trang này.",
+      "pushDisabled": "Chưa bật thông báo trình duyệt — bạn sẽ không thấy thông báo cửa sổ khi gửi thử.",
+      "pushEnableBtn": "Bật",
+      "pushEnabling": "Đang bật…",
+      "rainDesc": "Thông báo khi lượng mưa theo giờ vượt ngưỡng thiết lập",
+      "rainLabel": "Cảnh báo Ngập lụt do Lượng mưa",
+      "rainThreshold": "Ngưỡng lượng mưa",
+      "saveBtn": "Lưu cấu hình",
+      "tempDesc": "Thông báo khi nhiệt độ khu vực vượt ngưỡng thiết lập",
+      "tempLabel": "Cảnh báo Nhiệt độ Thời tiết",
+      "tempThreshold": "Ngưỡng nhiệt độ",
+      "testBtn": "Gửi thử",
+      "testDesc": "Đánh giá thời tiết hiện tại của khu vực theo ngưỡng và gửi thông báo nếu có chỉ số vượt ngưỡng.",
+      "testEmpty": "Không có chỉ số nào được đánh giá.",
+      "testFired": "Đã kích hoạt",
+      "testMetric": {
+        "area": "Khu vực",
+        "rain": "Lượng mưa",
+        "temp": "Nhiệt độ"
+      },
+      "testReason": {
+        "below-threshold": "Giá trị hiện tại thấp hơn ngưỡng đã cấu hình.",
+        "cooldown": "Cảnh báo trước đó vẫn còn trong thời gian chờ.",
+        "no-center": "Khu vực chưa có tọa độ trung tâm.",
+        "no-officer": "Khu vực chưa có cán bộ phụ trách — hãy gán cán bộ trước khi gửi thông báo.",
+        "no-thresholds": "Chưa cấu hình ngưỡng nhiệt độ hoặc lượng mưa.",
+        "no-value": "Dữ liệu thời tiết không có giá trị phù hợp cho chỉ số này.",
+        "weather-fetch-failed": "Không lấy được dữ liệu thời tiết. Vui lòng thử lại."
+      },
+      "testRunning": "Đang gửi…",
+      "testSkipped": "Bỏ qua",
+      "testTitle": "Gửi thông báo thử",
+      "title": "Cài đặt Cảnh báo & Ngưỡng"
+    },
+    "deleteModal": {
+      "areaLabel": "Khu vực cần xóa",
+      "confirmBtn": "Xóa",
+      "desc": "Bạn có chắc chắn muốn xóa khu vực này?",
+      "title": "Xóa khu vực",
+      "warning": "Hành động này không thể hoàn tác. Tất cả dữ liệu liên quan đến khu vực này sẽ bị xóa vĩnh viễn."
+    },
+    "editModal": {
+      "desc": "Cập nhật thông tin khu vực",
+      "title": "Chỉnh sửa khu vực",
+      "updateBtn": "Cập nhật khu vực"
+    },
+    "editor": {
+      "areaStatus": "Trạng thái khu vực",
+      "boundaryData": "Dữ liệu ranh giới",
+      "boundaryDetails": "Chi tiết ranh giới",
+      "centerPoint": "Tâm điểm",
+      "clearCenter": "Xóa tâm điểm",
+      "clickToMove": "Nhấp để di chuyển tâm điểm",
+      "clickToSet": "Nhấp để đặt tâm điểm",
+      "editDesc": "Cập nhật ranh giới địa lý và chi tiết khu vực.",
+      "notSet": "Chưa đặt",
+      "pickOnMap": "Chọn trên bản đồ",
+      "radiusLabel": "Bán kính ranh giới (km)",
+      "ready": "Sẵn sàng",
+      "status": "Trạng thái",
+      "updateArea": "Cập nhật khu vực"
+    },
+    "form": {
+      "desc": "Điền thông tin",
+      "nameLabel": "Tên khu vực",
+      "namePlaceholder": "Ví dụ: Phường 1",
+      "saveBtn": "Lưu khu vực",
+      "selectedTitle": "Khu vực đã chọn",
+      "title": "Thêm khu vực mới",
+      "typeLabel": "Loại khu vực",
+      "unitLabel": "Địa bàn quản lý",
+      "unitPlaceholder": "Quận/Huyện"
+    },
+    "table": {
+      "actions": "Tác vụ",
+      "adminUnit": "Địa bàn quản lý",
+      "areaName": "Tên khu vực",
+      "boundary": "Ranh giới",
+      "hotspots": "Điểm nóng",
+      "type": "Loại"
+    },
+    "title": "Danh sách khu vực",
+    "type": {
+      "District": "Quận",
+      "Ward": "Phường"
+    }
+  },
+  "auth": {
+    "fields": {
+      "code": "Mã 6 chữ số",
+      "confirmNewPassword": "Xác nhận mật khẩu mới",
+      "confirmPassword": "Xác nhận mật khẩu",
+      "email": "Email",
+      "newPassword": "Mật khẩu mới",
+      "password": "Mật khẩu",
+      "passwordHint": "Ít nhất 8 ký tự.",
+      "username": "Tên người dùng",
+      "usernameHint": "Không bắt buộc. Chỉ chữ và số, 3-64 ký tự."
+    },
+    "forgot": {
+      "request": {
+        "backToSignIn": "Quay lại đăng nhập",
+        "description": "Nhập email của bạn và chúng tôi sẽ gửi mã gồm 6 chữ số.",
+        "submit": "Gửi mã",
+        "title": "Đặt lại mật khẩu"
+      },
+      "reset": {
+        "submit": "Cập nhật mật khẩu",
+        "title": "Chọn mật khẩu mới"
+      },
+      "verify": {
+        "description": "Nếu tồn tại tài khoản cho <strong>{email}</strong>, mã đang được gửi đi. Mã sẽ hết hạn sau vài phút.",
+        "submit": "Xác minh mã",
+        "title": "Nhập mã của bạn",
+        "useDifferentEmail": "Dùng email khác"
+      }
+    },
+    "signIn": {
+      "createAccount": "Tạo tài khoản",
+      "forgotPassword": "Quên mật khẩu?",
+      "submit": "Đăng nhập",
+      "title": "Đăng nhập"
+    },
+    "signUp": {
+      "accountTypeLegend": "Loại tài khoản",
+      "haveAccount": "Đã có tài khoản?",
+      "signInLink": "Đăng nhập",
+      "submit": "Tạo tài khoản",
+      "title": "Tạo tài khoản",
+      "types": {
+        "business": {
+          "blurb": "Mọi tính năng của tài khoản cá nhân, kèm đánh giá rủi ro và báo cáo.",
+          "title": "Doanh nghiệp"
+        },
+        "individual": {
+          "blurb": "Địa điểm đã lưu, cảnh báo thời tiết và cảnh báo tuyến đường cho hành trình của bạn.",
+          "title": "Cá nhân"
+        }
+      }
+    }
+  },
+  "businessReports": {
+    "buttons": {
+      "analyze": "Phân tích",
+      "analyzing": "Đang phân tích...",
+      "exportImage": "Ảnh",
+      "exportPdf": "PDF",
+      "fullscreen": "Toàn màn hình",
+      "hide": "Ẩn",
+      "saveResult": "Lưu kết quả",
+      "saveSchedule": "Lưu lịch gửi",
+      "sendNow": "Gửi ngay",
+      "show": "Hiện"
+    },
+    "charts": {
+      "incidents": "sự cố",
+      "types": {
+        "clearCloudy": "Trời quang đãng / Không mây",
+        "cloudy": "Nhiều mây",
+        "extremeTemp": "Nhiệt độ cao",
+        "fog": "Sương mù",
+        "heavyRain": "Mưa lớn",
+        "rain": "Mưa",
+        "strongWind": "Gió mạnh",
+        "sunny_clear": "Nắng/Quang đãng"
+      },
+      "weatherDistribution": "Phân bổ thời tiết",
+      "weatherTrend": "Xu hướng thời tiết (7 ngày qua)"
+    },
+    "filters": {
+      "allData": "Tất cả",
+      "allRoutes": "Tất cả tuyến",
+      "apply": "Áp dụng",
+      "aqi": "AQI",
+      "customDate": "Tùy chọn",
+      "dataType": "Loại dữ liệu",
+      "fromDate": "Từ ngày",
+      "rain": "Mưa",
+      "route": "Theo tuyến đường",
+      "temp": "Nhiệt độ",
+      "time": "Theo thời gian",
+      "title": "Bộ lọc",
+      "toDate": "Đến ngày",
+      "wind": "Gió"
+    },
+    "kpi": {
+      "alertCount": "Số cảnh báo",
+      "avgHumidity": "Độ ẩm",
+      "avgRain": "Lượng mưa",
+      "avgTemp": "Nhiệt độ",
+      "avgWind": "Sức gió",
+      "selectRoute": "Chọn tuyến đường để xem chi tiết"
+    },
+    "risk": {
+      "flood": "Ngập",
+      "from": "Điểm đi (A)",
+      "landslide": "Sạt lở",
+      "level": {
+        "high": "Cao",
+        "low": "Thấp",
+        "medium": "Trung bình"
+      },
+      "none": "Không",
+      "recommendations": "Khuyến nghị:",
+      "resultTitle": "Kết quả phân tích",
+      "time": "Giờ khởi hành",
+      "title": "Đánh giá rủi ro lộ trình",
+      "to": "Điểm đến (B)",
+      "today": "Hôm nay",
+      "tomorrow": "Ngày mai"
+    },
+    "settings": {
+      "both": "Cả hai",
+      "content": "Chọn nội dung",
+      "format": "Định dạng",
+      "monthly": "Ngày cố định mỗi tháng",
+      "scheduleDay": "Chọn ngày gửi",
+      "title": "Cài đặt báo cáo định kỳ",
+      "traffic": "Giao thông",
+      "weather": "Thời tiết",
+      "weekly": "Thứ mấy mỗi tuần"
+    },
+    "subtitle": "Theo dõi và phân tích dữ liệu thời tiết trên {count} tuyến đường",
+    "title": "Báo cáo & Phân tích"
+  },
+  "common": {
+    "cancel": "Hủy",
+    "close": "Đóng",
+    "days": {
+      "Fri": "Thứ 6",
+      "Mon": "Thứ 2",
+      "Sat": "Thứ 7",
+      "Sun": "Chủ Nhật",
+      "Thu": "Thứ 5",
+      "Tue": "Thứ 3",
+      "Wed": "Thứ 4"
+    },
+    "hideMap": "Ẩn bản đồ",
+    "hours": "giờ",
+    "language": "Ngôn ngữ",
+    "loading": "Đang tải",
+    "minutes": "phút",
+    "pagination": {
+      "next": "Trang sau",
+      "of": "trên",
+      "page": "Trang",
+      "prev": "Trang trước"
+    },
+    "profile": "Hồ sơ",
+    "refresh": "Làm mới",
+    "showMap": "Hiện bản đồ",
+    "signOut": "Đăng xuất",
+    "theme": "Giao diện",
+    "tryAgain": "Thử lại",
+    "viewAll": "Xem tất cả",
+    "welcome": "Chào mừng đến với SWTIS"
+  },
+  "dashboard": {
+    "alertType": {
+      "flood": "Ngập",
+      "rain": "Mưa lớn",
+      "storm": "Bão"
+    },
+    "chart": {
+      "alertDistribution": "Phân bố loại cảnh báo",
+      "alertsByRegion": "Cảnh báo theo khu vực",
+      "flood": "Ngập",
+      "other": "Khác",
+      "rain": "Mưa lớn",
+      "riskDistribution": "Phân bố cấp độ rủi ro",
+      "storm": "Bão",
+      "totalAlerts": "Tổng cảnh báo",
+      "weatherTrend": "Xu hướng thời tiết"
+    },
+    "filter": {
+      "24h": "24h",
+      "30days": "30 ngày",
+      "7days": "7 ngày",
+      "alertType": "Loại cảnh báo",
+      "allRegions": "Tất cả",
+      "allTypes": "Tất cả",
+      "region": "Theo khu vực",
+      "timeframe": "Theo thời gian",
+      "title": "Bộ lọc"
+    },
+    "kpi": {
+      "avgRainfall": "Lượng mưa trung bình",
+      "highRiskAreas": "Khu vực rủi ro cao",
+      "maxWind": "Gió cực đại",
+      "totalAlerts": "Tổng cảnh báo"
+    },
+    "map": {
+      "addAlertRule": "Thêm Cảnh báo",
+      "details": {
+        "activeAlerts": "Cảnh báo đang hoạt động",
+        "avgTemp": "Nhiệt độ trung bình",
+        "deleteRule": "Xóa quy tắc",
+        "deleteRuleConfirm": "Xóa quy tắc cảnh báo này?",
+        "directionAbove": "≥",
+        "directionBelow": "≤",
+        "noData": "Không có dữ liệu",
+        "noRules": "Khu vực chưa có quy tắc cảnh báo.",
+        "rainfall": "Lượng mưa",
+        "rulesTitle": "Quy tắc cảnh báo",
+        "scopeCurrent": "Hiện tại",
+        "scopeForecast": "24h tới",
+        "selectPrompt": "Chọn khu vực trên bản đồ để xem thông tin cụ thể.",
+        "thresholdsHint": "Thấp / Trung bình / Cao",
+        "title": "Chi tiết khu vực",
+        "viewResponseRoute": "Xem chi tiết lộ trình ứng phó",
+        "windSpeed": "Tốc độ gió"
+      },
+      "noAreaSelected": "Chọn một khu vực trên bản đồ để xem chi tiết phân tích.",
+      "risk": {
+        "high": "Cao",
+        "label": "Cấp độ rủi ro",
+        "low": "Thấp",
+        "medium": "Trung bình",
+        "noRules": "Chưa cấu hình"
+      },
+      "showAll": "Xem tất cả khu vực",
+      "subtitle": "Màu sắc thể hiện cấp độ rủi ro (Thấp → Trung bình → Cao)",
+      "title": "Heatmap cảnh báo",
+      "zoomToBound": "Phóng đến ranh giới"
+    },
+    "modal": {
+      "route": {
+        "action": "Triển khai đơn vị",
+        "currentRisk": "Mức độ rủi ro hiện tại",
+        "step": {
+          "arrival": "Dự kiến đến các chốt kiểm soát chính",
+          "dispatch": "Đơn vị đã được điều phối từ Trạm trung tâm",
+          "resolution": "Dự kiến kiểm soát tình hình"
+        },
+        "subtitle": "Ứng phó khẩn cấp cho",
+        "timeline": "Dòng thời gian ứng phó",
+        "title": "Kế hoạch lộ trình ứng phó"
+      }
+    },
+    "role": "Cán bộ hành chính",
+    "subtitle": "Theo dõi cảnh báo trên {count} khu vực thuộc phạm vi quản lý",
+    "title": "Bảng điều khiển",
+    "view": {
+      "charts": "Biểu đồ",
+      "map": "Bản đồ"
+    }
+  },
+  "errors": {
+    "generic": "Đã xảy ra lỗi. Vui lòng thử lại."
+  },
+  "government": {
+    "scenarioManagement": {
+      "activeModal": {
+        "all": "Các kịch bản có sẵn khác",
+        "confirm": "Xác nhận kích hoạt",
+        "emptyMatching": "Không tìm thấy kịch bản cụ thể cho loại cảnh báo này.",
+        "recommended": "Được đề xuất cho loại sự cố này",
+        "steps": "{count} BƯỚC",
+        "title": "Kích hoạt kịch bản"
+      },
+      "scenarios": {
+        "flood_05m": {
+          "desc": "Kích hoạt trạm bơm, phong tỏa khu vực trọng yếu",
+          "name": "Kịch bản ngập trên 0.5m",
+          "steps": {
+            "notify": "Thông báo người dân di chuyển",
+            "pump": "Kích hoạt trạm bơm dự phòng",
+            "respond": "Cử đội phản ứng nhanh hỗ trợ"
+          }
+        },
+        "storm_level_10": {
+          "desc": "Gia cố công trình, sơ tán dân cư ven biển",
+          "name": "Cảnh báo bão cấp 10",
+          "steps": {
+            "boats": "Kêu gọi tàu thuyền về nơi tránh trú",
+            "evacuate": "Sơ tán dân cư vùng nguy hiểm",
+            "reinforce": "Chằng chống nhà cửa, công trình"
+          }
+        }
+      }
+    }
+  },
+  "home": {
+    "alert": {
+      "desc": "Dự báo mưa to từ 15:00 - 18:00 hôm nay",
+      "title": "Cảnh báo mưa lớn"
+    },
+    "current": {
+      "humidity": "Độ ẩm",
+      "rain": "Lượng mưa",
+      "wind": "Gió"
+    },
+    "favorite": {
+      "add": "Thêm mới",
+      "addLocation": "Thêm vị trí",
+      "addModal": {
+        "addBtn": "Thêm vào yêu thích",
+        "addressLabel": "Địa chỉ",
+        "addressPlaceholder": "VD: Quận 1, TP.HCM",
+        "coordinates": "Tọa độ",
+        "desc": "Thêm mới vào danh sách yêu thích",
+        "placeNameLabel": "Tên địa điểm",
+        "placeNamePlaceholder": "VD: Nhà riêng, Văn phòng",
+        "routeAddressLabel": "Mô tả tuyến đường",
+        "routeAddressPlaceholder": "VD: Quận 1 - Quận 3",
+        "routeNameLabel": "Tên tuyến đường",
+        "routeNamePlaceholder": "VD: Tuyến A - Tuyến B",
+        "searchPlaceholder": "Tìm kiếm địa điểm (VD: Quận 1, Sân bay)",
+        "selectLocation": "Chọn vị trí trên bản đồ",
+        "titleBusiness": "Thêm tuyến đường yêu thích",
+        "titlePersonal": "Thêm địa điểm yêu thích"
+      },
+      "businessTitle": "Tuyến đường yêu thích",
+      "personalTitle": "Vị trí yêu thích",
+      "showAll": "Xem tất cả",
+      "viewAllModal": {
+        "closeBtn": "Đóng",
+        "empty": "Chưa có yêu thích nào. Hãy thêm mới!",
+        "places": "địa điểm",
+        "routes": "tuyến đường",
+        "titleBusiness": "Tất cả tuyến đường yêu thích",
+        "titlePersonal": "Tất cả địa điểm yêu thích"
+      },
+      "weatherForecast": "Dự báo thời tiết"
+    },
+    "forecast": {
+      "desc": "Trời nắng, ít mây",
+      "searchBtn": "Tìm kiếm",
+      "searchPlaceholder": "Quận 1, TP.HCM",
+      "timeline": "Timeline 6 giờ",
+      "title": "Dự báo thời tiết",
+      "week": "Dự báo 7 ngày"
+    },
+    "greeting": "Chào mừng",
+    "greetingNamed": "Chào mừng, {name}",
+    "personal": {
+      "title": "Cá nhân"
+    },
+    "quick": {
+      "forecast": "Dự báo chi tiết",
+      "forecastDesc": "Xem dự báo 7 ngày",
+      "map": "Bản đồ",
+      "mapDesc": "Radar mưa & giao thông"
+    },
+    "summary": "Đang đăng nhập với {email} · tài khoản {accountType} · vai trò: {roles}",
+    "welcome": "Chào mừng trở lại!"
+  },
+  "locale": {
+    "en": "English",
+    "label": "Ngôn ngữ",
+    "vi": "Tiếng Việt"
+  },
+  "map": {
+    "inputs": {
+      "capacity": "Tải trọng (kg)",
+      "currentLocation": "Vị trí hiện tại",
+      "filter": "Bộ lọc",
+      "findRoute": "Tìm đường",
+      "from": "Điểm đi",
+      "recentRoutes": "Tuyến đường gần đây",
+      "suggestRoute": "Gợi ý tuyến",
+      "to": "Điểm đến",
+      "vehicle": {
+        "car": "Ô tô",
+        "motorcycle": "Xe máy",
+        "truck": "Xe tải"
+      }
+    },
+    "layers": {
+      "hide": "Ẩn",
+      "legend": "Legend",
+      "radar": "Radar mưa",
+      "show": "Hiện",
+      "temp": "Nhiệt độ",
+      "title": "Lớp dữ liệu",
+      "traffic": "Giao thông",
+      "uv": "UV"
+    },
+    "legend": {
+      "radar": "Radar mưa: Xanh nhạt - nhẹ, Xanh đậm - nặng",
+      "title": "Chú thích:",
+      "trafficGreen": "Giao thông: Xanh - thông thoáng",
+      "trafficRed": "Giao thông: Đỏ - tắc nghẽn",
+      "trafficYellow": "Giao thông: Vàng - chậm"
+    },
+    "title": "Bản đồ kết hợp",
+    "visualization": {
+      "advision": "Lời khuyên",
+      "clear": "Trời quang",
+      "cloudy": "Nhiều mây",
+      "danger": "Nguy hiểm",
+      "departNow": "Có thể xuất phát ngay",
+      "distance": "Khoảng cách",
+      "heavy": "Cao",
+      "heavyRain": "Mưa lớn",
+      "interactiveTitle": "Bản đồ tương tác Radar mưa & Giao thông",
+      "low": "Thấp",
+      "normal": "Bình thường",
+      "rainy": "Mưa",
+      "routeStatus": "Tình trạng tuyến đường:",
+      "safe": "An toàn",
+      "startAfter": "Nên bắt đầu sau {minutes} phút",
+      "status": "Tình trạng",
+      "sunny": "Nắng",
+      "time": "Thời gian",
+      "timelineTitle": "Timeline dự báo mưa 1-2h tới:",
+      "warning": "Cảnh báo"
+    }
+  },
+  "mapFull": {
+    "actions": {
+      "currentLocation": "Vị trí hiện tại",
+      "details": "Chi tiết",
+      "focusRoute": "Focus vào đường đi",
+      "startNavigation": "Bắt đầu dẫn đường"
+    },
+    "history": {
+      "empty": "Chưa có lịch sử tìm kiếm",
+      "lastSearch": "Tìm kiếm gần đây"
+    },
+    "search": {
+      "history": "Lịch sử",
+      "placeholder": "Tìm kiếm địa điểm...",
+      "results": "Kết quả"
+    },
+    "summary": {
+      "distance": "Khoảng cách",
+      "time": "Thời gian"
+    },
+    "title": "VietMap Toàn diện"
+  },
+  "nav": {
+    "closeMenu": "Đóng menu",
+    "collapse": "Thu gọn",
+    "expand": "Mở rộng",
+    "items": {
+      "account": "Tài khoản",
+      "businessReports": "Báo cáo",
+      "businessRisk": "Đánh giá rủi ro",
+      "govAreas": "Khu vực",
+      "govDashboard": "Bảng điều khiển",
+      "govIncidents": "Sự cố",
+      "govReports": "Báo cáo",
+      "govScenarios": "Kịch bản",
+      "history": "Lịch sử cảnh báo",
+      "locations": "Địa điểm của tôi",
+      "map": "Bản đồ",
+      "overview": "Tổng quan",
+      "weather": "Thời tiết"
+    },
+    "main": "Điều hướng chính",
+    "openMenu": "Mở menu",
+    "sections": {
+      "business": "Doanh nghiệp",
+      "government": "Chính quyền"
+    }
+  },
+  "normalHistory": {
+    "empty": "Không tìm thấy lịch sử",
+    "filters": {
+      "all": "Tất cả",
+      "location": "Vị trí",
+      "route": "Tuyến đường",
+      "searchBtn": "Tìm kiếm"
+    },
+    "recentHistory": "Lịch sử gần đây",
+    "title": "Lịch sử",
+    "weather": {
+      "cloudy": "Nhiều mây",
+      "label": "Thời tiết",
+      "rain_light": "Mưa nhẹ",
+      "sunny": "Nắng"
+    },
+    "weatherSearchTitle": "Lịch sử tìm kiếm thời tiết"
+  },
+  "notifications": {
+    "alert": {
+      "body": "{metric} hiện tại {value} ({operator} {threshold}).",
+      "title": "Cảnh báo {metric}: {location}"
+    },
+    "bellAria": "Thông báo",
+    "empty": "Chưa có thông báo nào",
+    "markAllRead": "Đánh dấu đã đọc",
+    "metrics": {
+      "feelslike": "Nhiệt độ cảm nhận",
+      "precip": "Lượng mưa",
+      "precipprob": "Xác suất mưa",
+      "temp": "Nhiệt độ"
+    },
+    "push": {
+      "denied": "Thông báo đang bị chặn. Hãy bật lại trong cài đặt trình duyệt.",
+      "desc": "Nhận thông báo hệ thống ngay cả khi đã đóng tab.",
+      "devices": "Thiết bị đã đăng ký",
+      "enable": "Bật thông báo trình duyệt",
+      "noDevices": "Chưa có thiết bị nào được đăng ký.",
+      "refresh": "Đăng ký lại thiết bị này",
+      "title": "Thông báo trình duyệt",
+      "unsupported": "Trình duyệt của bạn không hỗ trợ web push."
+    },
+    "rules": {
+      "addBtn": "Thêm quy tắc",
+      "cooldown": "Khoảng nghỉ (phút)",
+      "cooldownShort": "nghỉ {m} phút",
+      "empty": "Chưa có quy tắc cảnh báo cho địa điểm này.",
+      "existing": "Quy tắc đang bật",
+      "hideAdvanced": "Ẩn nâng cao",
+      "metric": "Chỉ số",
+      "newTitle": "Thêm quy tắc",
+      "operator": "Toán tử",
+      "scope": "Phạm vi",
+      "scope24h": "24 giờ tới",
+      "scopeNow": "Hiện tại",
+      "severity": "Mức độ",
+      "showAdvanced": "Nâng cao",
+      "threshold": "Ngưỡng"
+    },
+    "scopes": {
+      "current": "Hiện tại",
+      "forecast_24h": "24 giờ tới"
+    },
+    "severities": {
+      "critical": "Nguy hiểm",
+      "info": "Thông tin",
+      "warning": "Cảnh báo"
+    },
+    "title": "Thông báo"
+  },
+  "personalPage": {
+    "addAlert": "Chức năng thêm vị trí mới",
+    "addLocation": "Thêm vị trí",
+    "alert": "Cảnh báo",
+    "delete": "Xóa",
+    "deleteConfirm": "Bạn có chắc muốn xóa vị trí này?",
+    "edit": "Chỉnh sửa",
+    "empty": "Chưa có vị trí yêu thích. Hãy thêm vị trí mới!",
+    "limit": "Đã đạt giới hạn tối đa {max} vị trí. Xóa một vị trí để thêm mới.",
+    "modals": {
+      "alert": {
+        "desc": "Chọn điều kiện thời tiết để nhận cảnh báo",
+        "rainAlert": "Cảnh báo mưa",
+        "rainDesc": "Thông báo khi có dự báo mưa",
+        "saveBtn": "Lưu cảnh báo",
+        "savingBtn": "Đang lưu...",
+        "tempAlert": "Cảnh báo nhiệt độ cao",
+        "tempDesc": "Thông báo khi nhiệt độ vượt ngưỡng",
+        "title": "Cài đặt cảnh báo",
+        "windAlert": "Cảnh báo gió mạnh",
+        "windDesc": "Thông báo khi tốc độ gió vượt ngưỡng"
+      },
+      "alertHistory": {
+        "levels": {
+          "danger": "Nguy hiểm",
+          "info": "Thông tin",
+          "warning": "Cảnh báo"
+        },
+        "title": "Lịch sử cảnh báo"
+      },
+      "delete": {
+        "confirmation": "Bạn có chắc chắn muốn tiếp tục?",
+        "deleteBtn": "Xóa vị trí",
+        "locationLabel": "Vị trí cần xóa",
+        "subtitle": "Hành động này không thể hoàn tác",
+        "title": "Xóa vị trí",
+        "warning": "Xóa vĩnh viễn",
+        "warningDesc": "Vị trí này và tất cả cảnh báo liên quan sẽ bị xóa vĩnh viễn."
+      },
+      "edit": {
+        "addressLabel": "Địa chỉ",
+        "addressPlaceholder": "VD: Quận 1, TP.HCM",
+        "desc": "Cập nhật thông tin vị trí",
+        "descBusiness": "Cập nhật thông tin tuyến đường",
+        "nameLabel": "Tên vị trí",
+        "namePlaceholder": "VD: Nhà riêng, Văn phòng",
+        "saveBtn": "Lưu thay đổi",
+        "title": "Chỉnh sửa vị trí",
+        "titleBusiness": "Chỉnh sửa tuyến đường"
+      }
+    },
+    "settings": {
+      "alertType": "Loại cảnh báo",
+      "days": "ngày",
+      "duration": "Hiệu lực cảnh báo",
+      "minutes": "phút",
+      "save": "Lưu cài đặt",
+      "timeRange": "Khung thời gian nhận cảnh báo",
+      "title": "Cài đặt cảnh báo",
+      "to": "đến",
+      "traffic": {
+        "desc": "Theo dõi tình trạng",
+        "heavy": "Nặng",
+        "moderate": "Trung bình",
+        "title": "Cảnh báo giao thông"
+      },
+      "types": {
+        "airQuality": "Chất lượng không khí",
+        "traffic": "Giao thông",
+        "weather": "Thời tiết"
+      },
+      "weather": {
+        "desc": "Ngưỡng nhiệt độ",
+        "title": "Cảnh báo thời tiết"
+      }
+    },
+    "title": "Cá nhân"
+  },
+  "placeholder": {
+    "businessReports": "Tổng hợp rủi ro và cảnh báo theo biểu đồ trong một khoảng thời gian, xuất được ra PDF.",
+    "businessRisk": "Chấm điểm rủi ro vận hành theo luật cho các địa điểm doanh nghiệp của bạn.",
+    "govAreas": "Vẽ và duy trì các khu vực được giám sát mà cảnh báo toàn thành phố gắn vào.",
+    "govDashboard": "Tổng quan tình hình toàn thành phố dành cho cán bộ vận hành.",
+    "govIncidents": "Các sự cố đã báo cáo, trạng thái và người đang xử lý.",
+    "govReports": "Báo cáo tổng hợp trên các khu vực, sự cố và cảnh báo.",
+    "govScenarios": "Mô phỏng giả định dựa trên dữ liệu điều kiện đã ghi nhận.",
+    "history": "Mọi cảnh báo đã kích hoạt cho bạn, có thể lọc và tìm kiếm.",
+    "locations": "Lưu, đổi tên và đánh dấu yêu thích những nơi bạn muốn theo dõi.",
+    "map": "Bản đồ tương tác về điều kiện thời tiết toàn thành phố, kèm công cụ chọn địa điểm.",
+    "notBuilt": "Chưa xây dựng",
+    "weather": "Điều kiện hiện tại và dự báo cho từng địa điểm bạn đã lưu."
+  },
+  "reports": {
+    "config": {
+      "allTopics": "Tất cả",
+      "createBtn": "Tạo báo cáo ngay",
+      "dayLabel": "Chọn ngày gửi",
+      "dayPlaceholder": "Ngày trong tháng",
+      "days": {
+        "2": "Thứ 2",
+        "3": "Thứ 3",
+        "4": "Thứ 4",
+        "5": "Thứ 5",
+        "6": "Thứ 6",
+        "7": "Thứ 7",
+        "8": "Chủ Nhật"
+      },
+      "emailLabel": "Email nhận báo cáo",
+      "emailPlaceholder": "nhap_email@donvi.gov.vn",
+      "frequencyLabel": "Chọn chu kỳ gửi",
+      "monthEndNote": "Nếu tháng không có ngày đã chọn, hệ thống sẽ chọn ngày cuối cùng của tháng đó.",
+      "monthly": "Hàng tháng",
+      "saveBtn": "Lưu cấu hình",
+      "savedMessage": "Đã lưu cấu hình báo cáo định kỳ!",
+      "title": "Cấu hình báo cáo định kỳ",
+      "topicsLabel": "Chọn nội dung báo cáo",
+      "weekly": "Hàng tuần"
+    },
+    "header": {
+      "category": "Báo cáo định kỳ",
+      "downloadFullReport": "Tải toàn bộ báo cáo",
+      "subtitle": "Thiết lập lịch gửi và theo dõi lịch sử báo cáo",
+      "title": "Báo cáo kinh doanh"
+    },
+    "history": {
+      "empty": "(Danh sách báo cáo chi tiết sẽ hiển thị tại đây)",
+      "sentDate": "Ngày gửi",
+      "status": {
+        "failed": "Thất bại",
+        "pending": "Đang chờ",
+        "sent": "Đã gửi"
+      },
+      "suggestionText": "Báo cáo tổng hợp gửi vào sáng thứ 2 giúp cán bộ nắm tình hình nhanh",
+      "suggestionTitle": "Gợi ý tối ưu lịch gửi",
+      "title": "Lịch sử báo cáo"
+    },
+    "pdf": {
+      "generatedAt": "Ngay tao {at}",
+      "page": "Trang {n} / {total}"
+    },
+    "topics": {
+      "alerts": "Cảnh báo",
+      "incidents": "Sự cố",
+      "weather": "Thời tiết"
+    },
+    "type": {
+      "alert": "Cảnh báo",
+      "alertCount": "Số lượng cảnh báo",
+      "avgHumidity": "Độ ẩm trung bình",
+      "avgRain": "Lượng mưa trung bình",
+      "avgTemp": "Nhiệt độ trung bình",
+      "avgWind": "Tốc độ gió trung bình",
+      "incident": "Sự cố",
+      "summary": "Tổng hợp"
+    }
+  },
+  "scenarioManagement": {
+    "addStepModal": {
+      "addBtn": "Thêm bước",
+      "desc": "Thêm bước mới vào checklist",
+      "descLabel": "Mô tả bước",
+      "title": "Thêm bước"
+    },
+    "checklist": {
+      "priority": "Ưu tiên",
+      "title": "Checklist hành động"
+    },
+    "createTitle": "Tạo mới kịch bản",
+    "deleteModal": {
+      "confirmBtn": "Xóa",
+      "desc": "Bạn có chắc chắn muốn xóa kịch bản này?",
+      "scenarioLabel": "Kịch bản cần xóa",
+      "title": "Xóa kịch bản",
+      "warning": "Hành động này không thể hoàn tác. Tất cả dữ liệu liên quan đến kịch bản này sẽ bị xóa vĩnh viễn."
+    },
+    "detailTitle": "Chi tiết kịch bản",
+    "editButton": "Chỉnh sửa kịch bản",
+    "editModal": {
+      "desc": "Cập nhật thông tin và checklist kịch bản",
+      "title": "Chỉnh sửa kịch bản",
+      "updateBtn": "Lưu thay đổi"
+    },
+    "filter": "Lọc nhanh",
+    "filterModal": {
+      "allStatuses": "Tất cả trạng thái",
+      "allTypes": "Tất cả loại",
+      "applyBtn": "Áp dụng bộ lọc",
+      "desc": "Lọc kịch bản theo tiêu chí",
+      "resetBtn": "Đặt lại",
+      "searchLabel": "Tìm kiếm",
+      "searchPlaceholder": "Tìm theo tên hoặc mô tả",
+      "statusLabel": "Trạng thái",
+      "title": "Lọc kịch bản",
+      "typeLabel": "Loại kịch bản"
+    },
+    "form": {
+      "addStep": "Thêm bước",
+      "descLabel": "Mô tả tình huống",
+      "descPlaceholder": "Nhập mô tả ngắn gọn",
+      "nameLabel": "Tên kịch bản",
+      "namePlaceholder": "Ví dụ: \"Kịch bản ngập trên 0.5m\"",
+      "priorityLabel": "Thứ tự ưu tiên",
+      "stepPlaceholder": "Mô tả hành động",
+      "stepsLabel": "Checklist hành động"
+    },
+    "list": {
+      "steps": "Bước",
+      "times": "lần",
+      "usage": "Lịch sử sử dụng"
+    },
+    "priority": {
+      "High": "Cao",
+      "Low": "Thấp",
+      "Medium": "Trung bình"
+    },
+    "saveButton": "Lưu kịch bản",
+    "status": {
+      "active": "Đang hoạt động",
+      "archived": "Đã lưu trữ",
+      "draft": "Bản nháp"
+    },
+    "title": "Danh sách kịch bản",
+    "type": {
+      "earthquake": "Động đất",
+      "fire": "Hỏa hoạn",
+      "flood": "Ngập lụt",
+      "storm": "Bão"
+    }
+  },
+  "theme": {
+    "dark": "Tối",
+    "label": "Chủ đề màu",
+    "light": "Sáng",
+    "system": "Theo hệ thống"
+  },
+  "validation": {
+    "codeDigits": "Chỉ nhập chữ số",
+    "codeLength": "Mã gồm 6 chữ số",
+    "currentPasswordRequired": "Nhập mật khẩu hiện tại của bạn",
+    "emailInvalid": "Nhập địa chỉ email hợp lệ",
+    "emailRequired": "Vui lòng nhập email",
+    "emailTooLong": "Email quá dài",
+    "newPasswordReused": "Hãy chọn mật khẩu bạn chưa từng dùng ở đây",
+    "passwordMax": "Dùng tối đa 72 ký tự",
+    "passwordMin": "Dùng ít nhất 8 ký tự",
+    "passwordRequired": "Vui lòng nhập mật khẩu",
+    "passwordsNoMatch": "Mật khẩu không khớp",
+    "timezoneMax": "Dùng tối đa 64 ký tự",
+    "usernameAlnum": "Chỉ chữ và số",
+    "usernameMax": "Dùng tối đa 64 ký tự",
+    "usernameMin": "Dùng ít nhất 3 ký tự"
+  },
+  "verifyEmail": {
+    "banner": {
+      "action": "Xác minh ngay",
+      "message": "Địa chỉ email của bạn chưa được xác minh."
+    },
+    "codeSent": "Chúng tôi đã gửi mã đến địa chỉ email của bạn. Mã sẽ hết hạn sau vài phút.",
+    "description": "Chúng tôi cần xác nhận <strong>{email}</strong> trước khi gửi cảnh báo cho bạn.",
+    "sendAnother": "Gửi mã khác",
+    "sendCode": "Gửi mã xác minh",
+    "skip": "Bỏ qua",
+    "submit": "Xác minh email",
+    "title": "Xác minh email của bạn"
+  },
+  "weather": {
+    "current": {
+      "aqi": "AQI",
+      "aqiStatus": "Tốt",
+      "desc": "Trời nắng, ít mây",
+      "humidity": "Độ ẩm",
+      "rain": "Lượng mưa",
+      "wind": "Gió"
+    },
+    "hourly": {
+      "intensity": {
+        "1": "Nhẹ",
+        "2": "Vừa",
+        "3": "Nặng",
+        "4": "Rất nặng"
+      },
+      "title": "Dự báo 24 giờ tới"
+    },
+    "search": {
+      "browserError": "Trình duyệt không hỗ trợ GPS",
+      "currentLocation": "Vị trí hiện tại",
+      "gpsBtn": "GPS",
+      "gpsError": "Không thể lấy vị trí GPS. Vui lòng cho phép quyền truy cập vị trí.",
+      "gpsLoading": "...",
+      "placeholder": "Nhập địa chỉ hoặc chọn từ danh sách",
+      "searchBtn": "Tìm kiếm"
+    },
+    "timeline": {
+      "title": "Timeline 6 giờ"
+    },
+    "title": "Dự báo thời tiết",
+    "tooltips": {
+      "convert": "Chuyển đổi đơn vị",
+      "save": "Lưu vị trí",
+      "share": "Chia sẻ",
+      "subscribe": "Đăng ký cảnh báo"
+    },
+    "week": {
+      "title": "Dự báo 7 ngày"
+    }
+  }
+}

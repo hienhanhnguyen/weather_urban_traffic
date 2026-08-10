@@ -7,9 +7,10 @@ export function applyApiError<T extends FieldValues>(
 	error: unknown,
 	setError: UseFormSetError<T>,
 	knownFields: readonly Path<T>[],
+	fallback: string,
 ): string {
 	if (!isApiError(error)) {
-		return 'Something went wrong. Please try again.';
+		return fallback;
 	}
 
 	const fieldErrors = error.fieldErrors;

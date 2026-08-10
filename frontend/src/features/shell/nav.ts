@@ -15,18 +15,21 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import type { User } from "@/lib/auth/types";
+import type { Messages } from "@/i18n/messages";
+
+type NavItemKey = keyof Messages["nav"]["items"];
+type NavSectionKey = keyof Messages["nav"]["sections"];
 
 export interface NavItem {
   href: string;
-  label: string;
+  labelKey: NavItemKey;
   icon: LucideIcon;
 }
 
 export interface NavSection {
   id: string;
-  label?: string;
+  labelKey?: NavSectionKey;
   items: NavItem[];
-  // Rendering only.
   visible: (user: User) => boolean;
 }
 
@@ -36,33 +39,33 @@ export const NAV_SECTIONS: NavSection[] = [
   {
     id: "personal",
     items: [
-      { href: "/home", label: "Overview", icon: LayoutDashboard },
-      { href: "/weather", label: "Weather", icon: CloudSun },
-      { href: "/map", label: "Map", icon: Map },
-      { href: "/locations", label: "My locations", icon: MapPin },
-      { href: "/history", label: "Alert history", icon: History },
-      { href: "/account", label: "Account", icon: UserCog },
+      { href: "/home", labelKey: "overview", icon: LayoutDashboard },
+      { href: "/weather", labelKey: "weather", icon: CloudSun },
+      { href: "/map", labelKey: "map", icon: Map },
+      { href: "/locations", labelKey: "locations", icon: MapPin },
+      { href: "/history", labelKey: "history", icon: History },
+      { href: "/account", labelKey: "account", icon: UserCog },
     ],
     visible: anyone,
   },
   {
     id: "business",
-    label: "Business",
+    labelKey: "business",
     items: [
-      { href: "/business/risk", label: "Risk assessment", icon: Gauge },
-      { href: "/business/reports", label: "Reports", icon: FileBarChart },
+      { href: "/business/risk", labelKey: "businessRisk", icon: Gauge },
+      { href: "/business/reports", labelKey: "businessReports", icon: FileBarChart },
     ],
     visible: (user) => user.accountType === "business",
   },
   {
     id: "gov",
-    label: "Government",
+    labelKey: "government",
     items: [
-      { href: "/gov/dashboard", label: "Dashboard", icon: ShieldAlert },
-      { href: "/gov/areas", label: "Areas", icon: Shapes },
-      { href: "/gov/incidents", label: "Incidents", icon: TriangleAlert },
-      { href: "/gov/scenarios", label: "Scenarios", icon: SlidersHorizontal },
-      { href: "/gov/reports", label: "Reports", icon: Building2 },
+      { href: "/gov/dashboard", labelKey: "govDashboard", icon: ShieldAlert },
+      { href: "/gov/areas", labelKey: "govAreas", icon: Shapes },
+      { href: "/gov/incidents", labelKey: "govIncidents", icon: TriangleAlert },
+      { href: "/gov/scenarios", labelKey: "govScenarios", icon: SlidersHorizontal },
+      { href: "/gov/reports", labelKey: "govReports", icon: Building2 },
     ],
     visible: (user) => user.roles.includes("admin"),
   },

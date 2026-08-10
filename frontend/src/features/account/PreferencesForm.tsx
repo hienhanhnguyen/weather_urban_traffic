@@ -1,19 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useTranslations } from "next-intl";
+import { LOCALES } from "@/i18n/config";
 import { applyApiError } from "@/lib/forms/api-errors";
 import { Button } from "@/components/ui/Button";
 import { Callout } from "@/components/ui/Callout";
 import { Select } from "@/components/ui/Select";
 import { TextField } from "@/components/ui/TextField";
 import { Toggle } from "@/components/ui/Toggle";
-import { getPreferences, updatePreferences, type Preferences } from "./api";
+import {
+  PREFERENCES_QUERY_KEY,
+  getPreferences,
+  updatePreferences,
+  type Preferences,
+} from "./api";
 import { preferencesSchema, type PreferencesValues } from "./schemas";
-
-export const PREFERENCES_QUERY_KEY = ["users", "me", "preferences"] as const;
 
 const FIELDS = [
   "language",
@@ -23,21 +28,30 @@ const FIELDS = [
   "minSeverity",
 ] as const;
 
-const LANGUAGES = [
-  { value: "en", label: "English" },
-  { value: "vi", label: "Tiếng Việt" },
-] as const;
-
-const SEVERITIES = [
-  { value: "info", label: "Info — everything" },
-  { value: "warning", label: "Warning and above" },
-  { value: "critical", label: "Critical only" },
-] as const;
+const SEVERITIES = ["info", "warning", "critical"] as const;
 
 function PreferencesFields({ preferences }: { preferences: Preferences }) {
+  const t = useTranslations("account.preferences");
+  const tSeverity = useTranslations("account.severity");
+  const tLocale = useTranslations("locale");
+  const tv = useTranslations("validation");
+  const tError = useTranslations("errors");
+
   const queryClient = useQueryClient();
   const [formError, setFormError] = useState("");
   const [saved, setSaved] = useState(false);
+
+  const schema = useMemo(() => preferencesSchema(tv), [tv]);
+
+  const languages = useMemo(
+    () => LOCALES.map((value) => ({ value, label: tLocale(value) })),
+    [tLocale],
+  );
+
+  const severities = useMemo(
+    () => SEVERITIES.map((value) => ({ value, label: tSeverity(value) })),
+    [tSeverity],
+  );
 
   const {
     register,
@@ -46,7 +60,7 @@ function PreferencesFields({ preferences }: { preferences: Preferences }) {
     reset,
     formState: { errors, isSubmitting, isDirty },
   } = useForm<PreferencesValues>({
-    resolver: zodResolver(preferencesSchema),
+    resolver: zodResolver(schema),
     defaultValues: { ...preferences, timezone: preferences.timezone ?? "" },
   });
 
@@ -66,53 +80,53 @@ function PreferencesFields({ preferences }: { preferences: Preferences }) {
       reset({ ...updated, timezone: updated.timezone ?? "" });
       setSaved(true);
     } catch (err) {
-      setFormError(applyApiError(err, setError, FIELDS));
+      setFormError(applyApiError(err, setError, FIELDS, tError("generic")));
     }
   });
 
   return (
     <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4">
       <Select
-        label="Language"
-        options={LANGUAGES}
+        label={tLocale("label")}
+        options={languages}
         error={errors.language?.message}
         {...register("language")}
       />
 
       <TextField
-        label="Timezone"
+        label={t("timezone")}
         placeholder="Asia/Ho_Chi_Minh"
         error={errors.timezone?.message}
-        hint="An IANA timezone name. Used for the timestamps on your alerts."
+        hint={t("timezoneHint")}
         {...register("timezone")}
       />
 
       <Select
-        label="Minimum alert severity"
-        options={SEVERITIES}
+        label={t("minSeverity")}
+        options={severities}
         error={errors.minSeverity?.message}
-        hint="Alerts below this level are not delivered to you at all."
+        hint={t("minSeverityHint")}
         {...register("minSeverity")}
       />
 
       <Toggle
-        label="Email alerts"
-        hint="Send matching alerts to your email address."
+        label={t("emailAlerts")}
+        hint={t("emailAlertsHint")}
         {...register("emailAlertsEnabled")}
       />
 
       <Toggle
-        label="Push alerts"
-        hint="Send matching alerts to your subscribed browsers."
+        label={t("pushAlerts")}
+        hint={t("pushAlertsHint")}
         {...register("pushAlertsEnabled")}
       />
 
       {formError && <Callout tone="error">{formError}</Callout>}
-      {saved && <Callout tone="success">Preferences saved.</Callout>}
+      {saved && <Callout tone="success">{t("saved")}</Callout>}
 
       <div>
         <Button type="submit" loading={isSubmitting} disabled={!isDirty}>
-          Save preferences
+          {t("submit")}
         </Button>
       </div>
     </form>
@@ -120,25 +134,26 @@ function PreferencesFields({ preferences }: { preferences: Preferences }) {
 }
 
 export function PreferencesForm() {
+  const t = useTranslations("account.preferences");
+  const tCommon = useTranslations("common");
+
   const { data, isPending, isError, error, refetch } = useQuery({
     queryKey: PREFERENCES_QUERY_KEY,
     queryFn: getPreferences,
   });
 
   if (isPending) {
-    return <p className="text-sm opacity-70">Loading preferences…</p>;
+    return <p className="text-sm opacity-70">{t("loading")}</p>;
   }
 
   if (isError) {
     return (
       <div className="flex flex-col items-start gap-3">
         <Callout tone="error">
-          {error instanceof Error
-            ? error.message
-            : "Could not load your preferences."}
+          {error instanceof Error ? error.message : t("loadError")}
         </Callout>
         <Button variant="secondary" onClick={() => refetch()}>
-          Try again
+          {tCommon("tryAgain")}
         </Button>
       </div>
     );
