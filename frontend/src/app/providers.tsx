@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SessionProvider } from "@/lib/auth/session";
+import { ThemeProvider } from "@/lib/theme/ThemeProvider";
 import { isApiError } from "@/lib/api/errors";
 
 function makeQueryClient() {
@@ -26,7 +27,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SessionProvider>{children}</SessionProvider>
+      <ThemeProvider>
+        <SessionProvider>{children}</SessionProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }
