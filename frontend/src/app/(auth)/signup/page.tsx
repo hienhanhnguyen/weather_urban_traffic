@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { signUp } from "@/features/auth/api";
@@ -36,7 +36,7 @@ export default function SignupPage() {
     register,
     handleSubmit,
     setError,
-    watch,
+    control,
     formState: { errors },
   } = useForm<SignUpValues>({
     resolver: zodResolver(signUpSchema),
@@ -49,7 +49,7 @@ export default function SignupPage() {
     },
   });
 
-  const selectedType = watch("accountType");
+  const selectedType = useWatch({ control, name: "accountType" });
 
   const mutation = useMutation({
     mutationFn: signUp,

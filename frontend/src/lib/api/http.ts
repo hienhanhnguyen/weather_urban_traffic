@@ -11,15 +11,18 @@ export type RequestOptions = {
 	signal?: AbortSignal;
 };
 
-const rawBase = process.env.NEXT_PUBLIC_API_URL;
-
-if (!rawBase) {
-	throw new Error('NEXT_PUBLIC_API_URL is not set.');
-}
-
-export const API_BASE_URL = rawBase.replace(/\/+$/, '');
+export const API_BASE_URL = (process.env.NEXT_PUBLIC_API_URL ?? '').replace(
+	/\/+$/,
+	'',
+);
 
 export function buildUrl(path: string, query?: QueryParams): string {
+	if (!API_BASE_URL) {
+		throw new Error(
+			'NEXT_PUBLIC_API_URL is not set. Copy .env.example to .env.local.',
+		);
+	}
+
 	const url = new URL(`${API_BASE_URL}${path.startsWith('/') ? path : `/${path}`}`);
 
 	for (const [key, value] of Object.entries(query ?? {})) {
