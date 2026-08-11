@@ -16,6 +16,7 @@ const {
 	WeatherSearch,
 } = require('../modules/routing/routing.models');
 const { ReportSchedule } = require('../modules/business/business.models');
+const { ManagedArea } = require('../modules/areas/area.model');
 
 
 User.belongsToMany(Role, {
@@ -50,8 +51,6 @@ AlertRule.belongsTo(SavedLocation, {
 AlertRule.hasMany(AlertEvent, { foreignKey: 'rule_id', as: 'events' });
 AlertEvent.belongsTo(AlertRule, { foreignKey: 'rule_id', as: 'rule' });
 
-// A scheduled report is defined by the route it covers, so losing the route
-// takes the schedule with it rather than leaving one that reports on nothing.
 SavedRoute.hasOne(ReportSchedule, {
 	foreignKey: 'route_id',
 	as: 'schedule',
@@ -81,6 +80,7 @@ for (const model of [
 	RouteSearch,
 	WeatherSearch,
 	ReportSchedule,
+	ManagedArea,
 ]) {
 	model.belongsTo(User, { foreignKey: 'user_id', onDelete: 'CASCADE' });
 	User.hasMany(model, { foreignKey: 'user_id' });
@@ -102,4 +102,5 @@ module.exports = {
 	RouteSearch,
 	WeatherSearch,
 	ReportSchedule,
+	ManagedArea,
 };

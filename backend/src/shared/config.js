@@ -56,6 +56,7 @@ const schema = Joi.object({
 	WEATHER_CACHE_FORECAST_TTL_MS: Joi.number().integer().min(0).default(3_600_000),
 	MAX_SAVED_LOCATIONS: Joi.number().integer().min(1).default(50),
 	MAX_SAVED_ROUTES: Joi.number().integer().min(1).default(50),
+	MAX_MANAGED_AREAS: Joi.number().integer().min(1).default(50),
 	SEARCH_DEDUPE_MINUTES: Joi.number().integer().min(0).default(30),
 
 	GEOCODER_URL: Joi.string().uri().default('https://photon.komoot.io'),
@@ -168,6 +169,7 @@ const config = Object.freeze({
 	limits: Object.freeze({
 		maxSavedLocations: env.MAX_SAVED_LOCATIONS,
 		maxSavedRoutes: env.MAX_SAVED_ROUTES,
+		maxManagedAreas: env.MAX_MANAGED_AREAS,
 		searchDedupeMinutes: env.SEARCH_DEDUPE_MINUTES,
 	}),
 

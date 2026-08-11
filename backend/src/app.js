@@ -14,6 +14,7 @@ const geoRoutes = require('./modules/geo/geo.routes');
 const routingRoutes = require('./modules/routing/routing.routes');
 const businessRoutes = require('./modules/business/business.routes');
 const analysisRoutes = require('./modules/analysis/analysis.routes');
+const areaRoutes = require('./modules/areas/areas.routes');
 const requestId = require('./shared/request.id');
 
 
@@ -72,6 +73,7 @@ app.use('/api/routes', routingRoutes.routes);
 app.use('/api/history', routingRoutes.history);
 app.use('/api/business', businessRoutes);
 app.use('/api/analysis', analysisRoutes);
+app.use('/api/gov/areas', areaRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);
