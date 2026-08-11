@@ -386,6 +386,7 @@
   "common": {
     "add": "Thêm",
     "cancel": "Hủy",
+    "clear": "Xoá",
     "close": "Đóng",
     "days": {
       "Fri": "Thứ 6",
@@ -648,95 +649,70 @@
     "truncated": "Đang hiển thị {shown} trong {total}."
   },
   "map": {
+    "controls": {
+      "fitRoute": "Thu lộ trình vừa màn hình",
+      "myLocation": "Về vị trí của tôi"
+    },
     "explore": {
-      "subtitle": "Tìm một địa điểm, hoặc nhấp vào bất kỳ đâu để xem có gì ở đó.",
+      "subtitle": "Tìm một địa điểm, lên lộ trình, hoặc bấm vào bất kỳ đâu để xem có gì ở đó.",
       "title": "Bản đồ"
     },
-    "inputs": {
-      "capacity": "Tải trọng (kg)",
-      "currentLocation": "Vị trí hiện tại",
-      "filter": "Bộ lọc",
-      "findRoute": "Tìm đường",
-      "from": "Điểm đi",
-      "recentRoutes": "Tuyến đường gần đây",
-      "suggestRoute": "Gợi ý tuyến",
-      "to": "Điểm đến",
-      "vehicle": {
-        "car": "Ô tô",
-        "motorcycle": "Xe máy",
-        "truck": "Xe tải"
-      }
-    },
-    "layers": {
-      "hide": "Ẩn",
-      "legend": "Legend",
-      "radar": "Radar mưa",
-      "show": "Hiện",
-      "temp": "Nhiệt độ",
-      "title": "Lớp dữ liệu",
-      "traffic": "Giao thông",
-      "uv": "UV"
-    },
-    "legend": {
-      "radar": "Radar mưa: Xanh nhạt - nhẹ, Xanh đậm - nặng",
-      "title": "Chú thích:",
-      "trafficGreen": "Giao thông: Xanh - thông thoáng",
-      "trafficRed": "Giao thông: Đỏ - tắc nghẽn",
-      "trafficYellow": "Giao thông: Vàng - chậm"
-    },
     "loadFailed": "Không tải được bản đồ. Hãy kiểm tra kết nối và tải lại trang.",
+    "pickedUnknown": "Địa điểm chưa có tên",
     "picker": {
-      "hint": "Nhấp vào bản đồ để đặt ghim, hoặc kéo ghim để chỉnh chính xác.",
-      "nothingSelected": "Chưa chọn vị trí nào.",
-      "resolving": "(đang tra cứu địa chỉ…)",
+      "hint": "Bấm vào bản đồ để thả ghim, hoặc kéo ghim để chỉnh cho chính xác.",
+      "nothingSelected": "Chưa chọn địa điểm nào.",
+      "resolving": "(đang tra địa chỉ…)",
       "searchPlaceholder": "Tìm địa điểm hoặc địa chỉ"
     },
-    "title": "Bản đồ kết hợp",
-    "visualization": {
-      "advision": "Lời khuyên",
-      "clear": "Trời quang",
-      "cloudy": "Nhiều mây",
-      "danger": "Nguy hiểm",
-      "departNow": "Có thể xuất phát ngay",
-      "distance": "Khoảng cách",
-      "heavy": "Cao",
-      "heavyRain": "Mưa lớn",
-      "interactiveTitle": "Bản đồ tương tác Radar mưa & Giao thông",
-      "low": "Thấp",
-      "normal": "Bình thường",
-      "rainy": "Mưa",
-      "routeStatus": "Tình trạng tuyến đường:",
-      "safe": "An toàn",
-      "startAfter": "Nên bắt đầu sau {minutes} phút",
-      "status": "Tình trạng",
-      "sunny": "Nắng",
-      "time": "Thời gian",
-      "timelineTitle": "Timeline dự báo mưa 1-2h tới:",
-      "warning": "Cảnh báo"
-    }
-  },
-  "mapFull": {
-    "actions": {
-      "currentLocation": "Vị trí hiện tại",
-      "details": "Chi tiết",
-      "focusRoute": "Focus vào đường đi",
-      "startNavigation": "Bắt đầu dẫn đường"
-    },
-    "history": {
-      "empty": "Chưa có lịch sử tìm kiếm",
-      "lastSearch": "Tìm kiếm gần đây"
+    "route": {
+      "advisory": {
+        "basis": "Dựa trên quy tắc, từ thời tiết hiện tại lấy mẫu dọc lộ trình.",
+        "caution": "{count, plural, other {# đoạn}} trên {total} có mưa hoặc tầm nhìn giảm.",
+        "clear": "Hiện không có thời tiết xấu nào dọc lộ trình này.",
+        "severe": "Thời tiết nguy hiểm trên {count, plural, other {# đoạn}} trong {total}."
+      },
+      "calculating": "Đang tính lộ trình…",
+      "clearEndpoint": "Xoá {label}",
+      "conditionsFailed": "Không tải được điều kiện của một vài đoạn.",
+      "conditionsHint": "Tô màu lộ trình theo thời tiết dọc đường.",
+      "conditionsTitle": "Điều kiện dọc lộ trình",
+      "conditionsToggle": "Điều kiện dọc đường",
+      "distance": "Quãng đường",
+      "duration": "Thời gian",
+      "failed": "Không tính được lộ trình.",
+      "from": "Điểm đi",
+      "fromPlaceholder": "Tìm điểm xuất phát",
+      "hoursMinutes": "{hours} giờ {minutes} phút",
+      "locateFailed": "Hiện không lấy được vị trí của bạn.",
+      "locateUnsupported": "Trình duyệt này không báo được vị trí của bạn.",
+      "minutes": "{count, plural, other {# phút}}",
+      "myLocation": "Vị trí của tôi",
+      "noRoute": "Không tìm được lộ trình giữa hai điểm này.",
+      "profile": "Phương tiện",
+      "profiles": {
+        "cycling": "Xe đạp",
+        "driving": "Ô tô",
+        "walking": "Đi bộ"
+      },
+      "retry": "Thử lại",
+      "setFrom": "Xuất phát ở đây",
+      "setTo": "Kết thúc ở đây",
+      "severity": {
+        "caution": "Cần chú ý",
+        "clear": "Quang đãng",
+        "severe": "Nguy hiểm"
+      },
+      "swap": "Đổi điểm đi và điểm đến",
+      "to": "Điểm đến",
+      "toPlaceholder": "Tìm điểm đến",
+      "useMyLocation": "Dùng vị trí của tôi"
     },
     "search": {
-      "failed": "Hiện không thể tìm kiếm.",
-      "history": "Lịch sử",
-      "placeholder": "Tìm kiếm địa điểm...",
+      "failed": "Hiện không tìm kiếm được.",
+      "placeholder": "Tìm địa điểm hoặc địa chỉ",
       "results": "Kết quả"
-    },
-    "summary": {
-      "distance": "Khoảng cách",
-      "time": "Thời gian"
-    },
-    "title": "Bản đồ toàn màn hình"
+    }
   },
   "nav": {
     "closeMenu": "Đóng menu",

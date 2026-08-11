@@ -386,6 +386,7 @@
   "common": {
     "add": "Add",
     "cancel": "Cancel",
+    "clear": "Clear",
     "close": "Close",
     "days": {
       "Fri": "Fri",
@@ -648,95 +649,70 @@
     "truncated": "Showing {shown} of {total}."
   },
   "map": {
+    "controls": {
+      "fitRoute": "Fit the route on screen",
+      "myLocation": "Go to my location"
+    },
     "explore": {
-      "subtitle": "Search for a place, or click anywhere to see what is there.",
+      "subtitle": "Search a place, plan a route, or click anywhere to see what is there.",
       "title": "Map"
     },
-    "inputs": {
-      "capacity": "Capacity (kg)",
-      "currentLocation": "Current Location",
-      "filter": "Filter",
-      "findRoute": "Find Route",
-      "from": "Origin",
-      "recentRoutes": "Recent Routes",
-      "suggestRoute": "Suggest Route",
-      "to": "Destination",
-      "vehicle": {
-        "car": "Car",
-        "motorcycle": "Motorcycle",
-        "truck": "Truck"
-      }
-    },
-    "layers": {
-      "hide": "Hide",
-      "legend": "Legend",
-      "radar": "Rain Radar",
-      "show": "Show",
-      "temp": "Temperature",
-      "title": "Data Layers",
-      "traffic": "Traffic",
-      "uv": "UV"
-    },
-    "legend": {
-      "radar": "Rain Radar: Light Blue - Light, Dark Blue - Heavy",
-      "title": "Legend:",
-      "trafficGreen": "Traffic: Green - Clear",
-      "trafficRed": "Traffic: Red - Congested",
-      "trafficYellow": "Traffic: Yellow - Slow"
-    },
     "loadFailed": "The map could not be loaded. Check your connection and reload the page.",
+    "pickedUnknown": "Unnamed place",
     "picker": {
       "hint": "Click the map to drop a pin, or drag it to fine-tune.",
       "nothingSelected": "No location selected yet.",
       "resolving": "(looking up address…)",
       "searchPlaceholder": "Search for a place or address"
     },
-    "title": "Combined Map",
-    "visualization": {
-      "advision": "Advision",
-      "clear": "Clear",
-      "cloudy": "Cloudy",
-      "danger": "Danger",
-      "departNow": "Safe to depart now",
+    "route": {
+      "advisory": {
+        "basis": "Rule-based, from current weather sampled along the route.",
+        "caution": "{count, plural, one {# stretch} other {# stretches}} of {total} with rain or reduced visibility.",
+        "clear": "No disruptive weather along this route right now.",
+        "severe": "Severe weather on {count, plural, one {# stretch} other {# stretches}} of {total}."
+      },
+      "calculating": "Working out the route…",
+      "clearEndpoint": "Clear {label}",
+      "conditionsFailed": "Some conditions along the route could not be loaded.",
+      "conditionsHint": "Colour the route by the weather along it.",
+      "conditionsTitle": "Conditions along the route",
+      "conditionsToggle": "Route conditions",
       "distance": "Distance",
-      "heavy": "Heavy",
-      "heavyRain": "Heavy Rain",
-      "interactiveTitle": "Interactive Map Rain Radar & Traffic",
-      "low": "Low",
-      "normal": "Normal",
-      "rainy": "Rainy",
-      "routeStatus": "Route Status:",
-      "safe": "Safe",
-      "startAfter": "Should start after {minutes} minutes",
-      "status": "Status",
-      "sunny": "Sunny",
-      "time": "Time",
-      "timelineTitle": "Rain Forecast Timeline (1-2h):",
-      "warning": "Warning"
-    }
-  },
-  "mapFull": {
-    "actions": {
-      "currentLocation": "Current Location",
-      "details": "Details",
-      "focusRoute": "Focus on Route",
-      "startNavigation": "Start Navigation"
-    },
-    "history": {
-      "empty": "No search history",
-      "lastSearch": "Recent searches"
+      "duration": "Duration",
+      "failed": "The route could not be calculated.",
+      "from": "From",
+      "fromPlaceholder": "Search a starting point",
+      "hoursMinutes": "{hours}h {minutes}m",
+      "locateFailed": "Your location is not available right now.",
+      "locateUnsupported": "This browser cannot report your location.",
+      "minutes": "{count, plural, one {# min} other {# min}}",
+      "myLocation": "My location",
+      "noRoute": "No route was found between these two points.",
+      "profile": "Travel by",
+      "profiles": {
+        "cycling": "Bicycle",
+        "driving": "Car",
+        "walking": "Walking"
+      },
+      "retry": "Try again",
+      "setFrom": "Start here",
+      "setTo": "End here",
+      "severity": {
+        "caution": "Caution",
+        "clear": "Clear",
+        "severe": "Severe"
+      },
+      "swap": "Swap start and destination",
+      "to": "To",
+      "toPlaceholder": "Search a destination",
+      "useMyLocation": "Use my location"
     },
     "search": {
       "failed": "Search is unavailable right now.",
-      "history": "History",
-      "placeholder": "Search for locations...",
+      "placeholder": "Search for a place or address",
       "results": "Results"
-    },
-    "summary": {
-      "distance": "Distance",
-      "time": "Time"
-    },
-    "title": "Full map"
+    }
   },
   "nav": {
     "closeMenu": "Close menu",

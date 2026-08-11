@@ -18,53 +18,69 @@ import type { Messages } from "@/i18n/messages";
 
 type ConditionKey = keyof Messages["weather"]["conditions"];
 
+export type Severity = "clear" | "caution" | "severe";
+
 export interface WeatherCondition {
   key: ConditionKey;
   icon: LucideIcon;
   nightIcon?: LucideIcon;
+  severity: Severity;
 }
 
 const CONDITIONS: Record<number, WeatherCondition> = {
-  0: { key: "clear", icon: Sun, nightIcon: Moon },
-  1: { key: "mainlyClear", icon: CloudSun, nightIcon: Cloud },
-  2: { key: "partlyCloudy", icon: CloudSun, nightIcon: Cloud },
-  3: { key: "overcast", icon: Cloudy },
+  0: { key: "clear", icon: Sun, nightIcon: Moon, severity: "clear" },
+  1: { key: "mainlyClear", icon: CloudSun, nightIcon: Cloud, severity: "clear" },
+  2: { key: "partlyCloudy", icon: CloudSun, nightIcon: Cloud, severity: "clear" },
+  3: { key: "overcast", icon: Cloudy, severity: "clear" },
 
-  45: { key: "fog", icon: CloudFog },
-  48: { key: "rimeFog", icon: CloudFog },
+  45: { key: "fog", icon: CloudFog, severity: "caution" },
+  48: { key: "rimeFog", icon: CloudFog, severity: "caution" },
 
-  51: { key: "drizzleLight", icon: CloudDrizzle },
-  53: { key: "drizzleModerate", icon: CloudDrizzle },
-  55: { key: "drizzleDense", icon: CloudDrizzle },
-  56: { key: "freezingDrizzleLight", icon: CloudHail },
-  57: { key: "freezingDrizzleDense", icon: CloudHail },
+  51: { key: "drizzleLight", icon: CloudDrizzle, severity: "caution" },
+  53: { key: "drizzleModerate", icon: CloudDrizzle, severity: "caution" },
+  55: { key: "drizzleDense", icon: CloudDrizzle, severity: "caution" },
+  56: { key: "freezingDrizzleLight", icon: CloudHail, severity: "severe" },
+  57: { key: "freezingDrizzleDense", icon: CloudHail, severity: "severe" },
 
-  61: { key: "rainSlight", icon: CloudRain },
-  63: { key: "rainModerate", icon: CloudRain },
-  65: { key: "rainHeavy", icon: CloudRainWind },
-  66: { key: "freezingRainLight", icon: CloudHail },
-  67: { key: "freezingRainHeavy", icon: CloudHail },
+  61: { key: "rainSlight", icon: CloudRain, severity: "caution" },
+  63: { key: "rainModerate", icon: CloudRain, severity: "caution" },
+  65: { key: "rainHeavy", icon: CloudRainWind, severity: "severe" },
+  66: { key: "freezingRainLight", icon: CloudHail, severity: "severe" },
+  67: { key: "freezingRainHeavy", icon: CloudHail, severity: "severe" },
 
-  71: { key: "snowSlight", icon: CloudSnow },
-  73: { key: "snowModerate", icon: CloudSnow },
-  75: { key: "snowHeavy", icon: CloudSnow },
-  77: { key: "snowGrains", icon: Snowflake },
+  71: { key: "snowSlight", icon: CloudSnow, severity: "caution" },
+  73: { key: "snowModerate", icon: CloudSnow, severity: "caution" },
+  75: { key: "snowHeavy", icon: CloudSnow, severity: "severe" },
+  77: { key: "snowGrains", icon: Snowflake, severity: "caution" },
 
-  80: { key: "showersSlight", icon: CloudRain },
-  81: { key: "showersModerate", icon: CloudRain },
-  82: { key: "showersViolent", icon: CloudRainWind },
-  85: { key: "snowShowersSlight", icon: CloudSnow },
-  86: { key: "snowShowersHeavy", icon: CloudSnow },
+  80: { key: "showersSlight", icon: CloudRain, severity: "caution" },
+  81: { key: "showersModerate", icon: CloudRain, severity: "caution" },
+  82: { key: "showersViolent", icon: CloudRainWind, severity: "severe" },
+  85: { key: "snowShowersSlight", icon: CloudSnow, severity: "caution" },
+  86: { key: "snowShowersHeavy", icon: CloudSnow, severity: "severe" },
 
-  95: { key: "thunderstorm", icon: CloudLightning },
-  96: { key: "thunderstormHailSlight", icon: CloudLightning },
-  99: { key: "thunderstormHailHeavy", icon: CloudLightning },
+  95: { key: "thunderstorm", icon: CloudLightning, severity: "severe" },
+  96: { key: "thunderstormHailSlight", icon: CloudLightning, severity: "severe" },
+  99: { key: "thunderstormHailHeavy", icon: CloudLightning, severity: "severe" },
 };
 
-const UNKNOWN: WeatherCondition = { key: "unknown", icon: Cloud };
+const UNKNOWN: WeatherCondition = {
+  key: "unknown",
+  icon: Cloud,
+  severity: "clear",
+};
 
 export function conditionFor(code: number | null): WeatherCondition {
   return code === null ? UNKNOWN : (CONDITIONS[code] ?? UNKNOWN);
+}
+
+const RANK: Record<Severity, number> = { clear: 0, caution: 1, severe: 2 };
+
+export function worstSeverity(severities: Severity[]): Severity {
+  return severities.reduce<Severity>(
+    (worst, current) => (RANK[current] > RANK[worst] ? current : worst),
+    "clear",
+  );
 }
 
 const POINTS = ["n", "ne", "e", "se", "s", "sw", "w", "nw"] as const;

@@ -20,7 +20,7 @@ export function PlaceSearch({
   focus,
   placeholder,
 }: PlaceSearchProps) {
-  const t = useTranslations("mapFull.search");
+  const t = useTranslations("map.search");
   const tCommon = useTranslations("common");
 
   const [text, setText] = useState("");
