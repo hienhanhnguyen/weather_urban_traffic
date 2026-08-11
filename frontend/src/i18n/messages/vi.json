@@ -980,7 +980,6 @@
   },
   "placeholder": {
     "businessReports": "Tổng hợp rủi ro và cảnh báo theo biểu đồ trong một khoảng thời gian, xuất được ra PDF.",
-    "businessRisk": "Chấm điểm rủi ro vận hành theo luật cho các địa điểm doanh nghiệp của bạn.",
     "govAreas": "Vẽ và duy trì các khu vực được giám sát mà cảnh báo toàn thành phố gắn vào.",
     "govDashboard": "Tổng quan tình hình toàn thành phố dành cho cán bộ vận hành.",
     "govIncidents": "Các sự cố đã báo cáo, trạng thái và người đang xử lý.",
@@ -1051,6 +1050,92 @@
       "incident": "Sự cố",
       "summary": "Tổng hợp"
     }
+  },
+  "risk": {
+    "advice": {
+      "allowExtraTime": "Dự trù thêm thời gian, hành trình sẽ chậm hơn.",
+      "carryRainGear": "Nhiều khả năng có mưa — hãy che chắn hàng hoá.",
+      "coldStress": "Rét: kiểm tra băng giá trước khi xuất phát.",
+      "goAsPlanned": "Không có yếu tố nào cản trở việc khởi hành theo kế hoạch.",
+      "heatStress": "Nắng nóng: bố trí nước uống và điểm nghỉ cho nhân sự.",
+      "highSidedVehicles": "Gió mạnh: xe thùng cao dễ bị ảnh hưởng.",
+      "icyRoad": "Tuyết hoặc băng trên mặt đường.",
+      "postpone": "Không nên khởi hành vào lúc này — hãy chờ thời tiết qua đi.",
+      "reducedVisibility": "Sương mù: tầm nhìn bị hạn chế.",
+      "shelterFromLightning": "Có sét: không bốc dỡ hàng ngoài trời.",
+      "slipperyRoad": "Mặt đường ướt: quãng đường phanh dài hơn."
+    },
+    "bands": {
+      "high": "Rủi ro cao",
+      "low": "Rủi ro thấp",
+      "moderate": "Rủi ro trung bình",
+      "severe": "Rủi ro rất cao"
+    },
+    "empty": "Chọn điểm xuất phát và thời gian, hệ thống sẽ chấm điểm chuyến đi theo dự báo.",
+    "errors": {
+      "departure_past": "Giờ đó đã trôi qua.",
+      "departure_required": "Hãy chọn ngày và giờ khởi hành.",
+      "departure_tooFar": "Dự báo chỉ tới 48 giờ.",
+      "outsideWindow": "Dự báo không tới thời điểm đó. Hãy chọn trong vòng 48 giờ tới.",
+      "startRequired": "Hãy chọn điểm xuất phát."
+    },
+    "form": {
+      "clearPlace": "Xoá địa điểm này",
+      "departure": "Ngày và giờ",
+      "departureHint": "Tối đa 48 giờ tới.",
+      "destination": "Điểm đến (không bắt buộc)",
+      "destinationHint": "Khi có điểm đến, chuyến đi được chấm theo đầu nào có thời tiết xấu hơn.",
+      "destinationPlaceholder": "Tìm điểm đến",
+      "savedLabel": "Địa điểm đã lưu",
+      "savedPlaceholder": "Chọn một địa điểm đã lưu",
+      "start": "Xuất phát từ",
+      "startPlaceholder": "Tìm một địa điểm",
+      "submit": "Đánh giá rủi ro",
+      "when": "Thời điểm khởi hành",
+      "whenNow": "Sớm nhất có thể",
+      "whenScheduled": "Vào giờ định trước"
+    },
+    "outlook": {
+      "description": "Điểm rủi ro từng giờ kể từ lúc khởi hành, để dễ thấy khung giờ tốt hơn.",
+      "reading": "{hour}: {band}, điểm {score}",
+      "title": "12 giờ tới"
+    },
+    "result": {
+      "adviceTitle": "Điều này có nghĩa là",
+      "assessedFor": "Cho {time} ({timezone})",
+      "drivesTheScore": "đầu xấu hơn",
+      "nothingFired": "Không ngưỡng nào bị vượt vào giờ đó.",
+      "outOf": "/100",
+      "pointScore": "Điểm {score}",
+      "pointsColumn": "Điểm",
+      "pointsTitle": "Dọc chuyến đi — {role} quyết định điểm số",
+      "readingColumn": "Dự báo",
+      "ruleBasedNote": "Chấm điểm theo quy tắc: các ngưỡng cố định về lượng mưa, gió, nhiệt độ và hiện tượng thời tiết. Không dùng mô hình dự đoán nào.",
+      "ruleColumn": "Quy tắc",
+      "thresholdColumn": "Ngưỡng",
+      "whyTitle": "Vì sao có điểm này"
+    },
+    "roles": {
+      "end": "Điểm đến",
+      "start": "Điểm xuất phát"
+    },
+    "rules": {
+      "cold": "Rét",
+      "fog": "Sương mù",
+      "freezing": "Mưa đóng băng",
+      "heat": "Nắng nóng",
+      "rain": "Lượng mưa",
+      "rainChance": "Khả năng mưa",
+      "snow": "Tuyết",
+      "thunderstorm": "Dông sét",
+      "wind": "Tốc độ gió"
+    },
+    "subtitle": "Điểm rủi ro theo bộ quy tắc, dựa trên các ngưỡng thời tiết đã công bố. Mọi điểm số đều được giải thích ngay bên dưới kết quả.",
+    "suggestion": {
+      "body": "Khởi hành lúc {time} sẽ ở mức {band}.",
+      "use": "Dùng giờ này"
+    },
+    "title": "Đánh giá rủi ro"
   },
   "routes": {
     "count": "{count, plural, =0 {Chưa lưu tuyến đường nào} other {# tuyến đường đã lưu}}",

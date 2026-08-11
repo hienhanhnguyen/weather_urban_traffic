@@ -980,7 +980,6 @@
   },
   "placeholder": {
     "businessReports": "Charted summaries of risk and alerts over a period, exportable to PDF.",
-    "businessRisk": "Rule-based operational risk scoring for your business locations.",
     "govAreas": "Draw and maintain the monitored areas that city-wide alerts are attached to.",
     "govDashboard": "City-wide situational overview for operations staff.",
     "govIncidents": "Reported incidents, their status and who is handling them.",
@@ -1051,6 +1050,92 @@
       "incident": "Incident",
       "summary": "Summary"
     }
+  },
+  "risk": {
+    "advice": {
+      "allowExtraTime": "Allow extra time and expect slower going.",
+      "carryRainGear": "Rain is likely — carry cover for the load.",
+      "coldStress": "Cold: check for ice before setting off.",
+      "goAsPlanned": "Nothing in the forecast argues against leaving as planned.",
+      "heatStress": "Heat: plan water and rest stops for the crew.",
+      "highSidedVehicles": "Strong wind: high-sided vehicles are exposed.",
+      "icyRoad": "Snow or ice on the road surface.",
+      "postpone": "Do not leave at this time — wait for the weather to pass.",
+      "reducedVisibility": "Fog: visibility will be reduced.",
+      "shelterFromLightning": "Lightning: do not load or unload in the open.",
+      "slipperyRoad": "Wet road surface: braking distances grow."
+    },
+    "bands": {
+      "high": "High risk",
+      "low": "Low risk",
+      "moderate": "Moderate risk",
+      "severe": "Severe risk"
+    },
+    "empty": "Choose where you are leaving from and when, and the departure will be scored against the forecast.",
+    "errors": {
+      "departure_past": "That hour has already passed.",
+      "departure_required": "Choose a departure date and time.",
+      "departure_tooFar": "The forecast only reaches 48 hours ahead.",
+      "outsideWindow": "The forecast does not reach that departure time. Try one within the next 48 hours.",
+      "startRequired": "Choose where the trip starts."
+    },
+    "form": {
+      "clearPlace": "Clear this place",
+      "departure": "Date and time",
+      "departureHint": "Up to 48 hours ahead.",
+      "destination": "Going to (optional)",
+      "destinationHint": "With a destination, the trip is scored on whichever end has the worse weather.",
+      "destinationPlaceholder": "Search for a destination",
+      "savedLabel": "Saved locations",
+      "savedPlaceholder": "Pick a saved location",
+      "start": "Leaving from",
+      "startPlaceholder": "Search for a place",
+      "submit": "Assess risk",
+      "when": "Departure",
+      "whenNow": "As soon as possible",
+      "whenScheduled": "At a set time"
+    },
+    "outlook": {
+      "description": "The score for each hour from the departure, so a better window is easy to spot.",
+      "reading": "{hour}: {band}, score {score}",
+      "title": "Next 12 hours"
+    },
+    "result": {
+      "adviceTitle": "What this means",
+      "assessedFor": "For {time} ({timezone})",
+      "drivesTheScore": "worst end",
+      "nothingFired": "No threshold was crossed at that hour.",
+      "outOf": "/100",
+      "pointScore": "Score {score}",
+      "pointsColumn": "Points",
+      "pointsTitle": "Along the trip — the {role} sets the score",
+      "readingColumn": "Forecast",
+      "ruleBasedNote": "Rule-based scoring: fixed thresholds on rainfall, wind, temperature and weather condition. No prediction model is involved.",
+      "ruleColumn": "Rule",
+      "thresholdColumn": "Threshold",
+      "whyTitle": "Why this score"
+    },
+    "roles": {
+      "end": "Destination",
+      "start": "Start"
+    },
+    "rules": {
+      "cold": "Cold",
+      "fog": "Fog",
+      "freezing": "Freezing rain",
+      "heat": "Heat",
+      "rain": "Rainfall",
+      "rainChance": "Chance of rain",
+      "snow": "Snow",
+      "thunderstorm": "Thunderstorm",
+      "wind": "Wind speed"
+    },
+    "subtitle": "A rule-based score for a departure, built from published weather thresholds. Every point it gives is explained below the result.",
+    "suggestion": {
+      "body": "Leaving at {time} instead would be {band}.",
+      "use": "Use this time"
+    },
+    "title": "Risk assessment"
   },
   "routes": {
     "count": "{count, plural, =0 {No saved routes} one {# saved route} other {# saved routes}}",
