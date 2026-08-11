@@ -219,3 +219,96 @@ test('events are listed and marked read only for their owner', async () => {
 	await event.reload();
 	assert.equal(event.is_read, true);
 });
+
+test('events can be narrowed by severity and by date range', async () => {
+	const user = await createUser();
+
+	const seed = async (severity, createdAt) => {
+		const event = await AlertEvent.create({
+			user_id: user.id,
+			title: `${severity} at ${createdAt}`,
+			severity,
+			metric: 'temp',
+			value: 36.4,
+		});
+
+		await AlertEvent.update(
+			{ createdAt: new Date(createdAt) },
+			{
+				where: { event_id: event.event_id },
+				fields: ['createdAt'],
+				silent: true,
+			}
+		);
+
+		return event;
+	};
+
+	await seed('info', '2026-03-01T08:00:00Z');
+	await seed('critical', '2026-03-05T08:00:00Z');
+	await seed('critical', '2026-03-09T08:00:00Z');
+
+	const bySeverity = await request(app)
+		.get('/api/alerts/events')
+		.query({ severity: 'critical' })
+		.set(user.auth)
+		.expect(200);
+
+	assert.equal(bySeverity.body.pagination.total, 2);
+	assert.ok(
+		bySeverity.body.events.every((event) => event.severity === 'critical')
+	);
+
+	const byDate = await request(app)
+		.get('/api/alerts/events')
+		.query({ from: '2026-03-04T00:00:00Z', to: '2026-03-06T23:59:59Z' })
+		.set(user.auth)
+		.expect(200);
+
+	assert.equal(byDate.body.pagination.total, 1);
+	assert.equal(byDate.body.events[0].severity, 'critical');
+	assert.equal(
+		byDate.body.events[0].createdAt,
+		new Date('2026-03-05T08:00:00Z').toISOString()
+	);
+});
+
+test('a date range that ends before it starts is rejected', async () => {
+	const user = await createUser();
+
+	const res = await request(app)
+		.get('/api/alerts/events')
+		.query({ from: '2026-03-09T00:00:00Z', to: '2026-03-01T00:00:00Z' })
+		.set(user.auth)
+		.expect(400);
+
+	assert.equal(res.body.error.details[0].field, 'to');
+});
+
+test('marking every event read leaves other accounts alone', async () => {
+	const owner = await createUser();
+	const stranger = await createUser();
+
+	const seed = (userId) =>
+		AlertEvent.create({
+			user_id: userId,
+			title: 'Temperature above 35C',
+			severity: 'warning',
+			metric: 'temp',
+			value: 36.4,
+		});
+
+	await seed(owner.id);
+	await seed(owner.id);
+	const other = await seed(stranger.id);
+
+	const res = await request(app)
+		.patch('/api/alerts/events/read-all')
+		.set(owner.auth)
+		.expect(200);
+
+	assert.equal(res.body.updated, 2);
+
+	await other.reload();
+	assert.equal(other.is_read, false);
+});

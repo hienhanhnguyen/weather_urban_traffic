@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const { AlertRule, AlertEvent, SavedLocation } = require('../../shared/models');
 const { NotFoundError } = require('../../shared/errors');
 
@@ -32,7 +33,7 @@ const publicEvent = (event) => ({
 	metric: event.metric,
 	value: event.value,
 	isRead: event.is_read,
-	createdAt: event.created_at,
+	createdAt: event.createdAt,
 });
 
 async function assertOwnsLocation(userId, locationId) {
@@ -105,9 +106,17 @@ async function deleteRule(userId, ruleId) {
 	await rule.destroy();
 }
 
-async function listEvents(userId, { is_read, page, limit }) {
+async function listEvents(userId, { is_read, severity, from, to, page, limit }) {
 	const where = { user_id: userId };
 	if (is_read !== undefined) where.is_read = is_read;
+	if (severity !== undefined) where.severity = severity;
+
+	if (from !== undefined || to !== undefined) {
+		where.createdAt = {
+			...(from !== undefined && { [Op.gte]: from }),
+			...(to !== undefined && { [Op.lte]: to }),
+		};
+	}
 
 	const { rows, count } = await AlertEvent.findAndCountAll({
 		where,

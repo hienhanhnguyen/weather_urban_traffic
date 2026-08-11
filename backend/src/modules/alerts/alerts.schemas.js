@@ -34,6 +34,12 @@ module.exports = {
 
 	listEvents: Joi.object({
 		is_read: Joi.boolean(),
+		severity: Joi.string().valid('info', 'warning', 'critical'),
+		from: Joi.date().iso(),
+		to: Joi.date().iso().when('from', {
+			is: Joi.exist(),
+			then: Joi.date().min(Joi.ref('from')),
+		}),
 		page: Joi.number().integer().min(1).default(1),
 		limit: Joi.number().integer().min(1).max(100).default(50),
 	}),
