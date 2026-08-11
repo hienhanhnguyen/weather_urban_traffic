@@ -382,6 +382,7 @@
     },
     "controls": {
       "email": "Email this report",
+      "pdf": "Download PDF",
       "range": "Period",
       "route": "Route"
     },
@@ -408,6 +409,41 @@
     },
     "noRoutes": "No saved routes yet",
     "noRoutesHint": "A report is built from a route, so save one first.",
+    "pdf": {
+      "columns": {
+        "address": "Address",
+        "condition": "Condition",
+        "coordinates": "Coordinates",
+        "detail": "Detail",
+        "hours": "Hours",
+        "humidity": "Humidity",
+        "metric": "Measure",
+        "precip": "Rainfall",
+        "role": "Point",
+        "share": "Share",
+        "temp": "Temperature",
+        "time": "When",
+        "value": "Value",
+        "wind": "Wind"
+      },
+      "failed": "The PDF could not be built.",
+      "fields": {
+        "generatedAt": "Built",
+        "period": "Period",
+        "route": "Route",
+        "timezone": "Time zone"
+      },
+      "footer": "SWTIS — Smart Weather & Travel Information System",
+      "page": "Page {page} of {total}",
+      "sections": {
+        "conditions": "Conditions",
+        "kpis": "Summary",
+        "points": "Route ends",
+        "timeline": "Full readings",
+        "trend": "Along the period"
+      },
+      "title": "Route weather report"
+    },
     "planRoute": "Plan a route",
     "points": {
       "end": "Destination",

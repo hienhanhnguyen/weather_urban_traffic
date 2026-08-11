@@ -382,6 +382,7 @@
     },
     "controls": {
       "email": "Gửi báo cáo qua email",
+      "pdf": "Tải PDF",
       "range": "Khoảng thời gian",
       "route": "Tuyến đường"
     },
@@ -408,6 +409,41 @@
     },
     "noRoutes": "Chưa có tuyến đường nào được lưu",
     "noRoutesHint": "Báo cáo được lập từ một tuyến đường, hãy lưu một tuyến trước.",
+    "pdf": {
+      "columns": {
+        "address": "Địa chỉ",
+        "condition": "Kiểu thời tiết",
+        "coordinates": "Toạ độ",
+        "detail": "Chi tiết",
+        "hours": "Số giờ",
+        "humidity": "Độ ẩm",
+        "metric": "Chỉ số",
+        "precip": "Lượng mưa",
+        "role": "Điểm",
+        "share": "Tỷ lệ",
+        "temp": "Nhiệt độ",
+        "time": "Thời điểm",
+        "value": "Giá trị",
+        "wind": "Gió"
+      },
+      "failed": "Không tạo được tệp PDF.",
+      "fields": {
+        "generatedAt": "Lập lúc",
+        "period": "Khoảng thời gian",
+        "route": "Tuyến đường",
+        "timezone": "Múi giờ"
+      },
+      "footer": "SWTIS — Hệ thống thông tin thời tiết và du lịch",
+      "page": "Trang {page}/{total}",
+      "sections": {
+        "conditions": "Kiểu thời tiết",
+        "kpis": "Tổng quan",
+        "points": "Hai đầu tuyến",
+        "timeline": "Số liệu chi tiết",
+        "trend": "Diễn biến"
+      },
+      "title": "Báo cáo thời tiết tuyến đường"
+    },
     "planRoute": "Lập tuyến đường",
     "points": {
       "end": "Điểm đến",

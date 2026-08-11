@@ -19,6 +19,7 @@ import {
 } from "./api";
 import { CHART_METRICS, RANGES, type ChartMetric } from "./format";
 import { ConditionChart } from "./ConditionChart";
+import { ExportPdfButton } from "./ExportPdfButton";
 import { KpiCards } from "./KpiCards";
 import { ScheduleEditor } from "./ScheduleEditor";
 import { TrendChart } from "./TrendChart";
@@ -119,6 +120,8 @@ export function ReportsPanel() {
             <Mail aria-hidden="true" className="size-4" />
             {t("controls.email")}
           </Button>
+
+          <ExportPdfButton report={data ?? null} />
         </div>
       )}
 
