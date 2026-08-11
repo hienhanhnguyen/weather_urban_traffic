@@ -8,6 +8,7 @@ import { Modal } from "@/components/ui/Modal";
 import { ChangePasswordForm } from "@/features/account/ChangePasswordForm";
 import { PreferencesForm } from "@/features/account/PreferencesForm";
 import { ProfileForm } from "@/features/account/ProfileForm";
+import { PushPanel } from "@/features/push/PushPanel";
 
 function Section({
   title,
@@ -48,6 +49,10 @@ export default function AccountPage() {
         description={t("preferences.description")}
       >
         <PreferencesForm />
+      </Section>
+
+      <Section title={t("push.title")} description={t("push.description")}>
+        <PushPanel />
       </Section>
 
       <Section

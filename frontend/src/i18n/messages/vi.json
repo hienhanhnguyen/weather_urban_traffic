@@ -38,6 +38,34 @@
       "title": "Hồ sơ",
       "usernameHint": "Chỉ chữ và số. Để trống để xóa tên người dùng."
     },
+    "push": {
+      "addedOn": "Đã thêm",
+      "blocked": "Thông báo đang bị chặn cho trang này. Hãy cho phép trong phần cài đặt trang của trình duyệt rồi tải lại trang.",
+      "description": "Nhận cảnh báo dưới dạng thông báo hệ thống, kể cả khi bạn đã đóng trang.",
+      "devices": "Thiết bị đang nhận cảnh báo",
+      "devicesFailed": "Không thể tải danh sách thiết bị.",
+      "disable": "Tắt trên thiết bị này",
+      "enable": "Bật trên thiết bị này",
+      "enabledHere": "Thiết bị này sẽ nhận cảnh báo.",
+      "errors": {
+        "denied": "Bạn đã chặn thông báo cho trang này. Hãy cho phép trong cài đặt trang của trình duyệt rồi thử lại.",
+        "dismissed": "Bạn đã bỏ qua hộp thoại xin quyền nên chưa có gì được bật.",
+        "failed": "Không thể đăng ký trình duyệt này. Hãy thử lại hoặc kiểm tra xem thông báo đã được cho phép chưa.",
+        "unavailable": "Máy chủ chưa được cấu hình để gửi thông báo trình duyệt.",
+        "unsupported": "Trình duyệt này không nhận được thông báo đẩy."
+      },
+      "lastUsed": "Cảnh báo gần nhất",
+      "loadFailed": "Không thể kiểm tra xem thông báo trình duyệt có khả dụng không.",
+      "loading": "Đang kiểm tra trình duyệt này…",
+      "noDevices": "Chưa có thiết bị nào.",
+      "preferenceOff": "Cảnh báo đẩy đang tắt trong tùy chọn phía trên, nên sẽ không có thông báo nào được gửi cho tới khi bạn bật lại.",
+      "removeDevice": "Ngừng gửi cảnh báo tới {device}",
+      "serverDisabled": "Máy chủ chưa được cấu hình để gửi thông báo trình duyệt.",
+      "thisDevice": "Thiết bị này",
+      "title": "Thông báo trình duyệt",
+      "unknownDevice": "Thiết bị không rõ",
+      "unsupported": "Trình duyệt này không nhận được thông báo đẩy. Trên iPhone và iPad, hãy thêm trang vào Màn hình chính trước."
+    },
     "severity": {
       "critical": "Chỉ nghiêm trọng",
       "info": "Thông tin — tất cả",

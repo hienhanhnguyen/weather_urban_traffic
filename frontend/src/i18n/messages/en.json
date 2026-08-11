@@ -38,6 +38,34 @@
       "title": "Profile",
       "usernameHint": "Letters and numbers only. Leave blank to remove it."
     },
+    "push": {
+      "addedOn": "Added",
+      "blocked": "Notifications are blocked for this site. Allow them in your browser's site settings, then reload this page.",
+      "description": "Get your alerts as system notifications, even when this site is closed.",
+      "devices": "Devices receiving alerts",
+      "devicesFailed": "Could not load your devices.",
+      "disable": "Turn off on this device",
+      "enable": "Enable on this device",
+      "enabledHere": "This device will receive alerts.",
+      "errors": {
+        "denied": "You blocked notifications for this site. Allow them in your browser's site settings, then try again.",
+        "dismissed": "The permission prompt was dismissed, so nothing was enabled.",
+        "failed": "This browser could not be subscribed. Try again, or check that notifications are allowed.",
+        "unavailable": "Browser alerts are not configured on this server.",
+        "unsupported": "This browser cannot receive push notifications."
+      },
+      "lastUsed": "Last alert",
+      "loadFailed": "Could not check whether browser alerts are available.",
+      "loading": "Checking this browser…",
+      "noDevices": "No devices yet.",
+      "preferenceOff": "Push alerts are switched off in your preferences above, so nothing will be delivered until you turn them back on.",
+      "removeDevice": "Stop sending alerts to {device}",
+      "serverDisabled": "Browser alerts are not configured on this server.",
+      "thisDevice": "This device",
+      "title": "Browser alerts",
+      "unknownDevice": "Unknown device",
+      "unsupported": "This browser cannot receive push notifications. On iPhone and iPad, add the site to your Home Screen first."
+    },
     "severity": {
       "critical": "Critical only",
       "info": "Info — everything",
