@@ -1,5 +1,6 @@
 const Joi = require('joi');
 const { MIN_POSITIONS, MAX_POSITIONS } = require('./area.polygon');
+const { METRICS, METRIC_RANGE } = require('./area.alert.rules');
 
 const position = Joi.array()
 	.length(2)
@@ -18,6 +19,18 @@ const boundary = Joi.object({
 		.max(1)
 		.required(),
 });
+
+const MAX_COOLDOWN_MINUTES = 10_080; // a week
+
+const inRange = (rule, helpers) => {
+	const range = METRIC_RANGE[rule.metric];
+
+	if (rule.threshold < range.min || rule.threshold > range.max) {
+		return helpers.error('any.invalid');
+	}
+
+	return rule;
+};
 
 const name = Joi.string().trim().min(1).max(120);
 const areaType = Joi.string().valid('district', 'ward');
@@ -40,5 +53,32 @@ module.exports = {
 
 	idParam: Joi.object({
 		id: Joi.number().integer().min(1).required(),
+	}),
+
+	replaceRules: Joi.object({
+		rules: Joi.array()
+			.items(
+				Joi.object({
+					metric: Joi.string().valid(...METRICS).required(),
+					threshold: Joi.number().required(),
+					severity: Joi.string()
+						.valid('info', 'warning', 'critical')
+						.default('warning'),
+					cooldown_minutes: Joi.number()
+						.integer()
+						.min(0)
+						.max(MAX_COOLDOWN_MINUTES)
+						.default(60),
+					is_enabled: Joi.boolean().default(true),
+				})
+					.custom(inRange)
+			)
+			.max(METRICS.length)
+			.unique('metric')
+			.required(),
+	}),
+
+	evaluate: Joi.object({
+		force: Joi.boolean().default(false),
 	}),
 };

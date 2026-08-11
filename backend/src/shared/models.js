@@ -17,6 +17,7 @@ const {
 } = require('../modules/routing/routing.models');
 const { ReportSchedule } = require('../modules/business/business.models');
 const { ManagedArea } = require('../modules/areas/area.model');
+const { AreaAlertRule } = require('../modules/areas/area.alert.model');
 
 
 User.belongsToMany(Role, {
@@ -50,6 +51,20 @@ AlertRule.belongsTo(SavedLocation, {
 
 AlertRule.hasMany(AlertEvent, { foreignKey: 'rule_id', as: 'events' });
 AlertEvent.belongsTo(AlertRule, { foreignKey: 'rule_id', as: 'rule' });
+
+ManagedArea.hasMany(AreaAlertRule, {
+	foreignKey: 'area_id',
+	as: 'alertRules',
+	onDelete: 'CASCADE',
+});
+AreaAlertRule.belongsTo(ManagedArea, { foreignKey: 'area_id', as: 'area' });
+
+ManagedArea.hasMany(AlertEvent, {
+	foreignKey: 'area_id',
+	as: 'events',
+	onDelete: 'SET NULL',
+});
+AlertEvent.belongsTo(ManagedArea, { foreignKey: 'area_id', as: 'managedArea' });
 
 SavedRoute.hasOne(ReportSchedule, {
 	foreignKey: 'route_id',
@@ -103,4 +118,5 @@ module.exports = {
 	WeatherSearch,
 	ReportSchedule,
 	ManagedArea,
+	AreaAlertRule,
 };

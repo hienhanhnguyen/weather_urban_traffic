@@ -60,6 +60,11 @@ module.exports = {
 		limit: 5,
 		keyGenerator: byUserId,
 	}),
+	areaEvaluateLimiter: build({
+		windowMs: 15 * MINUTE,
+		limit: 10,
+		keyGenerator: byUserId,
+	}),
 	weatherLimiter: build({ windowMs: MINUTE, limit: 60 }),
 	geoLimiter: build({ windowMs: MINUTE, limit: 90, keyGenerator: byUserId }),
 };

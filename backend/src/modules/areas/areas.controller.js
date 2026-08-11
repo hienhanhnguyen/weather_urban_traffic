@@ -1,4 +1,5 @@
 const service = require('./areas.service');
+const alerts = require('./area.alerts.service');
 
 module.exports = {
 	list: async (req, res) => {
@@ -30,5 +31,29 @@ module.exports = {
 	remove: async (req, res) => {
 		await service.remove(req.user.id, Number(req.params.id));
 		res.status(204).send();
+	},
+
+	listRules: async (req, res) => {
+		res.status(200).json(
+			await alerts.listRules(req.user.id, Number(req.params.id))
+		);
+	},
+
+	replaceRules: async (req, res) => {
+		res.status(200).json(
+			await alerts.replaceRules(
+				req.user.id,
+				Number(req.params.id),
+				req.body.rules
+			)
+		);
+	},
+
+	evaluateRules: async (req, res) => {
+		res.status(200).json(
+			await alerts.evaluateNow(req.user.id, Number(req.params.id), {
+				force: req.body.force,
+			})
+		);
 	},
 };

@@ -3,25 +3,11 @@ const {
 	AlertRule,
 	AlertEvent,
 	SavedLocation,
-	User,
-	UserPreference,
 } = require('../../shared/models');
 const weather = require('../weather/weather.service');
-const hub = require('../../realtime/hub');
-const push = require('../../realtime/push');
 const logger = require('../../shared/logger');
-const { sendMail } = require('../../shared/mailer');
-const alertTemplate = require('../../shared/templates/alert');
 const { buildMessage } = require('./alert.messages');
-
-const SEVERITY_RANK = { info: 0, warning: 1, critical: 2 };
-
-const DEFAULT_PREFERENCES = {
-	language: 'en',
-	min_severity: 'info',
-	email_alerts_enabled: true,
-	push_alerts_enabled: true,
-};
+const { SEVERITY_RANK, loadPreferences, deliver } = require('./delivery');
 
 const FORECAST_SLOTS_24H = 24; // the forecast endpoint is hourly
 
@@ -86,16 +72,6 @@ async function dueRules() {
 	});
 }
 
-async function loadPreferences(userIds) {
-	const rows = await UserPreference.findAll({
-		where: { user_id: userIds },
-	});
-
-	const byUser = new Map(rows.map((row) => [row.user_id, row]));
-
-	return (userId) => byUser.get(userId) ?? DEFAULT_PREFERENCES;
-}
-
 async function readMetric(rule) {
 	const { latitude, longitude } = rule.location;
 
@@ -116,8 +92,8 @@ async function readMetric(rule) {
 	return forecastMetric(rule.metric, forecast?.hourly, rule.operator);
 }
 
-async function deliver(rule, preference, message, value) {
-	const payload = {
+function payloadOf(rule, message, value) {
+	return {
 		type: 'alert',
 		ruleId: rule.rule_id,
 		locationId: rule.location_id,
@@ -128,31 +104,6 @@ async function deliver(rule, preference, message, value) {
 		...message,
 		issuedAt: new Date().toISOString(),
 	};
-
-	const channels = [Promise.resolve(hub.sendToUser(rule.user_id, payload))];
-
-	if (preference.push_alerts_enabled) {
-		channels.push(push.sendToUser(rule.user_id, payload));
-	}
-
-	if (preference.email_alerts_enabled) {
-		channels.push(
-			User.findByPk(rule.user_id).then((user) =>
-				user ? sendMail({ to: user.email, ...alertTemplate(message) }) : null
-			)
-		);
-	}
-
-	const results = await Promise.allSettled(channels);
-
-	for (const result of results) {
-		if (result.status === 'rejected') {
-			logger.warn(
-				{ err: result.reason, ruleId: rule.rule_id },
-				'alert delivery failed on one channel'
-			);
-		}
-	}
 }
 
 async function fire(rule, preference, value) {
@@ -170,7 +121,13 @@ async function fire(rule, preference, value) {
 
 	await rule.update({ last_triggered_at: new Date(), last_value: value });
 
-	await deliver(rule, preference, message, value);
+	await deliver({
+		userId: rule.user_id,
+		preference,
+		payload: payloadOf(rule, message, value),
+		message,
+		context: { ruleId: rule.rule_id },
+	});
 }
 
 async function evaluateAll() {

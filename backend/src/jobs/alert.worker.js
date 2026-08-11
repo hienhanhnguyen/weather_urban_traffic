@@ -1,7 +1,7 @@
-
 const logger = require('../shared/logger');
 const { withAdvisoryLock, LOCK_KEYS } = require('../shared/advisory.lock');
 const evaluator = require('../modules/alerts/alert.evaluator');
+const areaEvaluator = require('../modules/areas/area.evaluator');
 
 async function runAlertTick() {
 	const startedAt = Date.now();
@@ -9,7 +9,10 @@ async function runAlertTick() {
 	try {
 		const { acquired, result } = await withAdvisoryLock(
 			LOCK_KEYS.ALERT_EVALUATION,
-			() => evaluator.evaluateAll()
+			async () => ({
+				locations: await evaluator.evaluateAll(),
+				areas: await areaEvaluator.evaluateAll(),
+			})
 		);
 
 		if (!acquired) {

@@ -27,6 +27,7 @@ const publicRule = (rule) => ({
 const publicEvent = (event) => ({
 	id: event.event_id,
 	ruleId: event.rule_id,
+	areaId: event.area_id,
 	title: event.title,
 	body: event.body,
 	severity: event.severity,
