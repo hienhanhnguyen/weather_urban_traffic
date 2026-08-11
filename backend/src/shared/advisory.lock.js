@@ -3,14 +3,6 @@ const logger = require('./logger');
 
 const NAMESPACE = 0x7754;
 
-/**
- * Runs `fn` while holding a Postgres advisory lock, or returns
- * { acquired: false } immediately if another session holds it.
- *
- * Advisory locks live on a *session*, so acquire and release must run on
- * the same connection — which a pool will not guarantee. We check out one
- * connection for the whole operation.
- */
 async function withAdvisoryLock(key, fn) {
 	const manager = sequelize.connectionManager;
 	const connection = await manager.getConnection();
@@ -45,6 +37,7 @@ async function withAdvisoryLock(key, fn) {
 const LOCK_KEYS = Object.freeze({
 	ALERT_EVALUATION: 1,
 	CLEANUP: 2,
+	REPORT_DELIVERY: 3,
 });
 
 module.exports = { withAdvisoryLock, LOCK_KEYS };

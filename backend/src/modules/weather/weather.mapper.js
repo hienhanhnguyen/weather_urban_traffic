@@ -49,6 +49,32 @@ function zipHourly(hourly, { from = 0, count } = {}) {
 	return rows;
 }
 
+/**
+ * The report series carries humidity and wind, which the forecast screen does
+ * not ask for. Keeping it separate from `zipHourly` avoids two fields that
+ * would always be null in the forecast response.
+ */
+function zipSeries(hourly, { from = 0 } = {}) {
+	const times = hourly?.time ?? [];
+	const rows = [];
+
+	for (let index = 0; index < times.length; index += 1) {
+		if (times[index] < from) continue;
+
+		rows.push({
+			time: toIso(times[index]),
+			temp: numberOrNull(hourly.temperature_2m?.[index]),
+			precip: numberOrNull(hourly.precipitation?.[index]),
+			precipProb: numberOrNull(hourly.precipitation_probability?.[index]),
+			humidity: numberOrNull(hourly.relative_humidity_2m?.[index]),
+			wind: numberOrNull(hourly.wind_speed_10m?.[index]),
+			weatherCode: numberOrNull(hourly.weather_code?.[index]),
+		});
+	}
+
+	return rows;
+}
+
 function zipDaily(daily, offsetSeconds) {
 	const times = daily?.time ?? [];
 
@@ -109,6 +135,13 @@ function publicCurrent(payload, units) {
 	};
 }
 
+function publicSeries(payload, units, nowSeconds = Date.now() / 1000) {
+	return {
+		...place(payload, units),
+		hourly: zipSeries(payload?.hourly, { from: Math.floor(nowSeconds) }),
+	};
+}
+
 function publicForecast(payload, units, nowSeconds = Date.now() / 1000) {
 	const offsetSeconds = payload?.utc_offset_seconds ?? 0;
 
@@ -126,5 +159,7 @@ module.exports = {
 	UNIT_LABELS,
 	publicCurrent,
 	publicForecast,
+	publicSeries,
 	zipHourly,
+	zipSeries,
 };

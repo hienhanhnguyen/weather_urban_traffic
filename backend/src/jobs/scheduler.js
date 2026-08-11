@@ -2,6 +2,7 @@ const config = require('../shared/config');
 const logger = require('../shared/logger');
 const { runAlertTick } = require('./alert.worker');
 const { runCleanupTick } = require('./cleanup.worker');
+const { runReportTick } = require('./report.worker');
 
 const jobs = [];
 
@@ -50,6 +51,19 @@ function startJobs() {
 		logger.info(
 			{ intervalMinutes: config.jobs.alertIntervalMinutes },
 			'alert worker scheduled'
+		);
+	}
+
+	if (config.jobs.reportWorkerEnabled) {
+		schedule({
+			name: 'reports',
+			intervalMs: config.jobs.reportIntervalMinutes * 60_000,
+			run: runReportTick,
+			delayMs: 15_000,
+		});
+		logger.info(
+			{ intervalMinutes: config.jobs.reportIntervalMinutes },
+			'report worker scheduled'
 		);
 	}
 

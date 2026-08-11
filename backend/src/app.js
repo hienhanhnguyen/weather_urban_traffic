@@ -12,6 +12,7 @@ const weatherRoutes = require('./modules/weather/weather.routes');
 const alertRoutes = require('./modules/alerts/alerts.routes');
 const geoRoutes = require('./modules/geo/geo.routes');
 const routingRoutes = require('./modules/routing/routing.routes');
+const businessRoutes = require('./modules/business/business.routes');
 const requestId = require('./shared/request.id');
 
 
@@ -68,6 +69,7 @@ app.use('/api/alerts', alertRoutes);
 app.use('/api/geo', geoRoutes);
 app.use('/api/routes', routingRoutes.routes);
 app.use('/api/history', routingRoutes.history);
+app.use('/api/business', businessRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);

@@ -291,6 +291,8 @@ async function clearWeatherSearches(userId) {
 }
 
 module.exports = {
+	publicRoute,
+	ownedRouteOrFail,
 	listRoutes,
 	getRoute,
 	createRoute,

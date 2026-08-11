@@ -5,6 +5,7 @@ const {
 	UNIT_PARAMS,
 	publicCurrent,
 	publicForecast,
+	publicSeries,
 } = require('./weather.mapper');
 
 const cache = new TtlCache(500);
@@ -41,6 +42,15 @@ const DAILY_VARIABLES = [
 	'sunset',
 ].join(',');
 
+const SERIES_VARIABLES = [
+	'temperature_2m',
+	'precipitation',
+	'precipitation_probability',
+	'relative_humidity_2m',
+	'wind_speed_10m',
+	'weather_code',
+].join(',');
+
 const FORECAST_DAYS = 7;
 
 const gridKey = (value) => Number(value).toFixed(2);
@@ -61,7 +71,6 @@ const baseQuery = (lat, lon, units) => ({
 	latitude: gridKey(lat),
 	longitude: gridKey(lon),
 	timezone: 'auto',
-	// Unix seconds instead of local string
 	timeformat: 'unixtime',
 	...UNIT_PARAMS[units],
 });
@@ -100,4 +109,20 @@ async function getForecast({ lat, lon, units }) {
 	return publicForecast(payload, units);
 }
 
-module.exports = { getCurrent, getForecast, cache };
+async function getSeries({ lat, lon, units, days }) {
+	const query = {
+		...baseQuery(lat, lon, units),
+		hourly: SERIES_VARIABLES,
+		forecast_days: days,
+	};
+
+	const payload = await cached(
+		cacheKey('series', query),
+		config.weather.forecastTtlMs,
+		() => request(PATH, query)
+	);
+
+	return publicSeries(payload, units);
+}
+
+module.exports = { getCurrent, getForecast, getSeries, cache };

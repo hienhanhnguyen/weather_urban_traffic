@@ -94,6 +94,8 @@ const schema = Joi.object({
 
 	ALERT_WORKER_ENABLED: Joi.boolean().default(true),
 	ALERT_EVAL_INTERVAL_MINUTES: Joi.number().integer().min(1).default(15),
+	REPORT_WORKER_ENABLED: Joi.boolean().default(true),
+	REPORT_INTERVAL_MINUTES: Joi.number().integer().min(1).default(15),
 	CLEANUP_INTERVAL_MINUTES: Joi.number().integer().min(1).default(60),
 	CLEANUP_GRACE_DAYS: Joi.number().integer().min(1).default(30),
 	SHUTDOWN_TIMEOUT_MS: Joi.number().integer().min(1000).default(10_000),
@@ -166,8 +168,6 @@ const config = Object.freeze({
 	limits: Object.freeze({
 		maxSavedLocations: env.MAX_SAVED_LOCATIONS,
 		maxSavedRoutes: env.MAX_SAVED_ROUTES,
-		// Repeating the same search inside this window bumps the existing row
-		// instead of filling the history with near-identical entries.
 		searchDedupeMinutes: env.SEARCH_DEDUPE_MINUTES,
 	}),
 
@@ -200,6 +200,8 @@ const config = Object.freeze({
 	jobs: Object.freeze({
 		alertWorkerEnabled: env.ALERT_WORKER_ENABLED,
 		alertIntervalMinutes: env.ALERT_EVAL_INTERVAL_MINUTES,
+		reportWorkerEnabled: env.REPORT_WORKER_ENABLED,
+		reportIntervalMinutes: env.REPORT_INTERVAL_MINUTES,
 		cleanupIntervalMinutes: env.CLEANUP_INTERVAL_MINUTES,
 		cleanupGraceDays: env.CLEANUP_GRACE_DAYS,
 	}),

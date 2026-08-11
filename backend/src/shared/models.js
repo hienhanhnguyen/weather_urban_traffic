@@ -15,6 +15,7 @@ const {
 	RouteSearch,
 	WeatherSearch,
 } = require('../modules/routing/routing.models');
+const { ReportSchedule } = require('../modules/business/business.models');
 
 
 User.belongsToMany(Role, {
@@ -49,8 +50,15 @@ AlertRule.belongsTo(SavedLocation, {
 AlertRule.hasMany(AlertEvent, { foreignKey: 'rule_id', as: 'events' });
 AlertEvent.belongsTo(AlertRule, { foreignKey: 'rule_id', as: 'rule' });
 
-// A looked-up place may or may not be one of the user's saved locations, and
-// deleting the saved location must not erase the lookup that happened.
+// A scheduled report is defined by the route it covers, so losing the route
+// takes the schedule with it rather than leaving one that reports on nothing.
+SavedRoute.hasOne(ReportSchedule, {
+	foreignKey: 'route_id',
+	as: 'schedule',
+	onDelete: 'CASCADE',
+});
+ReportSchedule.belongsTo(SavedRoute, { foreignKey: 'route_id', as: 'route' });
+
 SavedLocation.hasMany(WeatherSearch, {
 	foreignKey: 'location_id',
 	as: 'searches',
@@ -72,6 +80,7 @@ for (const model of [
 	SavedRoute,
 	RouteSearch,
 	WeatherSearch,
+	ReportSchedule,
 ]) {
 	model.belongsTo(User, { foreignKey: 'user_id', onDelete: 'CASCADE' });
 	User.hasMany(model, { foreignKey: 'user_id' });
@@ -92,4 +101,5 @@ module.exports = {
 	SavedRoute,
 	RouteSearch,
 	WeatherSearch,
+	ReportSchedule,
 };
