@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useFormatter, useTranslations } from "next-intl";
-import { MapPlus, Pencil, Trash2 } from "lucide-react";
+import { Bell, MapPlus, Pencil, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Callout } from "@/components/ui/Callout";
 import { Modal } from "@/components/ui/Modal";
@@ -14,11 +14,13 @@ import {
   type ManagedArea,
 } from "./api";
 import { AreaEditor } from "./AreaEditor";
+import { AreaAlertsModal } from "./AreaAlertsModal";
 
 type Editing = { area: ManagedArea | null } | null;
 
 export function AreasPanel() {
   const t = useTranslations("govAreas");
+  const tAlerts = useTranslations("areaAlerts");
   const tTypes = useTranslations("govAreas.types");
   const tCommon = useTranslations("common");
   const tError = useTranslations("errors");
@@ -27,6 +29,7 @@ export function AreasPanel() {
 
   const [editing, setEditing] = useState<Editing>(null);
   const [doomed, setDoomed] = useState<ManagedArea | null>(null);
+  const [watching, setWatching] = useState<ManagedArea | null>(null);
 
   const query = useQuery({ queryKey: AREAS_QUERY_KEY, queryFn: listAreas });
 
@@ -104,6 +107,15 @@ export function AreasPanel() {
                 <Button
                   type="button"
                   variant="secondary"
+                  onClick={() => setWatching(area)}
+                >
+                  <Bell aria-hidden="true" className="size-4" />
+                  {tAlerts("open")}
+                </Button>
+
+                <Button
+                  type="button"
+                  variant="secondary"
                   onClick={() => setEditing({ area })}
                 >
                   <Pencil aria-hidden="true" className="size-4" />
@@ -122,6 +134,10 @@ export function AreasPanel() {
             </li>
           ))}
         </ul>
+      )}
+
+      {watching && (
+        <AreaAlertsModal area={watching} onClose={() => setWatching(null)} />
       )}
 
       <Modal

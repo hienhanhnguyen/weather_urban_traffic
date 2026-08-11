@@ -173,6 +173,47 @@
     "name": "SWTIS",
     "tagline": "Real-time weather forecasting system for urban transport networks in Ho Chi Minh City"
   },
+  "areaAlerts": {
+    "cooldown": "Quiet period",
+    "cooldownHint": "The shortest gap between two alerts from this area.",
+    "cooldownHours": "{value} hours",
+    "cooldownMinutes": "{value} minutes",
+    "hints": {
+      "feelslike": "Temperature adjusted for humidity and wind.",
+      "precip": "Rain measured over the last hour.",
+      "precipprob": "How likely rain is right now.",
+      "temp": "The reading at the centre of the area."
+    },
+    "loadFailed": "Could not load the alert settings for this area.",
+    "metrics": {
+      "feelslike": "Feels-like temperature",
+      "precip": "Rainfall",
+      "precipprob": "Chance of rain",
+      "temp": "Temperature"
+    },
+    "open": "Alerts",
+    "reasons": {
+      "below_threshold": "below the limit",
+      "cooldown": "still inside its quiet period",
+      "disabled": "not being watched",
+      "no_data": "no reading available"
+    },
+    "run": {
+      "action": "Run now",
+      "fired": "{metric}: {value}{unit} — alert sent (limit {threshold}{unit}).",
+      "hint": "Checks the current weather and sends anything that crosses a limit, ignoring the quiet period.",
+      "nothing": "Nothing is being watched yet.",
+      "pushBlocked": "This browser has blocked notifications, so a test alert will only appear in the bell.",
+      "pushOff": "Browser notifications are off on this device, so a test alert will only appear in the bell.",
+      "skipped": "{metric}: {reason}.",
+      "title": "Run the watch list now"
+    },
+    "severity": "Severity",
+    "subtitle": "Watch the weather over {name} and notify this account when it crosses a limit.",
+    "threshold": "Alert at or above",
+    "title": "Area alerts",
+    "watching": "{count} of 4 measurements watched"
+  },
   "areaManagement": {
     "actions": {
       "delete": "Delete",

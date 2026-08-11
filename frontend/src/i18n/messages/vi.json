@@ -173,6 +173,47 @@
     "name": "SWTIS",
     "tagline": "Hệ thống dự báo thời tiết thời gian thực cho mạng lưới giao thông đô thị TP. Hồ Chí Minh"
   },
+  "areaAlerts": {
+    "cooldown": "Khoảng lặng",
+    "cooldownHint": "Khoảng cách tối thiểu giữa hai cảnh báo từ khu vực này.",
+    "cooldownHours": "{value} giờ",
+    "cooldownMinutes": "{value} phút",
+    "hints": {
+      "feelslike": "Nhiệt độ đã tính theo độ ẩm và gió.",
+      "precip": "Lượng mưa đo trong một giờ gần nhất.",
+      "precipprob": "Khả năng có mưa ngay lúc này.",
+      "temp": "Số đo tại tâm khu vực."
+    },
+    "loadFailed": "Không tải được cài đặt cảnh báo của khu vực này.",
+    "metrics": {
+      "feelslike": "Nhiệt độ cảm nhận",
+      "precip": "Lượng mưa",
+      "precipprob": "Xác suất mưa",
+      "temp": "Nhiệt độ"
+    },
+    "open": "Cảnh báo",
+    "reasons": {
+      "below_threshold": "chưa tới ngưỡng",
+      "cooldown": "vẫn trong khoảng lặng",
+      "disabled": "không được theo dõi",
+      "no_data": "không có số liệu"
+    },
+    "run": {
+      "action": "Chạy ngay",
+      "fired": "{metric}: {value}{unit} — đã gửi cảnh báo (ngưỡng {threshold}{unit}).",
+      "hint": "Kiểm tra thời tiết hiện tại và gửi cảnh báo cho chỉ số vượt ngưỡng, bỏ qua khoảng lặng.",
+      "nothing": "Chưa có chỉ số nào được theo dõi.",
+      "pushBlocked": "Trình duyệt đã chặn thông báo, cảnh báo thử chỉ hiện trong chuông.",
+      "pushOff": "Thiết bị này đang tắt thông báo trình duyệt, cảnh báo thử chỉ hiện trong chuông.",
+      "skipped": "{metric}: {reason}.",
+      "title": "Chạy thử ngay"
+    },
+    "severity": "Mức độ",
+    "subtitle": "Theo dõi thời tiết tại {name} và báo cho tài khoản này khi vượt ngưỡng.",
+    "threshold": "Cảnh báo khi đạt hoặc vượt",
+    "title": "Cảnh báo khu vực",
+    "watching": "Đang theo dõi {count}/4 chỉ số"
+  },
   "areaManagement": {
     "actions": {
       "delete": "Xóa",
