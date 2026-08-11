@@ -11,6 +11,7 @@ import Map, {
   type MapRef,
   type ViewState,
 } from "react-map-gl/maplibre";
+import type { Map as MapLibreMap } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { useTheme } from "@/lib/theme/ThemeProvider";
 import {
@@ -24,6 +25,7 @@ import {
 export interface MapCanvasProps {
   initialViewState?: Partial<ViewState>;
   onClick?: (coordinates: { latitude: number; longitude: number }) => void;
+  onReady?: (map: MapLibreMap) => void;
   mapRef?: React.Ref<MapRef>;
   interactive?: boolean;
   children?: React.ReactNode;
@@ -32,6 +34,7 @@ export interface MapCanvasProps {
 export default function MapCanvas({
   initialViewState,
   onClick,
+  onReady,
   mapRef,
   interactive = true,
   children,
@@ -69,6 +72,7 @@ export default function MapCanvas({
           loadedRef.current = true;
           setFailed(false);
           event.target.resize();
+          onReady?.(event.target);
         }}
         onError={(event: { error: Error }) => {
           console.error("[map]", event.error);

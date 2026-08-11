@@ -612,6 +612,63 @@
   "errors": {
     "generic": "Something went wrong. Please try again."
   },
+  "govAreas": {
+    "cancel": "Cancel",
+    "create": "Create area",
+    "delete": {
+      "confirm": "Delete {name}?",
+      "title": "Delete area",
+      "warning": "Alerts and reports for this area will stop."
+    },
+    "draw": {
+      "circle": "Circle",
+      "clear": "Clear",
+      "hint": {
+        "circle": "Press and drag from the centre outwards.",
+        "polygon": "Click each corner, then click the first one again to close.",
+        "select": "Click the outline, then drag its points to adjust it."
+      },
+      "mode": "Drawing tool",
+      "polygon": "Polygon",
+      "select": "Edit"
+    },
+    "editTitle": "Editing {name}",
+    "empty": "No areas yet",
+    "emptyHint": "Create one to start monitoring a district or ward.",
+    "errors": {
+      "AREA_LIMIT_REACHED": "You have reached the maximum number of areas.",
+      "AREA_NAME_TAKEN": "You already have an area with that name.",
+      "AREA_TOO_LARGE": "That area is too large. Split it into smaller ones.",
+      "AREA_TOO_SMALL": "That area is too small to monitor.",
+      "POSITION_OUT_OF_RANGE": "A point of the outline is off the map. Draw it over Vietnam.",
+      "RING_NOT_CLOSED": "The outline is not closed.",
+      "RING_SELF_INTERSECTS": "The outline crosses itself. Redraw it without overlaps.",
+      "RING_TOO_LONG": "That outline has too many points. Draw a simpler shape.",
+      "RING_TOO_SHORT": "An area needs at least three corners."
+    },
+    "fields": {
+      "address": "Address",
+      "addressHint": "Optional, for the report header.",
+      "name": "Name",
+      "type": "Type"
+    },
+    "loadFailed": "Could not load the managed areas.",
+    "new": "New area",
+    "newTitle": "New area",
+    "problems": {
+      "boundaryRequired": "Draw a closed outline on the map.",
+      "nameRequired": "Give the area a name."
+    },
+    "save": "Save changes",
+    "size": "{value} km²",
+    "sizeUnknown": "Not drawn yet",
+    "subtitle": "Draw the districts and wards this office is responsible for.",
+    "title": "Managed areas",
+    "types": {
+      "district": "District",
+      "ward": "Ward"
+    }
+  },
   "government": {
     "scenarioManagement": {
       "activeModal": {
@@ -1019,7 +1076,6 @@
     "title": "Personal"
   },
   "placeholder": {
-    "govAreas": "Draw and maintain the monitored areas that city-wide alerts are attached to.",
     "govDashboard": "City-wide situational overview for operations staff.",
     "govIncidents": "Reported incidents, their status and who is handling them.",
     "govReports": "Aggregate reporting across areas, incidents and alerts.",

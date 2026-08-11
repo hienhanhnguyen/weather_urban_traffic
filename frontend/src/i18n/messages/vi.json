@@ -612,6 +612,63 @@
   "errors": {
     "generic": "Đã xảy ra lỗi. Vui lòng thử lại."
   },
+  "govAreas": {
+    "cancel": "Hủy",
+    "create": "Tạo khu vực",
+    "delete": {
+      "confirm": "Xóa {name}?",
+      "title": "Xóa khu vực",
+      "warning": "Cảnh báo và báo cáo cho khu vực này sẽ dừng lại."
+    },
+    "draw": {
+      "circle": "Hình tròn",
+      "clear": "Xóa",
+      "hint": {
+        "circle": "Nhấn giữ và kéo từ tâm ra ngoài.",
+        "polygon": "Nhấp từng đỉnh, sau đó nhấp lại đỉnh đầu tiên để khép kín.",
+        "select": "Nhấp vào đường bao rồi kéo các điểm để chỉnh lại."
+      },
+      "mode": "Công cụ vẽ",
+      "polygon": "Đa giác",
+      "select": "Chỉnh sửa"
+    },
+    "editTitle": "Đang sửa {name}",
+    "empty": "Chưa có khu vực nào",
+    "emptyHint": "Tạo một khu vực để bắt đầu theo dõi quận hoặc phường.",
+    "errors": {
+      "AREA_LIMIT_REACHED": "Bạn đã đạt số khu vực tối đa.",
+      "AREA_NAME_TAKEN": "Bạn đã có một khu vực trùng tên.",
+      "AREA_TOO_LARGE": "Khu vực quá lớn. Hãy chia nhỏ ra.",
+      "AREA_TOO_SMALL": "Khu vực quá nhỏ để theo dõi.",
+      "POSITION_OUT_OF_RANGE": "Một điểm của đường bao nằm ngoài bản đồ. Hãy vẽ trong phạm vi bản đồ.",
+      "RING_NOT_CLOSED": "Đường bao chưa khép kín.",
+      "RING_SELF_INTERSECTS": "Đường bao tự cắt nhau. Hãy vẽ lại không để chồng chéo.",
+      "RING_TOO_LONG": "Đường bao có quá nhiều điểm. Hãy vẽ đơn giản hơn.",
+      "RING_TOO_SHORT": "Khu vực cần ít nhất ba đỉnh."
+    },
+    "fields": {
+      "address": "Địa chỉ",
+      "addressHint": "Không bắt buộc, dùng cho phần đầu báo cáo.",
+      "name": "Tên",
+      "type": "Loại"
+    },
+    "loadFailed": "Không tải được danh sách khu vực.",
+    "new": "Thêm khu vực",
+    "newTitle": "Khu vực mới",
+    "problems": {
+      "boundaryRequired": "Hãy vẽ một đường bao khép kín trên bản đồ.",
+      "nameRequired": "Hãy đặt tên cho khu vực."
+    },
+    "save": "Lưu thay đổi",
+    "size": "{value} km²",
+    "sizeUnknown": "Chưa vẽ",
+    "subtitle": "Vẽ các quận, phường thuộc phạm vi phụ trách của đơn vị.",
+    "title": "Khu vực quản lý",
+    "types": {
+      "district": "Quận/Huyện",
+      "ward": "Phường/Xã"
+    }
+  },
   "government": {
     "scenarioManagement": {
       "activeModal": {
@@ -1019,7 +1076,6 @@
     "title": "Cá nhân"
   },
   "placeholder": {
-    "govAreas": "Vẽ và duy trì các khu vực được giám sát mà cảnh báo toàn thành phố gắn vào.",
     "govDashboard": "Tổng quan tình hình toàn thành phố dành cho cán bộ vận hành.",
     "govIncidents": "Các sự cố đã báo cáo, trạng thái và người đang xử lý.",
     "govReports": "Báo cáo tổng hợp trên các khu vực, sự cố và cảnh báo.",
