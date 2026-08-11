@@ -8,7 +8,7 @@ const publicLocation = (location) => ({
 	address: location.address,
 	latitude: location.latitude,
 	longitude: location.longitude,
-	createdAt: location.created_at,
+	createdAt: location.createdAt,
 });
 
 async function ownedOrFail(userId, locationId) {

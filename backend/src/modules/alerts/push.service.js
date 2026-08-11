@@ -6,7 +6,7 @@ const publicSubscription = (subscription) => ({
 	endpoint: subscription.endpoint,
 	userAgent: subscription.user_agent,
 	lastUsedAt: subscription.last_used_at,
-	createdAt: subscription.created_at,
+	createdAt: subscription.createdAt,
 });
 
 async function subscribe(userId, { endpoint, keys, user_agent }) {

@@ -32,6 +32,10 @@ test('a user can create and read back a location', async () => {
 	assert.equal(created.body.location.name, 'Home');
 	assert.equal(created.body.location.latitude, 21.028511);
 	assert.equal(typeof created.body.location.latitude, 'number');
+	assert.ok(
+		!Number.isNaN(Date.parse(created.body.location.createdAt)),
+		'createdAt should be a real timestamp'
+	);
 
 	const listed = await request(app)
 		.get('/api/locations')
