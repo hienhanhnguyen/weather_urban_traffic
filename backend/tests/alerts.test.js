@@ -100,6 +100,94 @@ test('an invalid metric is rejected with a field-level detail', async () => {
 	assert.ok(res.body.error.details.some((d) => d.field === 'metric'));
 });
 
+test('rules can be listed for one location only', async () => {
+	const user = await createUser();
+	const office = await createLocation(user);
+
+	const home = await request(app)
+		.post('/api/locations')
+		.set(user.auth)
+		.send({ ...LOCATION, custom_name: 'Home' })
+		.expect(201);
+
+	for (const location_id of [office, home.body.location.id]) {
+		await request(app)
+			.post('/api/alerts/rules')
+			.set(user.auth)
+			.send({ ...RULE, location_id })
+			.expect(201);
+	}
+
+	const all = await request(app)
+		.get('/api/alerts/rules')
+		.set(user.auth)
+		.expect(200);
+	assert.equal(all.body.rules.length, 2);
+
+	const filtered = await request(app)
+		.get('/api/alerts/rules')
+		.query({ location_id: office })
+		.set(user.auth)
+		.expect(200);
+
+	assert.equal(filtered.body.rules.length, 1);
+	assert.equal(filtered.body.rules[0].locationId, office);
+	assert.equal(filtered.body.pagination.total, 1);
+});
+
+test('changing the metric re-derives the unit', async () => {
+	const user = await createUser();
+	const locationId = await createLocation(user);
+
+	const created = await request(app)
+		.post('/api/alerts/rules')
+		.set(user.auth)
+		.send({ ...RULE, location_id: locationId })
+		.expect(201);
+
+	assert.equal(created.body.rule.unit, 'C');
+
+	const patched = await request(app)
+		.patch(`/api/alerts/rules/${created.body.rule.id}`)
+		.set(user.auth)
+		.send({ metric: 'precip' })
+		.expect(200);
+
+	assert.equal(patched.body.rule.unit, 'mm');
+
+	// An explicit unit still wins over the default.
+	const explicit = await request(app)
+		.patch(`/api/alerts/rules/${created.body.rule.id}`)
+		.set(user.auth)
+		.send({ metric: 'precipprob', unit: 'pct' })
+		.expect(200);
+
+	assert.equal(explicit.body.rule.unit, 'pct');
+});
+
+test('deleting a location deletes the alert rules attached to it', async () => {
+	const user = await createUser();
+	const locationId = await createLocation(user);
+
+	await request(app)
+		.post('/api/alerts/rules')
+		.set(user.auth)
+		.send({ ...RULE, location_id: locationId })
+		.expect(201);
+
+	await request(app)
+		.delete(`/api/locations/${locationId}`)
+		.set(user.auth)
+		.expect(204);
+
+	const remaining = await request(app)
+		.get('/api/alerts/rules')
+		.set(user.auth)
+		.expect(200);
+
+	assert.equal(remaining.body.rules.length, 0);
+});
+
 test('events are listed and marked read only for their owner', async () => {
 	const owner = await createUser();
 	const stranger = await createUser();

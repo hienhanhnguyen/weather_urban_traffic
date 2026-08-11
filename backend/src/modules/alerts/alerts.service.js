@@ -91,7 +91,12 @@ async function updateRule(userId, ruleId, patch) {
 		await assertOwnsLocation(userId, patch.location_id);
 	}
 
-	await rule.update(patch);
+	const rederivedUnit =
+		patch.metric !== undefined && patch.unit === undefined
+			? { unit: DEFAULT_UNIT_BY_METRIC[patch.metric] }
+			: null;
+
+	await rule.update({ ...patch, ...rederivedUnit });
 	return publicRule(rule);
 }
 
