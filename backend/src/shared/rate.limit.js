@@ -55,6 +55,11 @@ module.exports = {
 		limit: 10,
 		keyGenerator: byUserId,
 	}),
+	reportEmailLimiter: build({
+		windowMs: 60 * MINUTE,
+		limit: 5,
+		keyGenerator: byUserId,
+	}),
 	weatherLimiter: build({ windowMs: MINUTE, limit: 60 }),
 	geoLimiter: build({ windowMs: MINUTE, limit: 90, keyGenerator: byUserId }),
 };

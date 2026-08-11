@@ -175,6 +175,38 @@ test('a report cannot be built for somebody else\'s route', async () => {
 		.expect(404);
 });
 
+test('a report can be mailed on demand to the caller', async () => {
+	const user = await createBusinessUser();
+	const routeId = await createRoute(user);
+
+	const res = await request(app)
+		.post('/api/business/report/email')
+		.set(user.auth)
+		.send({ route_id: routeId, range: '24h' })
+		.expect(202);
+
+	assert.equal(res.body.sentTo, user.email);
+
+	const outbox = readOutbox();
+	assert.equal(outbox.length, 1);
+	assert.equal(outbox[0].to, user.email);
+	assert.match(outbox[0].subject, /Depot run/);
+});
+
+test('an on-demand report cannot be mailed for somebody else\'s route', async () => {
+	const owner = await createBusinessUser();
+	const stranger = await createBusinessUser();
+	const routeId = await createRoute(owner);
+
+	await request(app)
+		.post('/api/business/report/email')
+		.set(stranger.auth)
+		.send({ route_id: routeId })
+		.expect(404);
+
+	assert.equal(readOutbox().length, 0);
+});
+
 test('a weekly schedule is stored with the next run already computed', async () => {
 	const user = await createBusinessUser();
 	const routeId = await createRoute(user);

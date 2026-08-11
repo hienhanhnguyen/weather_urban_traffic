@@ -1,5 +1,7 @@
-const { ReportSchedule } = require('../../shared/models');
+const { ReportSchedule, User } = require('../../shared/models');
 const { NotFoundError } = require('../../shared/errors');
+const { sendMail } = require('../../shared/mailer');
+const reportTemplate = require('../../shared/templates/report');
 const routingService = require('../routing/routing.service');
 const usersService = require('../users/users.service');
 const weatherService = require('../weather/weather.service');
@@ -90,6 +92,18 @@ async function buildReport(userId, { route_id, range, units }) {
 	};
 }
 
+async function emailReport(userId, query) {
+	const user = await User.findByPk(userId, {
+		attributes: ['user_id', 'email'],
+	});
+
+	const report = await buildReport(userId, query);
+
+	await sendMail({ to: user.email, ...reportTemplate({ report }) });
+
+	return { sentTo: user.email, generatedAt: report.generatedAt };
+}
+
 async function getSchedule(userId) {
 	const schedule = await ReportSchedule.findOne({ where: { user_id: userId } });
 	return schedule ? publicSchedule(schedule) : null;
@@ -130,6 +144,7 @@ module.exports = {
 	publicSchedule,
 	samplePoints,
 	buildReport,
+	emailReport,
 	getSchedule,
 	saveSchedule,
 	removeSchedule,

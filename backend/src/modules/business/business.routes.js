@@ -2,6 +2,7 @@ const express = require('express');
 const validate = require('../../shared/validate');
 const authenticate = require('../../shared/authenticate');
 const requireAccountType = require('../../shared/require.account.type');
+const { reportEmailLimiter } = require('../../shared/rate.limit');
 const schemas = require('./business.schemas');
 const controller = require('./business.controller');
 
@@ -11,6 +12,13 @@ router.use(authenticate);
 router.use(requireAccountType('business'));
 
 router.get('/report', validate(schemas.report, 'query'), controller.getReport);
+
+router.post(
+	'/report/email',
+	reportEmailLimiter,
+	validate(schemas.report),
+	controller.emailReport
+);
 
 router.get('/report-schedule', controller.getSchedule);
 router.put(
