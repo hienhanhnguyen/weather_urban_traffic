@@ -9,7 +9,7 @@ import {
   ALERT_EVENTS_QUERY_KEY,
   UNREAD_COUNT_QUERY_KEY,
   countUnread,
-  eventsPageQueryKey,
+  eventsQueryKey,
   listEvents,
   markAllEventsRead,
   markEventRead,
@@ -19,6 +19,8 @@ import { useNotifications } from "./NotificationProvider";
 import { SeverityDot } from "./SeverityDot";
 
 const BADGE_CAP = 99;
+
+const BELL_QUERY = { page: 1 } as const;
 
 export function NotificationBell() {
   const t = useTranslations("notifications");
@@ -38,8 +40,8 @@ export function NotificationBell() {
   });
 
   const events = useQuery({
-    queryKey: eventsPageQueryKey(1),
-    queryFn: () => listEvents(1),
+    queryKey: eventsQueryKey(BELL_QUERY),
+    queryFn: () => listEvents(BELL_QUERY),
     enabled: open,
   });
 

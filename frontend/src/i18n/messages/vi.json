@@ -438,8 +438,7 @@
     "noResults": "Không có kết quả",
     "pagination": {
       "next": "Trang sau",
-      "of": "trên",
-      "page": "Trang",
+      "page": "Trang {page}",
       "prev": "Trang trước"
     },
     "profile": "Hồ sơ",
@@ -576,6 +575,33 @@
         }
       }
     }
+  },
+  "history": {
+    "count": "{count, plural, =0 {Không có cảnh báo} other {# cảnh báo}}",
+    "empty": "Chưa có cảnh báo nào",
+    "emptyFiltered": "Không có cảnh báo nào khớp với bộ lọc này",
+    "emptyHint": "Cảnh báo sẽ xuất hiện ở đây ngay khi một quy tắc của bạn được kích hoạt.",
+    "filters": {
+      "from": "Từ ngày",
+      "rangeBackwards": "Ngày kết thúc không thể trước ngày bắt đầu.",
+      "severity": "Mức độ",
+      "status": "Trạng thái",
+      "to": "Đến ngày"
+    },
+    "firstPage": "Quay lại trang đầu",
+    "loadFailed": "Không thể tải lịch sử cảnh báo.",
+    "markAllRead": "Đánh dấu tất cả đã đọc",
+    "markFailed": "Không thể cập nhật cảnh báo này. Vui lòng thử lại.",
+    "markOneRead": "Đánh dấu \"{title}\" là đã đọc",
+    "pageGone": "Trang này hiện đang trống",
+    "pagination": "Các trang lịch sử cảnh báo",
+    "status": {
+      "all": "Tất cả",
+      "read": "Đã đọc",
+      "unread": "Chưa đọc"
+    },
+    "subtitle": "Mọi cảnh báo mà quy tắc của bạn đã kích hoạt.",
+    "title": "Lịch sử cảnh báo"
   },
   "home": {
     "alert": {
@@ -773,24 +799,6 @@
       "government": "Chính quyền"
     }
   },
-  "normalHistory": {
-    "empty": "Không tìm thấy lịch sử",
-    "filters": {
-      "all": "Tất cả",
-      "location": "Vị trí",
-      "route": "Tuyến đường",
-      "searchBtn": "Tìm kiếm"
-    },
-    "recentHistory": "Lịch sử gần đây",
-    "title": "Lịch sử",
-    "weather": {
-      "cloudy": "Nhiều mây",
-      "label": "Thời tiết",
-      "rain_light": "Mưa nhẹ",
-      "sunny": "Nắng"
-    },
-    "weatherSearchTitle": "Lịch sử tìm kiếm thời tiết"
-  },
   "notifications": {
     "alert": {
       "body": "{metric} hiện tại {value} ({operator} {threshold}).",
@@ -817,23 +825,6 @@
       "unsupported": "Trình duyệt của bạn không hỗ trợ web push."
     },
     "reconnecting": "Đang kết nối lại…",
-    "rules": {
-      "addBtn": "Thêm quy tắc",
-      "cooldown": "Khoảng nghỉ (phút)",
-      "cooldownShort": "nghỉ {m} phút",
-      "empty": "Chưa có quy tắc cảnh báo cho địa điểm này.",
-      "existing": "Quy tắc đang bật",
-      "hideAdvanced": "Ẩn nâng cao",
-      "metric": "Chỉ số",
-      "newTitle": "Thêm quy tắc",
-      "operator": "Toán tử",
-      "scope": "Phạm vi",
-      "scope24h": "24 giờ tới",
-      "scopeNow": "Hiện tại",
-      "severity": "Mức độ",
-      "showAdvanced": "Nâng cao",
-      "threshold": "Ngưỡng"
-    },
     "scopes": {
       "current": "Hiện tại",
       "forecast_24h": "24 giờ tới"
@@ -933,11 +924,7 @@
     "govIncidents": "Các sự cố đã báo cáo, trạng thái và người đang xử lý.",
     "govReports": "Báo cáo tổng hợp trên các khu vực, sự cố và cảnh báo.",
     "govScenarios": "Mô phỏng giả định dựa trên dữ liệu điều kiện đã ghi nhận.",
-    "history": "Mọi cảnh báo đã kích hoạt cho bạn, có thể lọc và tìm kiếm.",
-    "locations": "Lưu, đổi tên và đánh dấu yêu thích những nơi bạn muốn theo dõi.",
-    "map": "Bản đồ tương tác về điều kiện thời tiết toàn thành phố, kèm công cụ chọn địa điểm.",
-    "notBuilt": "Chưa xây dựng",
-    "weather": "Điều kiện hiện tại và dự báo cho từng địa điểm bạn đã lưu."
+    "notBuilt": "Chưa xây dựng"
   },
   "reports": {
     "config": {

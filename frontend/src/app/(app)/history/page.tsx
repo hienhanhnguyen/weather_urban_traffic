@@ -1,5 +1,5 @@
-import { PlaceholderPage } from "@/features/shell/PlaceholderPage";
+import { AlertHistoryPanel } from "@/features/history/AlertHistoryPanel";
 
 export default function HistoryPage() {
-  return <PlaceholderPage titleKey="history" descriptionKey="history" />;
+  return <AlertHistoryPanel />;
 }

@@ -25,21 +25,46 @@ export interface AlertEventPage {
   pagination: Pagination;
 }
 
+export interface EventQuery {
+  page?: number;
+  limit?: number;
+  isRead?: boolean;
+  severity?: AlertSeverity;
+  from?: string;
+  to?: string;
+}
+
 export const ALERT_EVENTS_QUERY_KEY = ["alerts", "events"] as const;
 export const UNREAD_COUNT_QUERY_KEY = ["alerts", "events", "unread"] as const;
 
-export const eventsPageQueryKey = (page: number) =>
-  [...ALERT_EVENTS_QUERY_KEY, "page", page] as const;
+export const eventsQueryKey = (query: EventQuery) =>
+  [...ALERT_EVENTS_QUERY_KEY, "list", query] as const;
 
 export const EVENTS_PAGE_SIZE = 20;
 
-export const listEvents = (page = 1, limit = EVENTS_PAGE_SIZE) =>
-  apiRequest<AlertEventPage>("/alerts/events", { query: { page, limit } });
+export const listEvents = ({
+  page = 1,
+  limit = EVENTS_PAGE_SIZE,
+  isRead,
+  severity,
+  from,
+  to,
+}: EventQuery = {}) =>
+  apiRequest<AlertEventPage>("/alerts/events", {
+    query: {
+      page,
+      limit,
+      ...(isRead !== undefined && { is_read: isRead }),
+      ...(severity !== undefined && { severity }),
+      ...(from !== undefined && { from }),
+      ...(to !== undefined && { to }),
+    },
+  });
 
 export const countUnread = () =>
-  apiRequest<AlertEventPage>("/alerts/events", {
-    query: { is_read: false, page: 1, limit: 1 },
-  }).then((response) => response.pagination.total);
+  listEvents({ isRead: false, page: 1, limit: 1 }).then(
+    (response) => response.pagination.total,
+  );
 
 export const markEventRead = (id: number) =>
   apiRequest<void>(`/alerts/events/${id}/read`, { method: "PATCH" });
