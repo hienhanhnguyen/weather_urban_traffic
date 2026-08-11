@@ -57,7 +57,7 @@ const schema = Joi.object({
 	MAX_SAVED_LOCATIONS: Joi.number().integer().min(1).default(50),
 
 	GEOCODER_URL: Joi.string().uri().default('https://photon.komoot.io'),
-	ROUTER_URL: Joi.string().uri().default('https://router.project-osrm.org'),
+	ROUTER_URL: Joi.string().uri().default('https://routing.openstreetmap.de'),
 	GEO_USER_AGENT: Joi.string().default('SWTIS/1.0 (thesis project)'),
 	GEO_TIMEOUT_MS: Joi.number().integer().min(1000).default(8_000),
 	GEO_CACHE_SEARCH_TTL_MS: Joi.number().integer().min(0).default(600_000),

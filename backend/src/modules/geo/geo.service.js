@@ -45,6 +45,12 @@ async function reverse({ lat, lng }) {
 	});
 }
 
+const PROFILE_MOUNT = Object.freeze({
+	driving: 'routed-car',
+	cycling: 'routed-bike',
+	walking: 'routed-foot',
+});
+
 async function route({ fromLat, fromLng, toLat, toLng, profile }) {
 	const coordinates =
 		`${round(fromLng, 5)},${round(fromLat, 5)};` +
@@ -57,7 +63,9 @@ async function route({ fromLat, fromLng, toLat, toLng, profile }) {
 		steps: 'false',
 	});
 
-	const url = `${config.geo.routerUrl}/route/v1/${profile}/${coordinates}?${params}`;
+	const url =
+		`${config.geo.routerUrl}/${PROFILE_MOUNT[profile]}` +
+		`/route/v1/driving/${coordinates}?${params}`;
 
 	return cached(
 		`route|${profile}|${coordinates}`,

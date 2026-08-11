@@ -225,6 +225,40 @@ test('unreachable points are a null route rather than a failure', async () => {
 	assert.equal(res.body.route, null);
 });
 
+test('each profile is routed by its own OSRM deployment', async () => {
+	const user = await createUser();
+	const requested = {};
+
+	stubFetch(async (url) => {
+		requested[url.match(/routed-\w+/)?.[0] ?? 'none'] = url;
+		return json({
+			code: 'Ok',
+			routes: [
+				{
+					distance: 100,
+					duration: 60,
+					geometry: { type: 'LineString', coordinates: [] },
+				},
+			],
+		});
+	});
+
+	for (const profile of ['driving', 'cycling', 'walking']) {
+		await request(app)
+			.get(
+				`/api/geo/route?fromLat=10.7&fromLng=106.7&toLat=10.8&toLng=106.6&profile=${profile}`
+			)
+			.set(user.auth)
+			.expect(200);
+	}
+
+	assert.deepEqual(Object.keys(requested).sort(), [
+		'routed-bike',
+		'routed-car',
+		'routed-foot',
+	]);
+});
+
 test('an unknown routing profile is rejected', async () => {
 	const user = await createUser();
 
