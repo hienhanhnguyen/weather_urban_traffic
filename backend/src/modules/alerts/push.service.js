@@ -1,5 +1,11 @@
 const { PushSubscription } = require('../../shared/models');
 const { NotFoundError } = require('../../shared/errors');
+const config = require('../../shared/config');
+
+const publicConfig = () => ({
+	enabled: config.push.enabled && config.push.publicKey !== '',
+	publicKey: config.push.enabled ? config.push.publicKey : '',
+});
 
 const publicSubscription = (subscription) => ({
 	id: subscription.subscription_id,
@@ -40,4 +46,4 @@ async function unsubscribe(userId, subscriptionId) {
 	if (destroyed === 0) throw new NotFoundError('Subscription not found');
 }
 
-module.exports = { subscribe, list, unsubscribe };
+module.exports = { publicConfig, subscribe, list, unsubscribe };

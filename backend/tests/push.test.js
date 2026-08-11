@@ -21,6 +21,29 @@ test.before(setupTestDatabase);
 test.beforeEach(truncateAll);
 test.after(closeTestDatabase);
 
+test('the public key endpoint never leaks the private half', async () => {
+	const user = await createUser();
+
+	const response = await request(app)
+		.get('/api/alerts/push-subscriptions/public-key')
+		.set(user.auth)
+		.expect(200);
+
+	assert.deepEqual(Object.keys(response.body).sort(), [
+		'enabled',
+		'publicKey',
+	]);
+	assert.equal(typeof response.body.enabled, 'boolean');
+	assert.equal(typeof response.body.publicKey, 'string');
+	assert.doesNotMatch(JSON.stringify(response.body), /private/i);
+});
+
+test('the public key endpoint requires a session', async () => {
+	await request(app)
+		.get('/api/alerts/push-subscriptions/public-key')
+		.expect(401);
+});
+
 test('subscribing twice with the same endpoint does not duplicate', async () => {
 	const user = await createUser();
 

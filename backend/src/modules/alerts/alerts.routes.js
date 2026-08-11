@@ -40,6 +40,7 @@ router.patch(
 	controller.markEventRead
 );
 
+router.get('/push-subscriptions/public-key', controller.pushConfig);
 router.get('/push-subscriptions', controller.listPush);
 router.post(
 	'/push-subscriptions',

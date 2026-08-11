@@ -45,6 +45,10 @@ module.exports = {
 	markAllEventsRead: async (req, res) => {
 		res.status(200).json(await service.markAllEventsRead(req.user.id));
 	},
+	pushConfig: (req, res) => {
+		res.status(200).json(pushService.publicConfig());
+	},
+
 	subscribePush: async (req, res) => {
 		res.status(201).json({
 			subscription: await pushService.subscribe(req.user.id, req.body),
