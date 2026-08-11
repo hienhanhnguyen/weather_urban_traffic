@@ -359,88 +359,92 @@
     }
   },
   "businessReports": {
-    "buttons": {
-      "analyze": "Analyze",
-      "analyzing": "Analyzing...",
-      "exportImage": "Image",
-      "exportPdf": "PDF",
-      "fullscreen": "Fullscreen",
-      "hide": "Hide",
-      "saveResult": "Save Result",
-      "saveSchedule": "Save Schedule",
-      "sendNow": "Send Now",
-      "show": "Show"
+    "chart": {
+      "distribution": "Conditions",
+      "distributionHint": "How many hours each kind of weather covers.",
+      "hours": "hours",
+      "metric": "Measure to chart",
+      "noData": "The forecast did not classify any hour.",
+      "tempMax": "Warmest",
+      "tempMin": "Coldest",
+      "trend": "Along the period",
+      "trendDaily": "Day by day, averaged across both ends of the route.",
+      "trendHourly": "Hour by hour, averaged across both ends of the route."
     },
-    "charts": {
-      "incidents": "incidents",
-      "types": {
-        "clearCloudy": "Clear",
-        "cloudy": "Cloudy",
-        "extremeTemp": "Extreme Temperature",
-        "fog": "Fog",
-        "heavyRain": "Heavy Rain",
-        "rain": "Rain",
-        "strongWind": "Strong Wind",
-        "sunny_clear": "Sunny/Clear"
-      },
-      "weatherDistribution": "Weather Distribution",
-      "weatherTrend": "Weather Trend (Past 7 Days)"
-    },
-    "filters": {
-      "allData": "All",
-      "allRoutes": "All Routes",
-      "apply": "Apply",
-      "aqi": "AQI",
-      "customDate": "Custom",
-      "dataType": "Data Type",
-      "fromDate": "From Date",
+    "conditions": {
+      "clear": "Clear",
+      "cloudy": "Cloudy",
+      "drizzle": "Drizzle",
+      "fog": "Fog",
       "rain": "Rain",
-      "route": "By Route",
+      "snow": "Snow",
+      "thunder": "Thunderstorm"
+    },
+    "controls": {
+      "email": "Email this report",
+      "range": "Period",
+      "route": "Route"
+    },
+    "emailed": "Sent to {address}.",
+    "generatedAt": "Built {at}",
+    "kpi": {
+      "avgHumidity": "Average humidity",
+      "avgTemp": "Average temperature",
+      "avgWind": "Average wind",
+      "detail": {
+        "peakWind": "Strongest {value}",
+        "range": "Range {value}",
+        "wetHours": "Wet hours {value}"
+      },
+      "disruptiveHours": "Disruptive hours",
+      "maxPrecipProb": "Highest chance of rain",
+      "totalPrecip": "Total rainfall"
+    },
+    "metrics": {
+      "humidity": "Humidity",
+      "precip": "Rainfall",
       "temp": "Temperature",
-      "time": "By Time",
-      "title": "Filters",
-      "toDate": "To Date",
       "wind": "Wind"
     },
-    "kpi": {
-      "alertCount": "Alert Count",
-      "avgHumidity": "Humidity",
-      "avgRain": "Rainfall",
-      "avgTemp": "Temperature",
-      "avgWind": "Wind",
-      "selectRoute": "Select a route to view detailed analysis"
+    "noRoutes": "No saved routes yet",
+    "noRoutesHint": "A report is built from a route, so save one first.",
+    "planRoute": "Plan a route",
+    "points": {
+      "end": "Destination",
+      "start": "Start"
     },
-    "risk": {
-      "flood": "Flood",
-      "from": "Origin (A)",
-      "landslide": "Landslide",
-      "level": {
-        "high": "High",
-        "low": "Low",
-        "medium": "Medium"
+    "ranges": {
+      "24h": "Next 24 hours",
+      "7d": "Next 7 days"
+    },
+    "reportFailed": "The report could not be built.",
+    "routesFailed": "Your saved routes could not be loaded.",
+    "schedule": {
+      "dayOfMonth": "Day of the month",
+      "dayOfMonthHint": "Up to the 28th, so every month has that day.",
+      "errors": {
+        "routeRequired": "Choose the route to report on."
       },
-      "none": "None",
-      "recommendations": "Recommendations:",
-      "resultTitle": "Analysis Result",
-      "time": "Departure Time",
-      "title": "Route Risk Assessment",
-      "to": "Destination (B)",
-      "today": "Today",
-      "tomorrow": "Tomorrow"
+      "frequency": "How often",
+      "hour": "Time",
+      "hourHint": "In your own time zone.",
+      "last": "Last sent",
+      "loadFailed": "Your delivery schedule could not be loaded.",
+      "monthly": "Every month",
+      "never": "Not yet",
+      "next": "Next report",
+      "range": "Period",
+      "route": "Route",
+      "routePlaceholder": "Choose a route",
+      "saved": "Schedule saved.",
+      "stop": "Stop sending",
+      "subtitle": "Have this report emailed to you on a fixed day.",
+      "title": "Scheduled delivery",
+      "weekday": "Day of the week",
+      "weekly": "Every week"
     },
-    "settings": {
-      "both": "Both",
-      "content": "Select Content",
-      "format": "Format",
-      "monthly": "Day of month",
-      "scheduleDay": "Select Send Day",
-      "title": "Periodic Report Settings",
-      "traffic": "Traffic",
-      "weather": "Weather",
-      "weekly": "Day of week"
-    },
-    "subtitle": "Monitor and analyze weather data on {count} routes",
-    "title": "Reports & Analysis"
+    "subtitle": "The forecast along a saved route, summarised and charted.",
+    "title": "Route weather reports"
   },
   "common": {
     "add": "Add",
@@ -979,7 +983,6 @@
     "title": "Personal"
   },
   "placeholder": {
-    "businessReports": "Charted summaries of risk and alerts over a period, exportable to PDF.",
     "govAreas": "Draw and maintain the monitored areas that city-wide alerts are attached to.",
     "govDashboard": "City-wide situational overview for operations staff.",
     "govIncidents": "Reported incidents, their status and who is handling them.",

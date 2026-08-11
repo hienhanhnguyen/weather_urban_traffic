@@ -359,88 +359,92 @@
     }
   },
   "businessReports": {
-    "buttons": {
-      "analyze": "Phân tích",
-      "analyzing": "Đang phân tích...",
-      "exportImage": "Ảnh",
-      "exportPdf": "PDF",
-      "fullscreen": "Toàn màn hình",
-      "hide": "Ẩn",
-      "saveResult": "Lưu kết quả",
-      "saveSchedule": "Lưu lịch gửi",
-      "sendNow": "Gửi ngay",
-      "show": "Hiện"
+    "chart": {
+      "distribution": "Kiểu thời tiết",
+      "distributionHint": "Mỗi kiểu thời tiết chiếm bao nhiêu giờ.",
+      "hours": "giờ",
+      "metric": "Chỉ số muốn xem",
+      "noData": "Dự báo không phân loại được giờ nào.",
+      "tempMax": "Cao nhất",
+      "tempMin": "Thấp nhất",
+      "trend": "Diễn biến trong kỳ",
+      "trendDaily": "Theo từng ngày, lấy trung bình hai đầu tuyến.",
+      "trendHourly": "Theo từng giờ, lấy trung bình hai đầu tuyến."
     },
-    "charts": {
-      "incidents": "sự cố",
-      "types": {
-        "clearCloudy": "Trời quang đãng / Không mây",
-        "cloudy": "Nhiều mây",
-        "extremeTemp": "Nhiệt độ cao",
-        "fog": "Sương mù",
-        "heavyRain": "Mưa lớn",
-        "rain": "Mưa",
-        "strongWind": "Gió mạnh",
-        "sunny_clear": "Nắng/Quang đãng"
-      },
-      "weatherDistribution": "Phân bổ thời tiết",
-      "weatherTrend": "Xu hướng thời tiết (7 ngày qua)"
-    },
-    "filters": {
-      "allData": "Tất cả",
-      "allRoutes": "Tất cả tuyến",
-      "apply": "Áp dụng",
-      "aqi": "AQI",
-      "customDate": "Tùy chọn",
-      "dataType": "Loại dữ liệu",
-      "fromDate": "Từ ngày",
+    "conditions": {
+      "clear": "Quang mây",
+      "cloudy": "Nhiều mây",
+      "drizzle": "Mưa phùn",
+      "fog": "Sương mù",
       "rain": "Mưa",
-      "route": "Theo tuyến đường",
+      "snow": "Tuyết",
+      "thunder": "Dông"
+    },
+    "controls": {
+      "email": "Gửi báo cáo qua email",
+      "range": "Khoảng thời gian",
+      "route": "Tuyến đường"
+    },
+    "emailed": "Đã gửi tới {address}.",
+    "generatedAt": "Lập lúc {at}",
+    "kpi": {
+      "avgHumidity": "Độ ẩm trung bình",
+      "avgTemp": "Nhiệt độ trung bình",
+      "avgWind": "Gió trung bình",
+      "detail": {
+        "peakWind": "Mạnh nhất {value}",
+        "range": "Dao động {value}",
+        "wetHours": "Số giờ có mưa {value}"
+      },
+      "disruptiveHours": "Số giờ thời tiết xấu",
+      "maxPrecipProb": "Khả năng mưa cao nhất",
+      "totalPrecip": "Tổng lượng mưa"
+    },
+    "metrics": {
+      "humidity": "Độ ẩm",
+      "precip": "Lượng mưa",
       "temp": "Nhiệt độ",
-      "time": "Theo thời gian",
-      "title": "Bộ lọc",
-      "toDate": "Đến ngày",
       "wind": "Gió"
     },
-    "kpi": {
-      "alertCount": "Số cảnh báo",
-      "avgHumidity": "Độ ẩm",
-      "avgRain": "Lượng mưa",
-      "avgTemp": "Nhiệt độ",
-      "avgWind": "Sức gió",
-      "selectRoute": "Chọn tuyến đường để xem chi tiết"
+    "noRoutes": "Chưa có tuyến đường nào được lưu",
+    "noRoutesHint": "Báo cáo được lập từ một tuyến đường, hãy lưu một tuyến trước.",
+    "planRoute": "Lập tuyến đường",
+    "points": {
+      "end": "Điểm đến",
+      "start": "Điểm đi"
     },
-    "risk": {
-      "flood": "Ngập",
-      "from": "Điểm đi (A)",
-      "landslide": "Sạt lở",
-      "level": {
-        "high": "Cao",
-        "low": "Thấp",
-        "medium": "Trung bình"
+    "ranges": {
+      "24h": "24 giờ tới",
+      "7d": "7 ngày tới"
+    },
+    "reportFailed": "Không tạo được báo cáo.",
+    "routesFailed": "Không tải được các tuyến đường đã lưu.",
+    "schedule": {
+      "dayOfMonth": "Ngày trong tháng",
+      "dayOfMonthHint": "Tối đa ngày 28 để tháng nào cũng có.",
+      "errors": {
+        "routeRequired": "Hãy chọn tuyến đường cần báo cáo."
       },
-      "none": "Không",
-      "recommendations": "Khuyến nghị:",
-      "resultTitle": "Kết quả phân tích",
-      "time": "Giờ khởi hành",
-      "title": "Đánh giá rủi ro lộ trình",
-      "to": "Điểm đến (B)",
-      "today": "Hôm nay",
-      "tomorrow": "Ngày mai"
+      "frequency": "Tần suất",
+      "hour": "Giờ gửi",
+      "hourHint": "Theo múi giờ của bạn.",
+      "last": "Lần gửi gần nhất",
+      "loadFailed": "Không tải được lịch gửi báo cáo.",
+      "monthly": "Hằng tháng",
+      "never": "Chưa gửi",
+      "next": "Báo cáo kế tiếp",
+      "range": "Khoảng thời gian",
+      "route": "Tuyến đường",
+      "routePlaceholder": "Chọn tuyến đường",
+      "saved": "Đã lưu lịch gửi.",
+      "stop": "Ngừng gửi",
+      "subtitle": "Nhận báo cáo này qua email vào ngày cố định.",
+      "title": "Gửi định kỳ",
+      "weekday": "Thứ trong tuần",
+      "weekly": "Hằng tuần"
     },
-    "settings": {
-      "both": "Cả hai",
-      "content": "Chọn nội dung",
-      "format": "Định dạng",
-      "monthly": "Ngày cố định mỗi tháng",
-      "scheduleDay": "Chọn ngày gửi",
-      "title": "Cài đặt báo cáo định kỳ",
-      "traffic": "Giao thông",
-      "weather": "Thời tiết",
-      "weekly": "Thứ mấy mỗi tuần"
-    },
-    "subtitle": "Theo dõi và phân tích dữ liệu thời tiết trên {count} tuyến đường",
-    "title": "Báo cáo & Phân tích"
+    "subtitle": "Dự báo dọc một tuyến đã lưu, được tổng hợp và vẽ biểu đồ.",
+    "title": "Báo cáo thời tiết tuyến đường"
   },
   "common": {
     "add": "Thêm",
@@ -979,7 +983,6 @@
     "title": "Cá nhân"
   },
   "placeholder": {
-    "businessReports": "Tổng hợp rủi ro và cảnh báo theo biểu đồ trong một khoảng thời gian, xuất được ra PDF.",
     "govAreas": "Vẽ và duy trì các khu vực được giám sát mà cảnh báo toàn thành phố gắn vào.",
     "govDashboard": "Tổng quan tình hình toàn thành phố dành cho cán bộ vận hành.",
     "govIncidents": "Các sự cố đã báo cáo, trạng thái và người đang xử lý.",

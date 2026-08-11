@@ -1,5 +1,5 @@
-import { PlaceholderPage } from "@/features/shell/PlaceholderPage";
+import { ReportsPanel } from "@/features/reports/ReportsPanel";
 
 export default function BusinessReportsPage() {
-  return <PlaceholderPage titleKey="businessReports" descriptionKey="businessReports" />;
+  return <ReportsPanel />;
 }
