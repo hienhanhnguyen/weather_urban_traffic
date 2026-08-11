@@ -110,6 +110,37 @@
       "traffic": "Giao thông"
     }
   },
+  "alerts": {
+    "addTitle": "Thêm quy tắc",
+    "editTitle": "Sửa quy tắc",
+    "empty": "Địa điểm này chưa có quy tắc cảnh báo nào.",
+    "existing": "Quy tắc hiện có",
+    "form": {
+      "add": "Thêm quy tắc",
+      "advanced": "Nâng cao",
+      "cooldown": "Thời gian chờ (phút)",
+      "cooldownHint": "Khoảng cách ngắn nhất giữa hai cảnh báo của quy tắc này.",
+      "metric": "Chỉ số đo",
+      "mutedBySeverity": "Tài khoản của bạn chỉ nhận cảnh báo từ mức độ tối thiểu đã đặt trong phần Tài khoản trở lên, nên quy tắc thấp hơn mức đó sẽ không đến được bạn.",
+      "operator": "Điều kiện",
+      "scope": "Áp dụng cho",
+      "scopeHint": "“Hiện tại” xét số đo lúc này. “24 giờ tới” xét dự báo theo giờ.",
+      "severity": "Mức độ",
+      "threshold": "Ngưỡng",
+      "thresholdHint": "Tính theo {unit}.",
+      "thresholdPlaceholder": "ví dụ 35"
+    },
+    "loadFailed": "Không tải được danh sách quy tắc cảnh báo.",
+    "rule": {
+      "cooldown": "chờ {minutes} phút",
+      "delete": "Xóa quy tắc {condition}",
+      "edit": "Sửa quy tắc {condition}",
+      "lastFired": "Lần cuối kích hoạt {when} ở mức {value}",
+      "toggle": "Bật quy tắc {condition}"
+    },
+    "subtitle": "Cảnh báo cho {name}",
+    "title": "Quy tắc cảnh báo"
+  },
   "app": {
     "name": "SWTIS",
     "tagline": "Hệ thống dự báo thời tiết thời gian thực cho mạng lưới giao thông đô thị TP. Hồ Chí Minh"
@@ -619,6 +650,8 @@
   "locations": {
     "add": "Thêm địa điểm",
     "addTitle": "Thêm địa điểm",
+    "alertsFor": "Quy tắc cảnh báo cho {name}",
+    "alertsWithCount": "Quy tắc cảnh báo cho {name}, {count} quy tắc",
     "count": "{count, plural, =0 {Chưa có địa điểm nào} other {# địa điểm đã lưu}}",
     "delete": {
       "confirm": "Xóa “{name}”?",
@@ -1053,6 +1086,7 @@
     "addressTooLong": "Tối đa 1000 ký tự",
     "codeDigits": "Chỉ nhập chữ số",
     "codeLength": "Mã gồm 6 chữ số",
+    "cooldownRange": "Nhập số phút nguyên từ 0 đến 10080",
     "currentPasswordRequired": "Nhập mật khẩu hiện tại của bạn",
     "emailInvalid": "Nhập địa chỉ email hợp lệ",
     "emailRequired": "Vui lòng nhập email",
@@ -1064,6 +1098,9 @@
     "passwordMin": "Dùng ít nhất 8 ký tự",
     "passwordRequired": "Vui lòng nhập mật khẩu",
     "passwordsNoMatch": "Mật khẩu không khớp",
+    "thresholdNumber": "Nhập một con số",
+    "thresholdPercent": "Xác suất phải nằm trong khoảng 0 đến 100",
+    "thresholdRequired": "Cần nhập ngưỡng",
     "timezoneMax": "Dùng tối đa 64 ký tự",
     "usernameAlnum": "Chỉ chữ và số",
     "usernameMax": "Dùng tối đa 64 ký tự",

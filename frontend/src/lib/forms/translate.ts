@@ -18,4 +18,8 @@ export type ValidationKey =
   | "timezoneMax"
   | "nameRequired"
   | "nameTooLong"
-  | "addressTooLong";
+  | "addressTooLong"
+  | "thresholdRequired"
+  | "thresholdNumber"
+  | "thresholdPercent"
+  | "cooldownRange";

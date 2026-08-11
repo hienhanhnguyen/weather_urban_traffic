@@ -110,6 +110,37 @@
       "traffic": "Traffic"
     }
   },
+  "alerts": {
+    "addTitle": "Add a rule",
+    "editTitle": "Edit rule",
+    "empty": "No alert rules for this location yet.",
+    "existing": "Current rules",
+    "form": {
+      "add": "Add rule",
+      "advanced": "Advanced",
+      "cooldown": "Cooldown (minutes)",
+      "cooldownHint": "The shortest gap between two alerts from this rule.",
+      "metric": "Measurement",
+      "mutedBySeverity": "Your account only delivers alerts at or above the minimum severity set in Account settings, so a rule below it will not reach you.",
+      "operator": "Condition",
+      "scope": "Applies to",
+      "scopeHint": "“Now” checks the current reading. “Next 24h” checks the hourly forecast.",
+      "severity": "Severity",
+      "threshold": "Threshold",
+      "thresholdHint": "Measured in {unit}.",
+      "thresholdPlaceholder": "e.g. 35"
+    },
+    "loadFailed": "Could not load the alert rules.",
+    "rule": {
+      "cooldown": "cooldown {minutes}m",
+      "delete": "Delete rule {condition}",
+      "edit": "Edit rule {condition}",
+      "lastFired": "Last fired {when} at {value}",
+      "toggle": "Enable rule {condition}"
+    },
+    "subtitle": "Alerts for {name}",
+    "title": "Alert rules"
+  },
   "app": {
     "name": "SWTIS",
     "tagline": "Real-time weather forecasting system for urban transport networks in Ho Chi Minh City"
@@ -619,6 +650,8 @@
   "locations": {
     "add": "Add location",
     "addTitle": "Add a location",
+    "alertsFor": "Alert rules for {name}",
+    "alertsWithCount": "Alert rules for {name}, {count, plural, one {# rule} other {# rules}}",
     "count": "{count, plural, =0 {No saved locations} one {# saved location} other {# saved locations}}",
     "delete": {
       "confirm": "Delete “{name}”?",
@@ -1053,6 +1086,7 @@
     "addressTooLong": "Use at most 1000 characters",
     "codeDigits": "Digits only",
     "codeLength": "The code is 6 digits",
+    "cooldownRange": "Enter a whole number of minutes from 0 to 10080",
     "currentPasswordRequired": "Enter your current password",
     "emailInvalid": "Enter a valid email address",
     "emailRequired": "Email is required",
@@ -1064,6 +1098,9 @@
     "passwordMin": "Use at least 8 characters",
     "passwordRequired": "Password is required",
     "passwordsNoMatch": "Passwords do not match",
+    "thresholdNumber": "Enter a number",
+    "thresholdPercent": "A probability must be between 0 and 100",
+    "thresholdRequired": "A threshold is required",
     "timezoneMax": "Use at most 64 characters",
     "usernameAlnum": "Letters and numbers only",
     "usernameMax": "Use at most 64 characters",

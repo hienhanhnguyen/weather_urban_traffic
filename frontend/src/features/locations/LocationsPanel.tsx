@@ -6,6 +6,8 @@ import { useTranslations } from "next-intl";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Callout } from "@/components/ui/Callout";
+import { AlertRulesModal } from "@/features/alerts/AlertRulesModal";
+import { ALERT_RULES_QUERY_KEY, listRules } from "@/features/alerts/api";
 import { LOCATIONS_QUERY_KEY, listLocations, type SavedLocation } from "./api";
 import { LocationRow } from "./LocationRow";
 import { LocationFormModal } from "./LocationFormModal";
@@ -21,14 +23,29 @@ export function LocationsPanel() {
   const [pendingDelete, setPendingDelete] = useState<SavedLocation | null>(
     null,
   );
+  const [alertsFor, setAlertsFor] = useState<SavedLocation | null>(null);
 
   const query = useQuery({
     queryKey: LOCATIONS_QUERY_KEY,
     queryFn: listLocations,
   });
 
+  const rules = useQuery({
+    queryKey: ALERT_RULES_QUERY_KEY,
+    queryFn: listRules,
+  });
+
   const locations = query.data?.locations ?? [];
   const total = query.data?.pagination.total ?? 0;
+
+  const ruleCounts =
+    rules.data && rules.data.pagination.total <= rules.data.rules.length
+      ? rules.data.rules.reduce<Map<number, number>>(
+          (counts, rule) =>
+            counts.set(rule.locationId, (counts.get(rule.locationId) ?? 0) + 1),
+          new Map(),
+        )
+      : null;
 
   return (
     <section className="flex flex-col gap-4">
@@ -76,8 +93,10 @@ export function LocationsPanel() {
             <LocationRow
               key={location.id}
               location={location}
+              ruleCount={ruleCounts ? (ruleCounts.get(location.id) ?? 0) : null}
               onEdit={(value) => setForm({ location: value })}
               onDelete={setPendingDelete}
+              onAlerts={setAlertsFor}
             />
           ))}
         </ul>
@@ -100,6 +119,13 @@ export function LocationsPanel() {
         <DeleteLocationDialog
           location={pendingDelete}
           onClose={() => setPendingDelete(null)}
+        />
+      )}
+
+      {alertsFor && (
+        <AlertRulesModal
+          location={alertsFor}
+          onClose={() => setAlertsFor(null)}
         />
       )}
     </section>

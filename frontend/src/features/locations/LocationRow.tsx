@@ -2,21 +2,32 @@
 
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { MapPin, Pencil, Trash2 } from "lucide-react";
+import { Bell, MapPin, Pencil, Trash2 } from "lucide-react";
 import type { SavedLocation } from "./api";
 
 export interface LocationRowProps {
   location: SavedLocation;
+  ruleCount: number | null;
   onEdit: (location: SavedLocation) => void;
   onDelete: (location: SavedLocation) => void;
+  onAlerts: (location: SavedLocation) => void;
 }
 
-export function LocationRow({ location, onEdit, onDelete }: LocationRowProps) {
+export function LocationRow({
+  location,
+  ruleCount,
+  onEdit,
+  onDelete,
+  onAlerts,
+}: LocationRowProps) {
   const t = useTranslations("locations");
 
   return (
     <li className="flex items-start gap-3 px-4 py-3">
-      <MapPin aria-hidden="true" className="mt-0.5 size-4 shrink-0 opacity-60" />
+      <MapPin
+        aria-hidden="true"
+        className="mt-0.5 size-4 shrink-0 opacity-60"
+      />
 
       <div className="min-w-0 flex-1">
         <p className="truncate text-sm font-medium">{location.name}</p>
@@ -38,6 +49,28 @@ export function LocationRow({ location, onEdit, onDelete }: LocationRowProps) {
         >
           <MapPin aria-hidden="true" className="size-4" />
         </Link>
+
+        <button
+          type="button"
+          onClick={() => onAlerts(location)}
+          aria-label={
+            ruleCount
+              ? t("alertsWithCount", { name: location.name, count: ruleCount })
+              : t("alertsFor", { name: location.name })
+          }
+          className="relative rounded-md p-2 hover:bg-black/5 dark:hover:bg-white/10"
+        >
+          <Bell aria-hidden="true" className="size-4" />
+
+          {ruleCount !== null && ruleCount > 0 && (
+            <span
+              aria-hidden="true"
+              className="absolute top-0.5 right-0.5 min-w-4 rounded-full bg-sky-600 px-1 text-[10px] leading-4 font-medium text-white"
+            >
+              {ruleCount}
+            </span>
+          )}
+        </button>
 
         <button
           type="button"
