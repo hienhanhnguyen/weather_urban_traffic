@@ -10,6 +10,11 @@ const {
 	PasswordResetToken,
 } = require('../modules/auth/auth.models');
 const PushSubscription = require('../modules/alerts/push.subscription.model');
+const {
+	SavedRoute,
+	RouteSearch,
+	WeatherSearch,
+} = require('../modules/routing/routing.models');
 
 
 User.belongsToMany(Role, {
@@ -44,6 +49,18 @@ AlertRule.belongsTo(SavedLocation, {
 AlertRule.hasMany(AlertEvent, { foreignKey: 'rule_id', as: 'events' });
 AlertEvent.belongsTo(AlertRule, { foreignKey: 'rule_id', as: 'rule' });
 
+// A looked-up place may or may not be one of the user's saved locations, and
+// deleting the saved location must not erase the lookup that happened.
+SavedLocation.hasMany(WeatherSearch, {
+	foreignKey: 'location_id',
+	as: 'searches',
+	onDelete: 'SET NULL',
+});
+WeatherSearch.belongsTo(SavedLocation, {
+	foreignKey: 'location_id',
+	as: 'location',
+});
+
 for (const model of [
 	RefreshToken,
 	OtpCode,
@@ -52,6 +69,9 @@ for (const model of [
 	AlertRule,
 	AlertEvent,
 	PushSubscription,
+	SavedRoute,
+	RouteSearch,
+	WeatherSearch,
 ]) {
 	model.belongsTo(User, { foreignKey: 'user_id', onDelete: 'CASCADE' });
 	User.hasMany(model, { foreignKey: 'user_id' });
@@ -69,4 +89,7 @@ module.exports = {
 	OtpCode,
 	PasswordResetToken,
 	PushSubscription,
+	SavedRoute,
+	RouteSearch,
+	WeatherSearch,
 };

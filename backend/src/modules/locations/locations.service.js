@@ -37,18 +37,30 @@ async function get(userId, locationId) {
 	return publicLocation(await ownedOrFail(userId, locationId));
 }
 
-async function create(userId, data) {
-	const existing = await SavedLocation.count({ where: { user_id: userId } });
+async function createMany(userId, entries, transaction) {
+	const existing = await SavedLocation.count({
+		where: { user_id: userId },
+		transaction,
+	});
 
-	if (existing >= config.limits.maxSavedLocations) {
+	if (existing + entries.length > config.limits.maxSavedLocations) {
 		throw new ConflictError(
 			`You can save at most ${config.limits.maxSavedLocations} locations`,
 			{ code: 'LOCATION_LIMIT_REACHED' }
 		);
 	}
 
-	const location = await SavedLocation.create({ ...data, user_id: userId });
-	return publicLocation(location);
+	const locations = await SavedLocation.bulkCreate(
+		entries.map((entry) => ({ ...entry, user_id: userId })),
+		{ transaction }
+	);
+
+	return locations.map(publicLocation);
+}
+
+async function create(userId, data) {
+	const [location] = await createMany(userId, [data]);
+	return location;
 }
 
 async function update(userId, locationId, patch) {
@@ -62,4 +74,12 @@ async function remove(userId, locationId) {
 	await location.destroy();
 }
 
-module.exports = { list, get, create, update, remove, ownedOrFail };
+module.exports = {
+	list,
+	get,
+	create,
+	createMany,
+	update,
+	remove,
+	ownedOrFail,
+};
