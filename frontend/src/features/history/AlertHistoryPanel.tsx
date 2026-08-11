@@ -67,14 +67,11 @@ export function AlertHistoryPanel() {
   const busy = markOne.isPending || markAll.isPending;
 
   return (
-    <section className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4">
       <div className="flex items-center gap-3">
-        <div className="min-w-0">
-          <h1 className="text-lg font-semibold">{t("title")}</h1>
-          <p className="text-sm opacity-70">
-            {query.isSuccess ? t("count", { count: total }) : t("subtitle")}
-          </p>
-        </div>
+        <p className="min-w-0 text-sm opacity-70">
+          {query.isSuccess ? t("count", { count: total }) : t("subtitle")}
+        </p>
 
         <Button
           variant="secondary"
@@ -161,6 +158,6 @@ export function AlertHistoryPanel() {
         onPageChange={setPage}
         label={t("pagination")}
       />
-    </section>
+    </div>
   );
 }

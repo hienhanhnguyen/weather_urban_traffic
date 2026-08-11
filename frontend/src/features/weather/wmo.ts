@@ -74,6 +74,14 @@ export function conditionFor(code: number | null): WeatherCondition {
   return code === null ? UNKNOWN : (CONDITIONS[code] ?? UNKNOWN);
 }
 
+export const wmoTag = (code: number | null) =>
+  code === null ? null : `wmo:${code}`;
+
+export function codeFromTag(tag: string | null): number | null {
+  const match = /^wmo:(\d+)$/.exec(tag ?? "");
+  return match ? Number(match[1]) : null;
+}
+
 const RANK: Record<Severity, number> = { clear: 0, caution: 1, severe: 2 };
 
 export function worstSeverity(severities: Severity[]): Severity {

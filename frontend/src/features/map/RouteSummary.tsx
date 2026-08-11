@@ -1,9 +1,10 @@
 "use client";
 
-import { useFormatter, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { WeatherIcon } from "@/features/weather/WeatherIcon";
 import { conditionFor, type Severity } from "@/features/weather/wmo";
 import type { GeoRoute } from "./api";
+import { useRouteFormat } from "./format";
 import type { RouteConditions } from "./routeWeather";
 
 const BARS: Record<Severity, string> = {
@@ -29,21 +30,10 @@ export function RouteSummary({
 }) {
   const t = useTranslations("map.route");
   const tConditions = useTranslations("weather.conditions");
-  const format = useFormatter();
+  const routeFormat = useRouteFormat();
 
-  const distance =
-    route.distanceMeters < 1000
-      ? `${Math.round(route.distanceMeters)} m`
-      : `${format.number(route.distanceMeters / 1000, { maximumFractionDigits: 1 })} km`;
-
-  const minutes = Math.round(route.durationSeconds / 60);
-  const duration =
-    minutes < 60
-      ? t("minutes", { count: minutes })
-      : t("hoursMinutes", {
-          hours: Math.floor(minutes / 60),
-          minutes: minutes % 60,
-        });
+  const distance = routeFormat.distance(route.distanceMeters);
+  const duration = routeFormat.duration(route.durationSeconds);
 
   return (
     <section className="flex flex-col gap-4 rounded-lg border border-border p-4">

@@ -1,11 +1,23 @@
 "use client";
 
-import { useState } from "react";
-import { skipToken, useQuery } from "@tanstack/react-query";
+import { useEffect, useEffectEvent, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import {
+  skipToken,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { Callout } from "@/components/ui/Callout";
 import { LOCATIONS_QUERY_KEY, listLocations } from "@/features/locations/api";
+import {
+  WEATHER_SEARCHES_QUERY_KEY,
+  recordWeatherSearch,
+} from "@/features/history/api";
+import { parsePlaceLink } from "./link";
+import { wmoTag } from "./wmo";
 import {
   currentQueryKey,
   forecastQueryKey,
@@ -22,8 +34,12 @@ const STALE_TIME = 5 * 60 * 1000;
 export function WeatherPanel() {
   const t = useTranslations("weather");
   const tCommon = useTranslations("common");
+  const queryClient = useQueryClient();
 
-  const [chosen, setChosen] = useState<WeatherPlace | null>(null);
+  const params = useSearchParams();
+  const [chosen, setChosen] = useState<WeatherPlace | null>(() =>
+    parsePlaceLink(params),
+  );
 
   const saved = useQuery({
     queryKey: LOCATIONS_QUERY_KEY,
@@ -56,6 +72,42 @@ export function WeatherPanel() {
   });
 
   const failed = current.isError || forecast.isError;
+
+  const recorder = useMutation({
+    mutationFn: recordWeatherSearch,
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: WEATHER_SEARCHES_QUERY_KEY }),
+  });
+
+  const looked =
+    place && current.data ? `${place.latitude},${place.longitude}` : null;
+
+  const recorded = useRef<string | null>(null);
+
+  const record = useEffectEvent(() => {
+    if (!place || !current.data) return;
+
+    const match = saved.data?.locations.find(
+      (location) =>
+        location.latitude === place.latitude &&
+        location.longitude === place.longitude,
+    );
+
+    recorder.mutate({
+      location_id: match?.id ?? null,
+      label: place.label || t("unknownPlace"),
+      latitude: place.latitude,
+      longitude: place.longitude,
+      temperature_c: current.data.temp,
+      condition: wmoTag(current.data.weatherCode),
+    });
+  });
+
+  useEffect(() => {
+    if (looked === null || recorded.current === looked) return;
+    recorded.current = looked;
+    record();
+  }, [looked]);
 
   return (
     <div className="flex flex-col gap-6">

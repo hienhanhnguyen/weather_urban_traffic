@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Select } from "@/components/ui/Select";
-import { TextField } from "@/components/ui/TextField";
+import { DateRangeFields } from "./DateRangeFields";
 import {
   READ_FILTERS,
   SEVERITY_FILTERS,
@@ -59,21 +59,10 @@ export function HistoryFilterBar({
         }))}
       />
 
-      <TextField
-        type="date"
-        label={t("filters.from")}
-        value={filters.from}
-        max={filters.to || undefined}
-        onChange={(event) => patch({ from: event.target.value })}
-      />
-
-      <TextField
-        type="date"
-        label={t("filters.to")}
-        value={filters.to}
-        min={filters.from || undefined}
-        error={rangeError}
-        onChange={(event) => patch({ to: event.target.value })}
+      <DateRangeFields
+        range={filters}
+        onChange={patch}
+        rangeError={rangeError}
       />
 
       {showReset && (

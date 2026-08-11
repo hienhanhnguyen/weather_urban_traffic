@@ -1,14 +1,20 @@
 import type { AlertSeverity, EventQuery } from "@/features/notifications/api";
+import type { SearchQuery } from "./api";
 
 export type ReadFilter = "all" | "unread" | "read";
 export type SeverityFilter = "all" | AlertSeverity;
 
-export interface HistoryFilters {
-  read: ReadFilter;
-  severity: SeverityFilter;
+export interface DateRange {
   from: string;
   to: string;
 }
+
+export interface HistoryFilters extends DateRange {
+  read: ReadFilter;
+  severity: SeverityFilter;
+}
+
+export const EMPTY_RANGE: DateRange = { from: "", to: "" };
 
 export const EMPTY_FILTERS: HistoryFilters = {
   read: "all",
@@ -41,8 +47,17 @@ const dayBoundary = (day: string, endOfDay: boolean) => {
 export const startOfDay = (day: string) => dayBoundary(day, false);
 export const endOfDay = (day: string) => dayBoundary(day, true);
 
-export const isRangeBackwards = (filters: HistoryFilters) =>
-  filters.from !== "" && filters.to !== "" && filters.from > filters.to;
+export const isRangeBackwards = (range: DateRange) =>
+  range.from !== "" && range.to !== "" && range.from > range.to;
+
+export const isRangeSet = (range: DateRange) =>
+  range.from !== "" || range.to !== "";
+
+export const toSearchQuery = (range: DateRange, page: number): SearchQuery => ({
+  page,
+  ...(range.from !== "" && { from: startOfDay(range.from) }),
+  ...(range.to !== "" && { to: endOfDay(range.to) }),
+});
 
 export const isFiltered = (filters: HistoryFilters) =>
   filters.read !== "all" ||

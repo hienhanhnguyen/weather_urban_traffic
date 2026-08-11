@@ -595,13 +595,46 @@
     "markOneRead": "Mark \"{title}\" as read",
     "pageGone": "This page is empty now",
     "pagination": "Alert history pages",
+    "routes": {
+      "clear": "Clear history",
+      "clearFailed": "Could not clear your route history.",
+      "count": "{count, plural, =0 {No route searches} one {# route search} other {# route searches}}",
+      "empty": "No route searches yet",
+      "emptyFiltered": "No route searches in this date range",
+      "emptyHint": "Plan a trip on the map and it will be listed here.",
+      "firstPage": "Back to the first page",
+      "loadFailed": "Could not load your route history.",
+      "pageGone": "This page is empty now",
+      "pagination": "Route history pages",
+      "reopen": "Open {label} in the map again",
+      "subtitle": "Trips you have looked up."
+    },
     "status": {
       "all": "All",
       "read": "Read",
       "unread": "Unread"
     },
     "subtitle": "Every alert your rules have raised.",
-    "title": "Alert history"
+    "tabs": {
+      "alerts": "Alerts",
+      "routes": "Routes",
+      "weather": "Weather"
+    },
+    "title": "History",
+    "weather": {
+      "clear": "Clear history",
+      "clearFailed": "Could not clear your weather history.",
+      "count": "{count, plural, =0 {No weather searches} one {# weather search} other {# weather searches}}",
+      "empty": "No weather searches yet",
+      "emptyFiltered": "No weather searches in this date range",
+      "emptyHint": "Look up a place on the weather page and it will be listed here.",
+      "firstPage": "Back to the first page",
+      "loadFailed": "Could not load your weather history.",
+      "pageGone": "This page is empty now",
+      "pagination": "Weather history pages",
+      "reopen": "Check the weather for {label} again",
+      "subtitle": "Places you have checked the weather for."
+    }
   },
   "home": {
     "alert": {
@@ -786,10 +819,11 @@
       "govIncidents": "Incidents",
       "govReports": "Reports",
       "govScenarios": "Scenarios",
-      "history": "Alert history",
+      "history": "History",
       "locations": "My locations",
       "map": "Map",
       "overview": "Overview",
+      "routes": "Saved routes",
       "weather": "Weather"
     },
     "main": "Main",
@@ -990,6 +1024,43 @@
       "summary": "Summary"
     }
   },
+  "routes": {
+    "count": "{count, plural, =0 {No saved routes} one {# saved route} other {# saved routes}}",
+    "defaultName": "{from} → {to}",
+    "delete": {
+      "confirm": "Delete “{name}”?",
+      "title": "Delete route",
+      "warning": "This cannot be undone. Locations saved with the route are kept."
+    },
+    "deleteOne": "Delete {name}",
+    "empty": "No saved routes yet",
+    "emptyHint": "Plan a trip on the map, then save it to find it here.",
+    "endpointLimitReached": "You have reached the maximum number of saved locations, so the two ends could not be saved. Nothing was saved — delete a location or turn the option off.",
+    "firstPage": "Back to the first page",
+    "form": {
+      "from": "From",
+      "name": "Name",
+      "namePlaceholder": "Commute, weekend trip…",
+      "saveEndpoints": "Also save both ends as locations",
+      "saveEndpointsHint": "Lets you attach weather alerts to the start and the destination.",
+      "to": "To"
+    },
+    "limitReached": "You have reached the maximum number of saved routes. Delete one to save another.",
+    "loadFailed": "Could not load your saved routes.",
+    "openInMap": "Open {name} in the map",
+    "pageGone": "This page is empty now",
+    "pagination": "Saved route pages",
+    "planNew": "Plan a route",
+    "renameOne": "Rename {name}",
+    "renameTitle": "Rename route",
+    "saveAction": "Save this route",
+    "saveTitle": "Save route",
+    "saved": "Route saved.",
+    "subtitle": "Trips you have saved.",
+    "title": "Saved routes",
+    "unnamedEnd": "Destination",
+    "unnamedStart": "Start"
+  },
   "scenarioManagement": {
     "addStepModal": {
       "addBtn": "Add Step",
@@ -1167,6 +1238,7 @@
     "searchPlaceholder": "Search for a place",
     "subtitle": "Pick a place to see its forecast.",
     "title": "Weather",
+    "unknownPlace": "Selected place",
     "useMyLocation": "Use my location",
     "wind": "Wind"
   }

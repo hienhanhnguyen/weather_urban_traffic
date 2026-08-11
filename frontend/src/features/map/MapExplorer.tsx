@@ -1,16 +1,26 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useEffectEvent, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
-import { skipToken, useQuery } from "@tanstack/react-query";
+import {
+  skipToken,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
-import { Crosshair, Maximize2 } from "lucide-react";
+import { Bookmark, Crosshair, Maximize2 } from "lucide-react";
 import type { MapRef } from "react-map-gl/maplibre";
 import { Button } from "@/components/ui/Button";
 import { Callout } from "@/components/ui/Callout";
 import { Toggle } from "@/components/ui/Toggle";
 import { LOCATIONS_QUERY_KEY, listLocations } from "@/features/locations/api";
+import {
+  ROUTE_SEARCHES_QUERY_KEY,
+  recordRouteSearch,
+} from "@/features/history/api";
+import { SaveRouteDialog } from "@/features/routes/SaveRouteDialog";
 import { DEFAULT_CENTER, DEFAULT_ZOOM, DETAIL_ZOOM } from "@/lib/map/config";
 import {
   ROUTE_QUERY_KEY,
@@ -19,6 +29,7 @@ import {
   type RouteProfile,
 } from "./api";
 import { boundsOf, type Position } from "./geometry";
+import { parseRouteLink } from "./link";
 import { RoutePlanner } from "./RoutePlanner";
 import { RouteSummary } from "./RouteSummary";
 import { useRouteConditions } from "./routeWeather";
@@ -49,14 +60,25 @@ function useFocusFromUrl() {
 
 export function MapExplorer() {
   const t = useTranslations("map");
+  const tRoutes = useTranslations("routes");
+  const queryClient = useQueryClient();
 
   const mapRef = useRef<MapRef>(null);
   const focus = useFocusFromUrl();
 
-  const [origin, setOrigin] = useState<MapPoint | null>(null);
-  const [destination, setDestination] = useState<MapPoint | null>(null);
-  const [profile, setProfile] = useState<RouteProfile>("driving");
+  const params = useSearchParams();
+  const [link] = useState(() => parseRouteLink(params));
+
+  const [origin, setOrigin] = useState<MapPoint | null>(link?.origin ?? null);
+  const [destination, setDestination] = useState<MapPoint | null>(
+    link?.destination ?? null,
+  );
+  const [profile, setProfile] = useState<RouteProfile>(
+    link?.profile ?? "driving",
+  );
   const [showConditions, setShowConditions] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [savedTrip, setSavedTrip] = useState<string | null>(null);
 
   const [picked, setPicked] = useState<MapPoint | null>(null);
   const [pickedPending, setPickedPending] = useState(false);
@@ -96,6 +118,45 @@ export function MapExplorer() {
     const bounds = boundsOf(coordinates);
     if (bounds) mapRef.current?.fitBounds(bounds, { padding: FIT_PADDING });
   }, [coordinates]);
+
+  const recorder = useMutation({
+    mutationFn: recordRouteSearch,
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ROUTE_SEARCHES_QUERY_KEY }),
+  });
+
+  const trip =
+    origin && destination && route.data
+      ? `${origin.latitude},${origin.longitude},${destination.latitude},${destination.longitude},${profile}`
+      : null;
+
+  const recordedTrip = useRef<string | null>(null);
+
+  const record = useEffectEvent(() => {
+    if (!origin || !destination || !route.data) return;
+
+    recorder.mutate({
+      start: {
+        latitude: origin.latitude,
+        longitude: origin.longitude,
+        address: origin.label || null,
+      },
+      end: {
+        latitude: destination.latitude,
+        longitude: destination.longitude,
+        address: destination.label || null,
+      },
+      profile,
+      distance_m: route.data.distanceMeters,
+      duration_s: route.data.durationSeconds,
+    });
+  });
+
+  useEffect(() => {
+    if (trip === null || recordedTrip.current === trip) return;
+    recordedTrip.current = trip;
+    record();
+  }, [trip]);
 
   const setEndpoint = (endpoint: Endpoint, point: MapPoint | null) => {
     if (endpoint === "origin") setOrigin(point);
@@ -208,6 +269,23 @@ export function MapExplorer() {
             />
           )}
 
+          {route.data && origin && destination && (
+            <div className="flex flex-col gap-2">
+              <Button
+                variant="secondary"
+                onClick={() => setSaving(true)}
+                className="self-start"
+              >
+                <Bookmark aria-hidden="true" className="size-4" />
+                {tRoutes("saveAction")}
+              </Button>
+
+              {savedTrip !== null && savedTrip === trip && (
+                <Callout tone="success">{tRoutes("saved")}</Callout>
+              )}
+            </div>
+          )}
+
           {conditions.isError && showConditions && (
             <p className="text-sm opacity-70">{t("route.conditionsFailed")}</p>
           )}
@@ -257,6 +335,21 @@ export function MapExplorer() {
           </div>
         </div>
       </div>
+
+      {saving && route.data && origin && destination && (
+        <SaveRouteDialog
+          origin={origin}
+          destination={destination}
+          profile={profile}
+          distanceMeters={route.data.distanceMeters}
+          durationSeconds={route.data.durationSeconds}
+          onClose={() => setSaving(false)}
+          onSaved={() => {
+            setSaving(false);
+            setSavedTrip(trip);
+          }}
+        />
+      )}
     </div>
   );
 }

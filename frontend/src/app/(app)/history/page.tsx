@@ -1,5 +1,5 @@
-import { AlertHistoryPanel } from "@/features/history/AlertHistoryPanel";
+import { HistoryTabs } from "@/features/history/HistoryTabs";
 
 export default function HistoryPage() {
-  return <AlertHistoryPanel />;
+  return <HistoryTabs />;
 }
