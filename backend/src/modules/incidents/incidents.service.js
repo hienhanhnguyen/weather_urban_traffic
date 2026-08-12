@@ -203,4 +203,5 @@ module.exports = {
 	updateStatus,
 	activateScenario,
 	publicIncident,
+	whereFor,
 };

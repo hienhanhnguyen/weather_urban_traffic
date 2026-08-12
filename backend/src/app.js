@@ -17,6 +17,7 @@ const analysisRoutes = require('./modules/analysis/analysis.routes');
 const areaRoutes = require('./modules/areas/areas.routes');
 const incidentRoutes = require('./modules/incidents/incidents.routes');
 const scenarioRoutes = require('./modules/scenarios/scenarios.routes');
+const govReportRoutes = require('./modules/govreports/govreports.routes');
 const requestId = require('./shared/request.id');
 
 
@@ -78,6 +79,7 @@ app.use('/api/analysis', analysisRoutes);
 app.use('/api/gov/areas', areaRoutes);
 app.use('/api/gov/incidents', incidentRoutes);
 app.use('/api/gov/scenarios', scenarioRoutes);
+app.use('/api/gov/reports', govReportRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);

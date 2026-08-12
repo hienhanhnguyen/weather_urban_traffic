@@ -93,4 +93,4 @@ function computeNextRun(schedule, timeZone, from = new Date()) {
 	throw new Error(`Cannot schedule frequency "${schedule.frequency}"`);
 }
 
-module.exports = { computeNextRun, partsInZone, fromZoned, safeZone };
+module.exports = { computeNextRun, partsInZone, fromZoned, safeZone, offsetMs };

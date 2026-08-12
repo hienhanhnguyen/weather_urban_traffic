@@ -22,6 +22,9 @@ const {
 	ResponseScenario,
 	ResponseScenarioStep,
 } = require('../modules/scenarios/scenario.models');
+const {
+	GovReportSchedule,
+} = require('../modules/govreports/gov.report.models');
 
 
 User.belongsToMany(Role, {
@@ -121,6 +124,7 @@ for (const model of [
 	ReportSchedule,
 	ManagedArea,
 	ResponseScenario,
+	GovReportSchedule,
 ]) {
 	model.belongsTo(User, { foreignKey: 'user_id', onDelete: 'CASCADE' });
 	User.hasMany(model, { foreignKey: 'user_id' });
@@ -146,4 +150,5 @@ module.exports = {
 	AreaAlertRule,
 	ResponseScenario,
 	ResponseScenarioStep,
+	GovReportSchedule,
 };
