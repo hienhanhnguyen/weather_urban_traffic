@@ -79,65 +79,6 @@
     "business": "Business",
     "individual": "Individual"
   },
-  "alertHistory": {
-    "actions": {
-      "export": "Export CSV",
-      "list": "List",
-      "map": "Map",
-      "reset": "Reset",
-      "search": "Search"
-    },
-    "category": "History & Incidents",
-    "detail": {
-      "area": "Area",
-      "attachment": "(Images/Attachments will appear here)",
-      "desc": "Alert Content",
-      "noSelection": "Select a record to view details and response actions.",
-      "response": "Response Actions",
-      "title": "Incident Details",
-      "type": "Alert Type"
-    },
-    "filter": {
-      "all": "All",
-      "area": "Area",
-      "dateRange": "Time Range",
-      "severity": "Severity",
-      "title": "Lookup Filters",
-      "type": "Alert Type"
-    },
-    "list": {
-      "found": "records found",
-      "mapView": "Showing incident points"
-    },
-    "severity": {
-      "High": "High",
-      "Low": "Low",
-      "Medium": "Medium"
-    },
-    "status": {
-      "Handled": "Handled",
-      "Pending": "Pending"
-    },
-    "subtitle": "Quick lookup of events and response actions",
-    "template": {
-      "desc": {
-        "rain": "Rainfall = {value}{unit} crossed the threshold ({threshold}{unit}) for \"{area}\".",
-        "temp": "Temperature = {value}{unit} crossed the threshold ({threshold}{unit}) for \"{area}\"."
-      },
-      "title": {
-        "rain": "Rainfall alert {area}",
-        "temp": "Temperature alert {area}"
-      }
-    },
-    "title": "Alert History & Incidents",
-    "type": {
-      "flood": "Flood",
-      "other": "Other",
-      "rain": "Rain",
-      "storm": "Storm",
-      "traffic": "Traffic"
-    }
-  },
   "alerts": {
     "addTitle": "Add a rule",
     "editTitle": "Edit rule",
@@ -560,96 +501,6 @@
     "viewAll": "View All",
     "welcome": "Welcome to SWTIS"
   },
-  "dashboard": {
-    "alertType": {
-      "flood": "Flood",
-      "rain": "Heavy Rain",
-      "storm": "Storm"
-    },
-    "chart": {
-      "alertDistribution": "Alert Type Distribution",
-      "alertsByRegion": "Alerts by Region",
-      "flood": "Flood",
-      "other": "Other",
-      "rain": "Heavy Rain",
-      "riskDistribution": "Risk Level Distribution",
-      "storm": "Storm",
-      "totalAlerts": "Total Alerts",
-      "weatherTrend": "Weather Trend"
-    },
-    "filter": {
-      "24h": "24h",
-      "30days": "30 Days",
-      "7days": "7 Days",
-      "alertType": "Alert Type",
-      "allRegions": "All",
-      "allTypes": "All",
-      "region": "By Region",
-      "timeframe": "By Time",
-      "title": "Filters"
-    },
-    "kpi": {
-      "avgRainfall": "Avg Rainfall",
-      "highRiskAreas": "High Risk Areas",
-      "maxWind": "Max Wind",
-      "totalAlerts": "Total Alerts"
-    },
-    "map": {
-      "addAlertRule": "Add Alert Rule",
-      "details": {
-        "activeAlerts": "Active Alerts",
-        "avgTemp": "Avg Temp",
-        "deleteRule": "Delete rule",
-        "deleteRuleConfirm": "Delete this alert rule?",
-        "directionAbove": "≥",
-        "directionBelow": "≤",
-        "noData": "No data",
-        "noRules": "No alert rules configured for this area.",
-        "rainfall": "Rainfall",
-        "rulesTitle": "Alert Rules",
-        "scopeCurrent": "Current",
-        "scopeForecast": "Next 24h",
-        "selectPrompt": "Select an area on the map to view details.",
-        "thresholdsHint": "Low / Medium / High",
-        "title": "Area Details",
-        "viewResponseRoute": "View Response Route",
-        "windSpeed": "Wind Speed"
-      },
-      "noAreaSelected": "Select an area on the map to view detailed analytics.",
-      "risk": {
-        "high": "High",
-        "label": "Risk Level",
-        "low": "Low",
-        "medium": "Medium",
-        "noRules": "No rules"
-      },
-      "showAll": "Show All Polygons",
-      "subtitle": "Colors indicate risk level (Low -> Medium -> High)",
-      "title": "Alert Heatmap",
-      "zoomToBound": "Zoom to Boundary"
-    },
-    "modal": {
-      "route": {
-        "action": "Deploy Units",
-        "currentRisk": "Current Risk Level",
-        "step": {
-          "arrival": "Estimated arrival at key checkpoints",
-          "dispatch": "Units dispatched from Central Station",
-          "resolution": "Projected situation control"
-        },
-        "subtitle": "Emergency response for",
-        "timeline": "Response Timeline",
-        "title": "Response Route Plan"
-      }
-    },
-    "role": "Administrative Officer",
-    "subtitle": "Monitoring alerts in {count} managed areas",
-    "title": "Dashboard",
-    "view": {
-      "charts": "Charts",
-      "map": "Map"
-    }
-  },
   "errors": {
     "generic": "Something went wrong. Please try again."
   },
@@ -709,6 +560,78 @@
       "district": "District",
       "ward": "Ward"
     }
+  },
+  "govDashboard": {
+    "areas": {
+      "last": "Most recent",
+      "name": "Area",
+      "pending": "Pending",
+      "pendingValue": "{count} ({percent}%)",
+      "quiet": "Quiet",
+      "subtitle": "Every area you manage, busiest first.",
+      "title": "By area",
+      "total": "Incidents",
+      "worst": "Worst severity"
+    },
+    "kpi": {
+      "areas": "Areas affected",
+      "areasValue": "{affected} of {total}",
+      "critical": "Critical",
+      "pending": "Waiting on someone",
+      "total": "Incidents"
+    },
+    "loadFailed": "Could not load the dashboard.",
+    "noAreas": "You do not manage any area yet.",
+    "noAreasAction": "Draw your first area",
+    "openIncidents": "Open the incident list",
+    "subtitle": "How the areas you manage are doing over the period you pick.",
+    "title": "Dashboard",
+    "window": "Period"
+  },
+  "govIncidents": {
+    "actions": {
+      "acknowledged": "Take it on",
+      "pending": "Reopen",
+      "resolved": "Mark resolved"
+    },
+    "count": "{count, plural, =0 {No incidents} one {# incident} other {# incidents}}",
+    "detail": {
+      "area": "Area",
+      "handledAt": "Last handled",
+      "noSelection": "Pick an incident to see the reading and record what was done.",
+      "note": "Response note",
+      "noteHint": "Saved with the next status change. Reopening clears it.",
+      "notePlaceholder": "What was done, and by whom",
+      "raisedAt": "Raised"
+    },
+    "empty": "No incidents yet",
+    "emptyFiltered": "No incidents match these filters",
+    "emptyHint": "An incident appears here as soon as an area alert is triggered.",
+    "filters": {
+      "all": "All",
+      "allAreas": "All areas",
+      "area": "Area",
+      "severity": "Severity",
+      "status": "Status",
+      "timeframe": "Period"
+    },
+    "firstPage": "Back to the first page",
+    "loadFailed": "Could not load the incident list.",
+    "pageGone": "This page no longer exists.",
+    "pagination": "Incident pages",
+    "statuses": {
+      "acknowledged": "In progress",
+      "pending": "Pending",
+      "resolved": "Resolved"
+    },
+    "subtitle": "Alerts raised over the areas you manage, and what was done about them.",
+    "timeframes": {
+      "24h": "Last 24 hours",
+      "30d": "Last 30 days",
+      "7d": "Last 7 days",
+      "all": "All time"
+    },
+    "title": "Incidents"
   },
   "government": {
     "scenarioManagement": {
@@ -1117,8 +1040,6 @@
     "title": "Personal"
   },
   "placeholder": {
-    "govDashboard": "City-wide situational overview for operations staff.",
-    "govIncidents": "Reported incidents, their status and who is handling them.",
     "govReports": "Aggregate reporting across areas, incidents and alerts.",
     "govScenarios": "What-if modelling against recorded conditions.",
     "notBuilt": "Not built yet"

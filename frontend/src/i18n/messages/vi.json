@@ -79,65 +79,6 @@
     "business": "Doanh nghiệp",
     "individual": "Cá nhân"
   },
-  "alertHistory": {
-    "actions": {
-      "export": "Xuất CSV",
-      "list": "Danh sách",
-      "map": "Bản đồ",
-      "reset": "Đặt lại",
-      "search": "Tìm kiếm"
-    },
-    "category": "Lịch sử & sự cố",
-    "detail": {
-      "area": "Khu vực",
-      "attachment": "(Hình ảnh/tài liệu đính kèm sẽ hiển thị tại đây)",
-      "desc": "Nội dung cảnh báo",
-      "noSelection": "Chọn một bản ghi để xem chi tiết diễn biến và hành động ứng phó.",
-      "response": "Hành động ứng phó",
-      "title": "Chi tiết sự cố",
-      "type": "Loại cảnh báo"
-    },
-    "filter": {
-      "all": "Tất cả",
-      "area": "Khu vực",
-      "dateRange": "Khoảng thời gian",
-      "severity": "Mức độ",
-      "title": "Bộ lọc tra cứu",
-      "type": "Loại cảnh báo"
-    },
-    "list": {
-      "found": "cảnh báo phù hợp",
-      "mapView": "Hiển thị điểm sự cố"
-    },
-    "severity": {
-      "High": "Cao",
-      "Low": "Thấp",
-      "Medium": "Trung bình"
-    },
-    "status": {
-      "Handled": "Đã xử lý",
-      "Pending": "Chưa xử lý"
-    },
-    "subtitle": "Tra cứu nhanh diễn biến và hành động ứng phó",
-    "template": {
-      "desc": {
-        "rain": "Lượng mưa = {value}{unit} đã vượt ngưỡng ({threshold}{unit}) tại \"{area}\".",
-        "temp": "Nhiệt độ = {value}{unit} đã vượt ngưỡng ({threshold}{unit}) tại \"{area}\"."
-      },
-      "title": {
-        "rain": "Cảnh báo lượng mưa {area}",
-        "temp": "Cảnh báo nhiệt độ {area}"
-      }
-    },
-    "title": "Lịch sử cảnh báo & sự cố",
-    "type": {
-      "flood": "Ngập",
-      "other": "Khác",
-      "rain": "Mưa",
-      "storm": "Bão",
-      "traffic": "Giao thông"
-    }
-  },
   "alerts": {
     "addTitle": "Thêm quy tắc",
     "editTitle": "Sửa quy tắc",
@@ -560,96 +501,6 @@
     "viewAll": "Xem tất cả",
     "welcome": "Chào mừng đến với SWTIS"
   },
-  "dashboard": {
-    "alertType": {
-      "flood": "Ngập",
-      "rain": "Mưa lớn",
-      "storm": "Bão"
-    },
-    "chart": {
-      "alertDistribution": "Phân bố loại cảnh báo",
-      "alertsByRegion": "Cảnh báo theo khu vực",
-      "flood": "Ngập",
-      "other": "Khác",
-      "rain": "Mưa lớn",
-      "riskDistribution": "Phân bố cấp độ rủi ro",
-      "storm": "Bão",
-      "totalAlerts": "Tổng cảnh báo",
-      "weatherTrend": "Xu hướng thời tiết"
-    },
-    "filter": {
-      "24h": "24h",
-      "30days": "30 ngày",
-      "7days": "7 ngày",
-      "alertType": "Loại cảnh báo",
-      "allRegions": "Tất cả",
-      "allTypes": "Tất cả",
-      "region": "Theo khu vực",
-      "timeframe": "Theo thời gian",
-      "title": "Bộ lọc"
-    },
-    "kpi": {
-      "avgRainfall": "Lượng mưa trung bình",
-      "highRiskAreas": "Khu vực rủi ro cao",
-      "maxWind": "Gió cực đại",
-      "totalAlerts": "Tổng cảnh báo"
-    },
-    "map": {
-      "addAlertRule": "Thêm Cảnh báo",
-      "details": {
-        "activeAlerts": "Cảnh báo đang hoạt động",
-        "avgTemp": "Nhiệt độ trung bình",
-        "deleteRule": "Xóa quy tắc",
-        "deleteRuleConfirm": "Xóa quy tắc cảnh báo này?",
-        "directionAbove": "≥",
-        "directionBelow": "≤",
-        "noData": "Không có dữ liệu",
-        "noRules": "Khu vực chưa có quy tắc cảnh báo.",
-        "rainfall": "Lượng mưa",
-        "rulesTitle": "Quy tắc cảnh báo",
-        "scopeCurrent": "Hiện tại",
-        "scopeForecast": "24h tới",
-        "selectPrompt": "Chọn khu vực trên bản đồ để xem thông tin cụ thể.",
-        "thresholdsHint": "Thấp / Trung bình / Cao",
-        "title": "Chi tiết khu vực",
-        "viewResponseRoute": "Xem chi tiết lộ trình ứng phó",
-        "windSpeed": "Tốc độ gió"
-      },
-      "noAreaSelected": "Chọn một khu vực trên bản đồ để xem chi tiết phân tích.",
-      "risk": {
-        "high": "Cao",
-        "label": "Cấp độ rủi ro",
-        "low": "Thấp",
-        "medium": "Trung bình",
-        "noRules": "Chưa cấu hình"
-      },
-      "showAll": "Xem tất cả khu vực",
-      "subtitle": "Màu sắc thể hiện cấp độ rủi ro (Thấp → Trung bình → Cao)",
-      "title": "Heatmap cảnh báo",
-      "zoomToBound": "Phóng đến ranh giới"
-    },
-    "modal": {
-      "route": {
-        "action": "Triển khai đơn vị",
-        "currentRisk": "Mức độ rủi ro hiện tại",
-        "step": {
-          "arrival": "Dự kiến đến các chốt kiểm soát chính",
-          "dispatch": "Đơn vị đã được điều phối từ Trạm trung tâm",
-          "resolution": "Dự kiến kiểm soát tình hình"
-        },
-        "subtitle": "Ứng phó khẩn cấp cho",
-        "timeline": "Dòng thời gian ứng phó",
-        "title": "Kế hoạch lộ trình ứng phó"
-      }
-    },
-    "role": "Cán bộ hành chính",
-    "subtitle": "Theo dõi cảnh báo trên {count} khu vực thuộc phạm vi quản lý",
-    "title": "Bảng điều khiển",
-    "view": {
-      "charts": "Biểu đồ",
-      "map": "Bản đồ"
-    }
-  },
   "errors": {
     "generic": "Đã xảy ra lỗi. Vui lòng thử lại."
   },
@@ -709,6 +560,78 @@
       "district": "Quận/Huyện",
       "ward": "Phường/Xã"
     }
+  },
+  "govDashboard": {
+    "areas": {
+      "last": "Gần nhất",
+      "name": "Khu vực",
+      "pending": "Chờ xử lý",
+      "pendingValue": "{count} ({percent}%)",
+      "quiet": "Yên ổn",
+      "subtitle": "Mọi khu vực bạn quản lý, nhiều sự cố nhất lên trước.",
+      "title": "Theo khu vực",
+      "total": "Sự cố",
+      "worst": "Mức độ cao nhất"
+    },
+    "kpi": {
+      "areas": "Khu vực bị ảnh hưởng",
+      "areasValue": "{affected}/{total}",
+      "critical": "Nghiêm trọng",
+      "pending": "Đang chờ xử lý",
+      "total": "Sự cố"
+    },
+    "loadFailed": "Không tải được bảng điều khiển.",
+    "noAreas": "Bạn chưa quản lý khu vực nào.",
+    "noAreasAction": "Vẽ khu vực đầu tiên",
+    "openIncidents": "Mở danh sách sự cố",
+    "subtitle": "Tình hình các khu vực bạn quản lý trong khoảng thời gian đã chọn.",
+    "title": "Bảng điều khiển",
+    "window": "Khoảng thời gian"
+  },
+  "govIncidents": {
+    "actions": {
+      "acknowledged": "Nhận xử lý",
+      "pending": "Mở lại",
+      "resolved": "Đánh dấu đã xử lý"
+    },
+    "count": "{count, plural, =0 {Không có sự cố} other {# sự cố}}",
+    "detail": {
+      "area": "Khu vực",
+      "handledAt": "Xử lý gần nhất",
+      "noSelection": "Chọn một sự cố để xem số liệu và ghi lại cách xử lý.",
+      "note": "Ghi chú xử lý",
+      "noteHint": "Được lưu cùng lần đổi trạng thái tiếp theo. Mở lại sẽ xoá ghi chú.",
+      "notePlaceholder": "Đã làm gì và ai làm",
+      "raisedAt": "Phát sinh"
+    },
+    "empty": "Chưa có sự cố nào",
+    "emptyFiltered": "Không có sự cố nào khớp bộ lọc này",
+    "emptyHint": "Sự cố xuất hiện ở đây ngay khi một cảnh báo khu vực được kích hoạt.",
+    "filters": {
+      "all": "Tất cả",
+      "allAreas": "Tất cả khu vực",
+      "area": "Khu vực",
+      "severity": "Mức độ",
+      "status": "Trạng thái",
+      "timeframe": "Khoảng thời gian"
+    },
+    "firstPage": "Về trang đầu",
+    "loadFailed": "Không tải được danh sách sự cố.",
+    "pageGone": "Trang này không còn nữa.",
+    "pagination": "Các trang sự cố",
+    "statuses": {
+      "acknowledged": "Đang xử lý",
+      "pending": "Chờ xử lý",
+      "resolved": "Đã xử lý"
+    },
+    "subtitle": "Cảnh báo phát sinh trên các khu vực bạn quản lý và cách xử lý.",
+    "timeframes": {
+      "24h": "24 giờ qua",
+      "30d": "30 ngày qua",
+      "7d": "7 ngày qua",
+      "all": "Toàn bộ"
+    },
+    "title": "Sự cố"
   },
   "government": {
     "scenarioManagement": {
@@ -1117,8 +1040,6 @@
     "title": "Cá nhân"
   },
   "placeholder": {
-    "govDashboard": "Tổng quan tình hình toàn thành phố dành cho cán bộ vận hành.",
-    "govIncidents": "Các sự cố đã báo cáo, trạng thái và người đang xử lý.",
     "govReports": "Báo cáo tổng hợp trên các khu vực, sự cố và cảnh báo.",
     "govScenarios": "Mô phỏng giả định dựa trên dữ liệu điều kiện đã ghi nhận.",
     "notBuilt": "Chưa xây dựng"
