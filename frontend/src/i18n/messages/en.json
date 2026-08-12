@@ -1154,7 +1154,8 @@
     "sections": {
       "business": "Business",
       "government": "Government"
-    }
+    },
+    "skipToContent": "Skip to main content"
   },
   "notifications": {
     "alert": {

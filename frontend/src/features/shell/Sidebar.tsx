@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { PanelLeftClose, PanelLeftOpen, X } from "lucide-react";
 import { useSession } from "@/lib/auth/session";
@@ -60,20 +60,52 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
   );
 }
 
-export function Sidebar() {
+function MobileDrawer() {
   const t = useTranslations("nav");
-  const { collapsed, toggleCollapsed, mobileOpen, closeMobile } = useSidebar();
+  const { mobileOpen, closeMobile } = useSidebar();
+  const ref = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
-    if (!mobileOpen) return;
+    const dialog = ref.current;
+    if (!dialog) return;
 
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") closeMobile();
-    };
+    if (mobileOpen && !dialog.open) dialog.showModal();
+    if (!mobileOpen && dialog.open) dialog.close();
+  }, [mobileOpen]);
 
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [mobileOpen, closeMobile]);
+  return (
+    <dialog
+      ref={ref}
+      aria-label={t("main")}
+      onClose={closeMobile}
+      onClick={(event) => {
+        if (event.target === ref.current) closeMobile();
+      }}
+      className={
+        "mr-auto ml-0 h-dvh max-h-dvh w-64 max-w-[80vw] overflow-y-auto " +
+        "border-r border-border bg-background p-0 text-foreground " +
+        "backdrop:bg-black/50 md:hidden"
+      }
+    >
+      <div className="flex justify-end p-2">
+        <button
+          type="button"
+          onClick={closeMobile}
+          aria-label={t("closeMenu")}
+          className="rounded-md p-2 hover:bg-black/5 dark:hover:bg-white/10"
+        >
+          <X aria-hidden="true" className="size-4" />
+        </button>
+      </div>
+
+      <NavLinks onNavigate={closeMobile} />
+    </dialog>
+  );
+}
+
+export function Sidebar() {
+  const t = useTranslations("nav");
+  const { collapsed, toggleCollapsed } = useSidebar();
 
   return (
     <>
@@ -107,37 +139,7 @@ export function Sidebar() {
         </div>
       </aside>
 
-      {/* Mobile drawer */}
-      {mobileOpen && (
-        <div className="fixed inset-0 z-40 md:hidden">
-          <button
-            type="button"
-            aria-label={t("closeMenu")}
-            onClick={closeMobile}
-            className="absolute inset-0 bg-black/50"
-          />
-
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-label={t("main")}
-            className="absolute inset-y-0 left-0 w-64 overflow-y-auto border-r border-border bg-background"
-          >
-            <div className="flex justify-end p-2">
-              <button
-                type="button"
-                onClick={closeMobile}
-                aria-label={t("closeMenu")}
-                className="rounded-md p-2 hover:bg-black/5 dark:hover:bg-white/10"
-              >
-                <X aria-hidden="true" className="size-4" />
-              </button>
-            </div>
-
-            <NavLinks onNavigate={closeMobile} />
-          </div>
-        </div>
-      )}
+      <MobileDrawer />
     </>
   );
 }

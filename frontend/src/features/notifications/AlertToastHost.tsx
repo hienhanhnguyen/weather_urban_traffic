@@ -7,6 +7,7 @@ import type { AlertSeverity } from "./api";
 import { useNotifications, toastKey } from "./NotificationProvider";
 import type { AlertFrame } from "./socket";
 import { SeverityDot } from "./SeverityDot";
+import { byUrgency, type Urgency } from "./toasts";
 
 const TTL_MS: Record<AlertSeverity, number | null> = {
   info: 6_000,
@@ -61,20 +62,42 @@ function Toast({
   );
 }
 
-export function AlertToastHost() {
-  const { liveAlerts, dismiss } = useNotifications();
-
+function ToastGroup({
+  urgency,
+  alerts,
+  dismiss,
+}: {
+  urgency: Urgency;
+  alerts: AlertFrame[];
+  dismiss: (key: string) => void;
+}) {
   return (
     <div
-      role="status"
-      aria-live="polite"
-      className="pointer-events-none fixed right-4 bottom-4 z-50 flex w-80 max-w-[calc(100vw-2rem)] flex-col gap-2"
+      role={urgency === "assertive" ? "alert" : "status"}
+      aria-live={urgency}
+      className="flex flex-col gap-2"
     >
-      {liveAlerts.map((alert) => (
+      {alerts.map((alert) => (
         <div key={toastKey(alert)} className="pointer-events-auto">
           <Toast alert={alert} toastId={toastKey(alert)} dismiss={dismiss} />
         </div>
       ))}
+    </div>
+  );
+}
+
+export function AlertToastHost() {
+  const { liveAlerts, dismiss } = useNotifications();
+  const groups = byUrgency(liveAlerts);
+
+  return (
+    <div className="pointer-events-none fixed right-4 bottom-4 z-50 flex w-80 max-w-[calc(100vw-2rem)] flex-col gap-2">
+      <ToastGroup
+        urgency="assertive"
+        alerts={groups.assertive}
+        dismiss={dismiss}
+      />
+      <ToastGroup urgency="polite" alerts={groups.polite} dismiss={dismiss} />
     </div>
   );
 }

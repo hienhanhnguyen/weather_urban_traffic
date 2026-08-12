@@ -1154,7 +1154,8 @@
     "sections": {
       "business": "Doanh nghiệp",
       "government": "Chính quyền"
-    }
+    },
+    "skipToContent": "Chuyển tới nội dung chính"
   },
   "notifications": {
     "alert": {

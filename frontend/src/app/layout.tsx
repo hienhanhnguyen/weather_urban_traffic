@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Providers } from "./providers";
 import { THEME_BOOTSTRAP_SCRIPT } from "@/lib/theme/theme";
+import { LOCALE_BOOTSTRAP_SCRIPT } from "@/i18n/locale";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP_SCRIPT }} />
+        <script dangerouslySetInnerHTML={{ __html: LOCALE_BOOTSTRAP_SCRIPT }} />
       </head>
       <body className="flex min-h-full flex-col font-sans">
         <Providers>{children}</Providers>

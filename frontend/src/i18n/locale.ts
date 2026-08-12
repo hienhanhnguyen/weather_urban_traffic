@@ -45,6 +45,17 @@ export function setLocale(locale: Locale): void {
   emit();
 }
 
+export const LOCALE_BOOTSTRAP_SCRIPT = `
+(function () {
+  try {
+    var stored = localStorage.getItem('${LOCALE_STORAGE_KEY}');
+    if (stored === 'en' || stored === 'vi') {
+      document.documentElement.lang = stored;
+    }
+  } catch (e) {}
+})();
+`;
+
 export function subscribe(listener: () => void): () => void {
   listeners.add(listener);
 
