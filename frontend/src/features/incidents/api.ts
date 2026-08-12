@@ -1,5 +1,6 @@
 import { apiRequest } from "@/lib/api/client";
 import type { AlertSeverity, Pagination } from "@/features/notifications/api";
+import type { ResponseScenario } from "@/features/scenarios/api";
 
 export type IncidentStatus = "pending" | "acknowledged" | "resolved";
 
@@ -13,6 +14,9 @@ export interface Incident {
   metric: string | null;
   value: number | null;
   status: IncidentStatus;
+  scenarioId: number | null;
+  scenarioName: string | null;
+  activatedAt: string | null;
   handledAt: string | null;
   handledNote: string | null;
   isRead: boolean;
@@ -57,6 +61,9 @@ export const INCIDENTS_PAGE_SIZE = 20;
 export const incidentsQueryKey = (query: IncidentQuery) =>
   [...INCIDENTS_QUERY_KEY, "list", query] as const;
 
+export const incidentQueryKey = (id: number) =>
+  [...INCIDENTS_QUERY_KEY, "detail", id] as const;
+
 export const incidentSummaryQueryKey = (query: IncidentQuery) =>
   [...INCIDENTS_QUERY_KEY, "summary", query] as const;
 
@@ -76,3 +83,17 @@ export const updateIncidentStatus = (
     method: "PATCH",
     body,
   }).then((response) => response.incident);
+
+export interface IncidentWithPlan {
+  incident: Incident;
+  scenario: ResponseScenario | null;
+}
+
+export const getIncident = (id: number) =>
+  apiRequest<IncidentWithPlan>(`/gov/incidents/${id}`);
+
+export const activateIncidentScenario = (id: number, scenarioId: number | null) =>
+  apiRequest<IncidentWithPlan>(`/gov/incidents/${id}/scenario`, {
+    method: "PATCH",
+    body: { scenario_id: scenarioId },
+  });

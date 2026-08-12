@@ -1,17 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useFormatter, useTranslations } from "next-intl";
+import { ClipboardList } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Callout } from "@/components/ui/Callout";
 import { AREA_METRICS, METRIC_UNIT } from "@/features/areas/alerts";
 import type { AreaMetric } from "@/features/areas/alerts-api";
+import { ScenarioSteps } from "@/features/scenarios/ScenarioSteps";
 import {
+  getIncident,
+  incidentQueryKey,
   updateIncidentStatus,
   type Incident,
   type IncidentStatus,
 } from "./api";
+import { ActivateScenarioModal } from "./ActivateScenarioModal";
 import { nextStatuses } from "./filters";
 import { SeverityBadge, StatusBadge } from "./StatusBadge";
 
@@ -26,10 +31,20 @@ export interface IncidentDetailProps {
 export function IncidentDetail({ incident, onUpdated }: IncidentDetailProps) {
   const t = useTranslations("govIncidents");
   const tMetrics = useTranslations("areaAlerts.metrics");
+  const tPlan = useTranslations("govScenarios.activate");
   const tError = useTranslations("errors");
   const format = useFormatter();
+  const queryClient = useQueryClient();
 
   const [note, setNote] = useState(incident.handledNote ?? "");
+  const [picking, setPicking] = useState(false);
+
+  // The list response carries the plan's name; the checklist itself only comes
+  // with the incident's own record.
+  const plan = useQuery({
+    queryKey: incidentQueryKey(incident.id),
+    queryFn: () => getIncident(incident.id),
+  });
 
   const move = useMutation({
     mutationFn: (status: IncidentStatus) =>
@@ -116,6 +131,48 @@ export function IncidentDetail({ incident, onUpdated }: IncidentDetailProps) {
         <p className="text-sm opacity-70">{t("detail.noteHint")}</p>
       </div>
 
+      <section className="flex flex-col gap-3 rounded-md border border-border p-3">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <h3 className="text-sm font-medium">{tPlan("planTitle")}</h3>
+
+          <Button
+            type="button"
+            variant="secondary"
+            onClick={() => setPicking(true)}
+          >
+            <ClipboardList aria-hidden="true" className="size-4" />
+            {incident.scenarioId === null
+              ? tPlan("activate")
+              : tPlan("change")}
+          </Button>
+        </div>
+
+        {incident.scenarioId === null ? (
+          <p className="text-sm opacity-70">{tPlan("noPlan")}</p>
+        ) : (
+          <div className="flex flex-col gap-2">
+            <p className="text-sm font-medium">
+              {plan.data?.scenario?.name ?? incident.scenarioName}
+            </p>
+
+            {incident.activatedAt && (
+              <p className="text-sm opacity-70">
+                {tPlan("activatedAt", {
+                  when: format.dateTime(new Date(incident.activatedAt), {
+                    dateStyle: "medium",
+                    timeStyle: "short",
+                  }),
+                })}
+              </p>
+            )}
+
+            {plan.data?.scenario && (
+              <ScenarioSteps steps={plan.data.scenario.steps} />
+            )}
+          </div>
+        )}
+      </section>
+
       {move.isError && <Callout tone="error">{tError("generic")}</Callout>}
 
       <div className="flex flex-wrap gap-2">
@@ -132,6 +189,20 @@ export function IncidentDetail({ incident, onUpdated }: IncidentDetailProps) {
           </Button>
         ))}
       </div>
+
+      {picking && (
+        <ActivateScenarioModal
+          incident={incident}
+          onClose={() => setPicking(false)}
+          onActivated={async () => {
+            setPicking(false);
+            await queryClient.invalidateQueries({
+              queryKey: incidentQueryKey(incident.id),
+            });
+            onUpdated(incident);
+          }}
+        />
+      )}
     </div>
   );
 }

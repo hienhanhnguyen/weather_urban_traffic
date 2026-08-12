@@ -676,38 +676,85 @@
     },
     "title": "Sự cố"
   },
-  "government": {
-    "scenarioManagement": {
-      "activeModal": {
-        "all": "Các kịch bản có sẵn khác",
-        "confirm": "Xác nhận kích hoạt",
-        "emptyMatching": "Không tìm thấy kịch bản cụ thể cho loại cảnh báo này.",
-        "recommended": "Được đề xuất cho loại sự cố này",
-        "steps": "{count} BƯỚC",
-        "title": "Kích hoạt kịch bản"
-      },
-      "scenarios": {
-        "flood_05m": {
-          "desc": "Kích hoạt trạm bơm, phong tỏa khu vực trọng yếu",
-          "name": "Kịch bản ngập trên 0.5m",
-          "steps": {
-            "notify": "Thông báo người dân di chuyển",
-            "pump": "Kích hoạt trạm bơm dự phòng",
-            "respond": "Cử đội phản ứng nhanh hỗ trợ"
-          }
-        },
-        "storm_level_10": {
-          "desc": "Gia cố công trình, sơ tán dân cư ven biển",
-          "name": "Cảnh báo bão cấp 10",
-          "steps": {
-            "boats": "Kêu gọi tàu thuyền về nơi tránh trú",
-            "evacuate": "Sơ tán dân cư vùng nguy hiểm",
-            "reinforce": "Chằng chống nhà cửa, công trình"
-          }
-        }
-      }
-    }
+  "govScenarios": {
+    "activate": {
+      "activate": "Kích hoạt kịch bản",
+      "activatedAt": "Kích hoạt lúc {when}",
+      "change": "Đổi kịch bản",
+      "clear": "Bỏ kế hoạch",
+      "confirm": "Kích hoạt",
+      "matching": "Soạn cho loại sự cố này",
+      "noPlan": "Sự cố này chưa kích hoạt kịch bản nào.",
+      "none": "Bạn chưa có kịch bản nào đang áp dụng. Hãy soạn một kịch bản trước.",
+      "others": "Kịch bản khác",
+      "othersHint": "Những kịch bản này theo dõi chỉ số khác hoặc mức độ thấp hơn.",
+      "planTitle": "Kế hoạch ứng phó",
+      "subtitle": "Kịch bản được ghi lại cho sự cố này để người trực sau biết đã quyết định gì.",
+      "title": "Kích hoạt kịch bản ứng phó"
+    },
+    "anyMetric": "Mọi chỉ số",
+    "checklist": "Danh sách bước",
+    "delete": "Xoá",
+    "deleteBody": "“{name}” sẽ bị xoá. Các sự cố đã kích hoạt kịch bản vẫn còn, nhưng mất kế hoạch.",
+    "deleteTitle": "Xoá kịch bản này?",
+    "edit": "Sửa",
+    "editTitle": "Sửa kịch bản",
+    "empty": "Chưa có kịch bản nào",
+    "emptyFiltered": "Không có kịch bản nào khớp bộ lọc",
+    "emptyHint": "Soạn các bước một lần, rồi kích hoạt ngay khi có sự cố.",
+    "filters": {
+      "all": "Tất cả",
+      "metric": "Chỉ số",
+      "reset": "Xoá bộ lọc",
+      "search": "Tìm kiếm",
+      "searchPlaceholder": "Tên kịch bản",
+      "status": "Trạng thái"
+    },
+    "form": {
+      "addStep": "Thêm bước",
+      "description": "Mô tả",
+      "descriptionPlaceholder": "Kịch bản áp dụng khi nào, ai chỉ huy",
+      "metric": "Chỉ số theo dõi",
+      "metricHint": "Dùng để gợi ý kịch bản này cho sự cố phù hợp.",
+      "minSeverity": "Từ mức độ",
+      "moveDown": "Đưa bước xuống dưới",
+      "moveUp": "Đưa bước lên trên",
+      "name": "Tên",
+      "namePlaceholder": "Mưa lớn ven sông",
+      "priority": "Ưu tiên",
+      "removeStep": "Xoá bước",
+      "status": "Trạng thái",
+      "step": "Bước {position}",
+      "stepPlaceholder": "Làm gì, và ai làm",
+      "steps": "Danh sách bước",
+      "stepsHint": "Các bước chạy theo thứ tự hiển thị. Bước để trống sẽ bị bỏ khi lưu."
+    },
+    "loadFailed": "Không tải được danh sách kịch bản.",
+    "new": "Kịch bản mới",
+    "newTitle": "Kịch bản mới",
+    "noSelection": "Chọn một kịch bản để xem danh sách bước.",
+    "noSteps": "Kịch bản này chưa có bước nào.",
+    "priorities": {
+      "high": "Ưu tiên cao",
+      "low": "Ưu tiên thấp",
+      "medium": "Ưu tiên trung bình"
+    },
+    "problems": {
+      "nameRequired": "Đặt tên cho kịch bản trước khi lưu.",
+      "nameTaken": "Bạn đã có một kịch bản trùng tên.",
+      "stepTooLong": "Một bước quá dài. Mỗi bước nên dưới 500 ký tự."
+    },
+    "statuses": {
+      "active": "Đang áp dụng",
+      "archived": "Đã lưu trữ",
+      "draft": "Bản nháp"
+    },
+    "stepCount": "{count, plural, =0 {Không có bước} other {# bước}}",
+    "subtitle": "Kế hoạch được soạn sẵn để đội của bạn làm theo khi cảnh báo khu vực bật.",
+    "title": "Kịch bản ứng phó",
+    "usage": "{count, plural, =0 {Chưa dùng lần nào} other {Đã dùng # lần}}"
   },
+  "government": {},
   "history": {
     "count": "{count, plural, =0 {Không có cảnh báo} other {# cảnh báo}}",
     "empty": "Chưa có cảnh báo nào",
@@ -1084,7 +1131,6 @@
   },
   "placeholder": {
     "govReports": "Báo cáo tổng hợp trên các khu vực, sự cố và cảnh báo.",
-    "govScenarios": "Mô phỏng giả định dựa trên dữ liệu điều kiện đã ghi nhận.",
     "notBuilt": "Chưa xây dựng"
   },
   "reports": {
@@ -1273,79 +1319,6 @@
     "title": "Tuyến đường đã lưu",
     "unnamedEnd": "Điểm đến",
     "unnamedStart": "Điểm đi"
-  },
-  "scenarioManagement": {
-    "addStepModal": {
-      "addBtn": "Thêm bước",
-      "desc": "Thêm bước mới vào checklist",
-      "descLabel": "Mô tả bước",
-      "title": "Thêm bước"
-    },
-    "checklist": {
-      "priority": "Ưu tiên",
-      "title": "Checklist hành động"
-    },
-    "createTitle": "Tạo mới kịch bản",
-    "deleteModal": {
-      "confirmBtn": "Xóa",
-      "desc": "Bạn có chắc chắn muốn xóa kịch bản này?",
-      "scenarioLabel": "Kịch bản cần xóa",
-      "title": "Xóa kịch bản",
-      "warning": "Hành động này không thể hoàn tác. Tất cả dữ liệu liên quan đến kịch bản này sẽ bị xóa vĩnh viễn."
-    },
-    "detailTitle": "Chi tiết kịch bản",
-    "editButton": "Chỉnh sửa kịch bản",
-    "editModal": {
-      "desc": "Cập nhật thông tin và checklist kịch bản",
-      "title": "Chỉnh sửa kịch bản",
-      "updateBtn": "Lưu thay đổi"
-    },
-    "filter": "Lọc nhanh",
-    "filterModal": {
-      "allStatuses": "Tất cả trạng thái",
-      "allTypes": "Tất cả loại",
-      "applyBtn": "Áp dụng bộ lọc",
-      "desc": "Lọc kịch bản theo tiêu chí",
-      "resetBtn": "Đặt lại",
-      "searchLabel": "Tìm kiếm",
-      "searchPlaceholder": "Tìm theo tên hoặc mô tả",
-      "statusLabel": "Trạng thái",
-      "title": "Lọc kịch bản",
-      "typeLabel": "Loại kịch bản"
-    },
-    "form": {
-      "addStep": "Thêm bước",
-      "descLabel": "Mô tả tình huống",
-      "descPlaceholder": "Nhập mô tả ngắn gọn",
-      "nameLabel": "Tên kịch bản",
-      "namePlaceholder": "Ví dụ: \"Kịch bản ngập trên 0.5m\"",
-      "priorityLabel": "Thứ tự ưu tiên",
-      "stepPlaceholder": "Mô tả hành động",
-      "stepsLabel": "Checklist hành động"
-    },
-    "list": {
-      "steps": "Bước",
-      "times": "lần",
-      "usage": "Lịch sử sử dụng"
-    },
-    "priority": {
-      "High": "Cao",
-      "Low": "Thấp",
-      "Medium": "Trung bình"
-    },
-    "saveButton": "Lưu kịch bản",
-    "status": {
-      "active": "Đang hoạt động",
-      "archived": "Đã lưu trữ",
-      "draft": "Bản nháp"
-    },
-    "title": "Danh sách kịch bản",
-    "type": {
-      "earthquake": "Động đất",
-      "fire": "Hỏa hoạn",
-      "flood": "Ngập lụt",
-      "storm": "Bão"
-    }
   },
   "theme": {
     "dark": "Tối",

@@ -1,5 +1,5 @@
-import { PlaceholderPage } from "@/features/shell/PlaceholderPage";
+import { ScenariosPanel } from "@/features/scenarios/ScenariosPanel";
 
 export default function GovScenariosPage() {
-  return <PlaceholderPage titleKey="govScenarios" descriptionKey="govScenarios" />;
+  return <ScenariosPanel />;
 }

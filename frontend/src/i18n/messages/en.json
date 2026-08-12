@@ -676,38 +676,85 @@
     },
     "title": "Incidents"
   },
-  "government": {
-    "scenarioManagement": {
-      "activeModal": {
-        "all": "Other available scenarios",
-        "confirm": "Confirm Activation",
-        "emptyMatching": "No specific scenario found for this alert type.",
-        "recommended": "Recommended for this incident type",
-        "steps": "{count} STEPS",
-        "title": "Activate Scenario"
-      },
-      "scenarios": {
-        "flood_05m": {
-          "desc": "Activate pump stations, block critical areas",
-          "name": "Flood level > 0.5m",
-          "steps": {
-            "notify": "Notify citizens to relocate",
-            "pump": "Activate backup pump stations",
-            "respond": "Dispatch rapid response team"
-          }
-        },
-        "storm_level_10": {
-          "desc": "Reinforce structures, evacuate coastal residents",
-          "name": "Level 10 Storm Warning",
-          "steps": {
-            "boats": "Call boats to seek shelter",
-            "evacuate": "Evacuate high-risk areas",
-            "reinforce": "Reinforce houses and structures"
-          }
-        }
-      }
-    }
+  "govScenarios": {
+    "activate": {
+      "activate": "Activate a plan",
+      "activatedAt": "Activated {when}",
+      "change": "Change plan",
+      "clear": "Remove the plan",
+      "confirm": "Activate",
+      "matching": "Written for this kind of incident",
+      "noPlan": "No plan activated for this incident yet.",
+      "none": "You have no active scenarios yet. Write one first.",
+      "others": "Other scenarios",
+      "othersHint": "These watch a different reading or a lower severity.",
+      "planTitle": "Response plan",
+      "subtitle": "The plan is recorded against this incident so the next officer sees what was decided.",
+      "title": "Activate a response scenario"
+    },
+    "anyMetric": "Any reading",
+    "checklist": "Checklist",
+    "delete": "Delete",
+    "deleteBody": "“{name}” will be removed. Incidents it was activated on stay, but lose the plan.",
+    "deleteTitle": "Delete this scenario?",
+    "edit": "Edit",
+    "editTitle": "Edit scenario",
+    "empty": "No scenarios yet",
+    "emptyFiltered": "No scenarios match these filters",
+    "emptyHint": "Write the steps once, and activate them the moment an incident lands.",
+    "filters": {
+      "all": "All",
+      "metric": "Reading",
+      "reset": "Clear filters",
+      "search": "Search",
+      "searchPlaceholder": "Scenario name",
+      "status": "Status"
+    },
+    "form": {
+      "addStep": "Add step",
+      "description": "Description",
+      "descriptionPlaceholder": "When this plan applies, and who leads it",
+      "metric": "Reading watched",
+      "metricHint": "Used to suggest this plan on a matching incident.",
+      "minSeverity": "From severity",
+      "moveDown": "Move step down",
+      "moveUp": "Move step up",
+      "name": "Name",
+      "namePlaceholder": "Heavy rain over the riverside",
+      "priority": "Priority",
+      "removeStep": "Remove step",
+      "status": "Status",
+      "step": "Step {position}",
+      "stepPlaceholder": "What to do, and who does it",
+      "steps": "Checklist",
+      "stepsHint": "Steps run in the order shown. Empty steps are dropped when you save."
+    },
+    "loadFailed": "Could not load the scenarios.",
+    "new": "New scenario",
+    "newTitle": "New scenario",
+    "noSelection": "Pick a scenario to read its checklist.",
+    "noSteps": "This scenario has no steps yet.",
+    "priorities": {
+      "high": "High priority",
+      "low": "Low priority",
+      "medium": "Medium priority"
+    },
+    "problems": {
+      "nameRequired": "Give the scenario a name before saving.",
+      "nameTaken": "You already have a scenario with that name.",
+      "stepTooLong": "One of the steps is too long. Keep each step under 500 characters."
+    },
+    "statuses": {
+      "active": "Active",
+      "archived": "Archived",
+      "draft": "Draft"
+    },
+    "stepCount": "{count, plural, =0 {No steps} one {# step} other {# steps}}",
+    "subtitle": "Written plans your team follows when an area alert fires.",
+    "title": "Response scenarios",
+    "usage": "{count, plural, =0 {Never used} one {Used once} other {Used # times}}"
   },
+  "government": {},
   "history": {
     "count": "{count, plural, =0 {No alerts} one {# alert} other {# alerts}}",
     "empty": "No alerts yet",
@@ -1084,7 +1131,6 @@
   },
   "placeholder": {
     "govReports": "Aggregate reporting across areas, incidents and alerts.",
-    "govScenarios": "What-if modelling against recorded conditions.",
     "notBuilt": "Not built yet"
   },
   "reports": {
@@ -1273,79 +1319,6 @@
     "title": "Saved routes",
     "unnamedEnd": "Destination",
     "unnamedStart": "Start"
-  },
-  "scenarioManagement": {
-    "addStepModal": {
-      "addBtn": "Add Step",
-      "desc": "Add a new step to the checklist",
-      "descLabel": "Step Description",
-      "title": "Add Step"
-    },
-    "checklist": {
-      "priority": "Priority",
-      "title": "Action Checklist"
-    },
-    "createTitle": "Create New Scenario",
-    "deleteModal": {
-      "confirmBtn": "Delete",
-      "desc": "Are you sure you want to delete this scenario?",
-      "scenarioLabel": "Scenario to delete",
-      "title": "Delete Scenario",
-      "warning": "This action cannot be undone. All data associated with this scenario will be permanently removed."
-    },
-    "detailTitle": "Scenario Details",
-    "editButton": "Edit Scenario",
-    "editModal": {
-      "desc": "Update scenario information and checklist",
-      "title": "Edit Scenario",
-      "updateBtn": "Save Changes"
-    },
-    "filter": "Quick Filter",
-    "filterModal": {
-      "allStatuses": "All Statuses",
-      "allTypes": "All Types",
-      "applyBtn": "Apply Filters",
-      "desc": "Filter scenarios by criteria",
-      "resetBtn": "Reset",
-      "searchLabel": "Search",
-      "searchPlaceholder": "Search by name or description",
-      "statusLabel": "Status",
-      "title": "Filter Scenarios",
-      "typeLabel": "Scenario Type"
-    },
-    "form": {
-      "addStep": "Add Step",
-      "descLabel": "Description",
-      "descPlaceholder": "Enter short description",
-      "nameLabel": "Scenario Name",
-      "namePlaceholder": "Ex: \"Flood level > 0.5m\"",
-      "priorityLabel": "Priority",
-      "stepPlaceholder": "Action description",
-      "stepsLabel": "Action Checklist"
-    },
-    "list": {
-      "steps": "Steps",
-      "times": "times",
-      "usage": "Usage history"
-    },
-    "priority": {
-      "High": "High",
-      "Low": "Low",
-      "Medium": "Medium"
-    },
-    "saveButton": "Save Scenario",
-    "status": {
-      "active": "Active",
-      "archived": "Archived",
-      "draft": "Draft"
-    },
-    "title": "Scenario List",
-    "type": {
-      "earthquake": "Earthquake",
-      "fire": "Fire",
-      "flood": "Flood",
-      "storm": "Storm"
-    }
   },
   "theme": {
     "dark": "Dark",
