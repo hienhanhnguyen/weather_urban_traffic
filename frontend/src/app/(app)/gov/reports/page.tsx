@@ -1,5 +1,5 @@
-import { PlaceholderPage } from "@/features/shell/PlaceholderPage";
+import { GovReportsPanel } from "@/features/govreports/GovReportsPanel";
 
 export default function GovReportsPage() {
-  return <PlaceholderPage titleKey="govReports" descriptionKey="govReports" />;
+  return <GovReportsPanel />;
 }

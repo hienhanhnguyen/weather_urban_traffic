@@ -676,6 +676,150 @@
     },
     "title": "Sự cố"
   },
+  "govReports": {
+    "title": "Báo cáo khu vực",
+    "subtitle": "Tổng hợp những gì đã xảy ra trên các khu vực, rồi xuất hoặc đặt lịch gửi.",
+    "loadFailed": "Không dựng được báo cáo.",
+    "generatedAt": "Lập lúc {at}",
+    "truncated": "Khoảng thời gian này có nhiều sự cố hơn một báo cáo chứa được — các số liệu tính trên những sự cố gần nhất.",
+    "emailed": "Báo cáo đang được gửi tới {address}.",
+    "noAreas": "Bạn chưa vẽ khu vực nào nên chưa có gì để báo cáo.",
+    "noAreasAction": "Vẽ một khu vực",
+    "openIncidents": "Mở danh sách sự cố",
+    "controls": {
+      "window": "Khoảng thời gian",
+      "area": "Khu vực",
+      "allAreas": "Tất cả khu vực",
+      "email": "Gửi email cho tôi",
+      "pdf": "Tải PDF",
+      "topics": "Phần nội dung",
+      "topicsHint": "Các phần này áp dụng cho trang, file PDF và email."
+    },
+    "ranges": {
+      "24h": "24 giờ qua",
+      "7d": "7 ngày qua",
+      "30d": "30 ngày qua",
+      "all": "Toàn bộ"
+    },
+    "topics": {
+      "areas": "Khu vực",
+      "incidents": "Sự cố",
+      "scenarios": "Kịch bản ứng phó"
+    },
+    "kpi": {
+      "total": "Sự cố",
+      "totalDetail": "Trên {areas, plural, other {# khu vực}}",
+      "pending": "Còn chờ xử lý",
+      "pendingDetail": "Đã xử lý {share}",
+      "critical": "Nghiêm trọng",
+      "criticalDetail": "Kèm {count, plural, other {# cảnh báo}}",
+      "response": "Thời gian xử lý trung bình",
+      "responseDetail": "Chậm nhất {slowest}",
+      "areas": "Khu vực bị ảnh hưởng",
+      "areasDetail": "Trên tổng số khu vực bạn quản lý",
+      "plans": "Kịch bản đã kích hoạt",
+      "plansDetail": "{count, plural, other {# sự cố}} không có kịch bản"
+    },
+    "duration": {
+      "none": "—",
+      "minutes": "{minutes} phút",
+      "hours": "{hours} giờ {minutes} phút"
+    },
+    "chart": {
+      "title": "Sự cố theo ngày",
+      "subtitle": "Xếp chồng theo mức độ, tính cả những ngày yên ắng."
+    },
+    "measurements": {
+      "title": "Theo chỉ số",
+      "subtitle": "Điều kiện thời tiết nào đã gây ra sự cố.",
+      "metric": "Chỉ số",
+      "count": "Sự cố",
+      "share": "Tỷ lệ",
+      "otherMetric": "Khác"
+    },
+    "plans": {
+      "title": "Kịch bản ứng phó",
+      "subtitle": "{activated, plural, other {# sự cố}} chạy theo kịch bản, {uncovered, plural, other {# sự cố}} thì không.",
+      "empty": "Không có kịch bản nào được kích hoạt trong kỳ này.",
+      "plan": "Kịch bản",
+      "status": "Trạng thái",
+      "activations": "Lượt kích hoạt"
+    },
+    "overview": {
+      "total": "Sự cố",
+      "critical": "Nghiêm trọng",
+      "warning": "Cảnh báo",
+      "info": "Thông tin",
+      "pending": "Còn chờ xử lý",
+      "handled": "Đã xử lý",
+      "averageResponse": "Thời gian xử lý trung bình",
+      "slowestResponse": "Thời gian xử lý chậm nhất",
+      "areasAffected": "Khu vực bị ảnh hưởng"
+    },
+    "schedule": {
+      "title": "Báo cáo định kỳ",
+      "subtitle": "Hệ thống dựng báo cáo và gửi email cho bạn vào ngày cố định.",
+      "loadFailed": "Không tải được lịch gửi.",
+      "range": "Khoảng thời gian báo cáo",
+      "frequency": "Tần suất",
+      "weekly": "Hằng tuần",
+      "monthly": "Hằng tháng",
+      "weekday": "Thứ trong tuần",
+      "dayOfMonth": "Ngày trong tháng",
+      "dayOfMonthHint": "Tối đa ngày 28 để tháng nào cũng gửi được.",
+      "hour": "Giờ gửi",
+      "hourHint": "Theo múi giờ đặt trong tài khoản của bạn.",
+      "topics": "Các phần được gửi",
+      "next": "Báo cáo kế tiếp",
+      "last": "Lần gửi gần nhất",
+      "never": "Chưa lần nào",
+      "saved": "Đã lưu lịch gửi.",
+      "stop": "Ngừng gửi",
+      "errors": {
+        "topicsRequired": "Hãy giữ lại ít nhất một phần."
+      }
+    },
+    "pdf": {
+      "title": "Báo cáo sự cố theo khu vực",
+      "failed": "Không tạo được file PDF.",
+      "footer": "Dịch vụ cảnh báo thời tiết",
+      "page": "Trang {page}/{total}",
+      "noPlan": "Không có kịch bản",
+      "allAreas": "Tất cả khu vực",
+      "truncated": "Khoảng thời gian này có nhiều sự cố hơn một báo cáo chứa được — các số liệu tính trên những sự cố gần nhất.",
+      "fields": {
+        "period": "Khoảng thời gian",
+        "area": "Khu vực",
+        "generatedAt": "Lập lúc",
+        "timezone": "Múi giờ"
+      },
+      "sections": {
+        "overview": "Tổng quan",
+        "trend": "Sự cố theo ngày",
+        "areas": "Khu vực",
+        "metrics": "Theo chỉ số",
+        "incidents": "Sự cố gần đây",
+        "scenarios": "Kịch bản ứng phó"
+      },
+      "columns": {
+        "figure": "Chỉ tiêu",
+        "value": "Giá trị",
+        "area": "Khu vực",
+        "total": "Sự cố",
+        "pending": "Chờ xử lý",
+        "worst": "Mức cao nhất",
+        "last": "Sự cố gần nhất",
+        "metric": "Chỉ số",
+        "share": "Tỷ lệ",
+        "time": "Thời điểm",
+        "incident": "Sự cố",
+        "severity": "Mức độ",
+        "status": "Trạng thái",
+        "plan": "Kịch bản",
+        "activations": "Lượt kích hoạt"
+      }
+    }
+  },
   "govScenarios": {
     "activate": {
       "activate": "Kích hoạt kịch bản",
@@ -1128,10 +1272,6 @@
       }
     },
     "title": "Cá nhân"
-  },
-  "placeholder": {
-    "govReports": "Báo cáo tổng hợp trên các khu vực, sự cố và cảnh báo.",
-    "notBuilt": "Chưa xây dựng"
   },
   "reports": {
     "config": {

@@ -676,6 +676,150 @@
     },
     "title": "Incidents"
   },
+  "govReports": {
+    "title": "Area reports",
+    "subtitle": "Aggregate what happened across your areas, then export or schedule it.",
+    "loadFailed": "The report could not be built.",
+    "generatedAt": "Generated {at}",
+    "truncated": "This period holds more incidents than a single report can carry — the figures cover the most recent ones.",
+    "emailed": "The report is on its way to {address}.",
+    "noAreas": "You have not drawn any areas yet, so there is nothing to report on.",
+    "noAreasAction": "Draw an area",
+    "openIncidents": "Open the incident list",
+    "controls": {
+      "window": "Period",
+      "area": "Area",
+      "allAreas": "All areas",
+      "email": "Email to me",
+      "pdf": "Download PDF",
+      "topics": "Sections",
+      "topicsHint": "Sections apply to the page, the PDF and the email."
+    },
+    "ranges": {
+      "24h": "Last 24 hours",
+      "7d": "Last 7 days",
+      "30d": "Last 30 days",
+      "all": "All time"
+    },
+    "topics": {
+      "areas": "Areas",
+      "incidents": "Incidents",
+      "scenarios": "Response plans"
+    },
+    "kpi": {
+      "total": "Incidents",
+      "totalDetail": "Across {areas, plural, one {# area} other {# areas}}",
+      "pending": "Still pending",
+      "pendingDetail": "{share} handled",
+      "critical": "Critical",
+      "criticalDetail": "{count, plural, one {# warning} other {# warnings}} as well",
+      "response": "Average response",
+      "responseDetail": "Slowest {slowest}",
+      "areas": "Areas affected",
+      "areasDetail": "Of the areas you manage",
+      "plans": "Plans activated",
+      "plansDetail": "{count, plural, one {# incident} other {# incidents}} ran without one"
+    },
+    "duration": {
+      "none": "—",
+      "minutes": "{minutes} min",
+      "hours": "{hours}h {minutes}m"
+    },
+    "chart": {
+      "title": "Incidents per day",
+      "subtitle": "Stacked by severity, quiet days included."
+    },
+    "measurements": {
+      "title": "By measurement",
+      "subtitle": "Which condition triggered the incidents.",
+      "metric": "Measurement",
+      "count": "Incidents",
+      "share": "Share",
+      "otherMetric": "Other"
+    },
+    "plans": {
+      "title": "Response plans",
+      "subtitle": "{activated, plural, one {# incident} other {# incidents}} ran under a plan, {uncovered, plural, one {# did} other {# did}} not.",
+      "empty": "No plan was activated in this period.",
+      "plan": "Plan",
+      "status": "Status",
+      "activations": "Activations"
+    },
+    "overview": {
+      "total": "Incidents",
+      "critical": "Critical",
+      "warning": "Warning",
+      "info": "Info",
+      "pending": "Still pending",
+      "handled": "Handled",
+      "averageResponse": "Average response",
+      "slowestResponse": "Slowest response",
+      "areasAffected": "Areas affected"
+    },
+    "schedule": {
+      "title": "Scheduled report",
+      "subtitle": "We build the report and email it to you on a fixed day.",
+      "loadFailed": "The schedule could not be loaded.",
+      "range": "Period covered",
+      "frequency": "How often",
+      "weekly": "Every week",
+      "monthly": "Every month",
+      "weekday": "Day of the week",
+      "dayOfMonth": "Day of the month",
+      "dayOfMonthHint": "Capped at 28 so it fires every month.",
+      "hour": "Time of day",
+      "hourHint": "In the timezone set in your account.",
+      "topics": "Sections to include",
+      "next": "Next report",
+      "last": "Last sent",
+      "never": "Never",
+      "saved": "The schedule is saved.",
+      "stop": "Stop sending",
+      "errors": {
+        "topicsRequired": "Keep at least one section."
+      }
+    },
+    "pdf": {
+      "title": "Area incident report",
+      "failed": "The PDF could not be built.",
+      "footer": "Weather advisory service",
+      "page": "Page {page} of {total}",
+      "noPlan": "No plan",
+      "allAreas": "All areas",
+      "truncated": "This period holds more incidents than one report can carry — the figures cover the most recent ones.",
+      "fields": {
+        "period": "Period",
+        "area": "Area",
+        "generatedAt": "Generated",
+        "timezone": "Time zone"
+      },
+      "sections": {
+        "overview": "Overview",
+        "trend": "Incidents per day",
+        "areas": "Areas",
+        "metrics": "By measurement",
+        "incidents": "Recent incidents",
+        "scenarios": "Response plans"
+      },
+      "columns": {
+        "figure": "Figure",
+        "value": "Value",
+        "area": "Area",
+        "total": "Incidents",
+        "pending": "Pending",
+        "worst": "Worst",
+        "last": "Last incident",
+        "metric": "Measurement",
+        "share": "Share",
+        "time": "Time",
+        "incident": "Incident",
+        "severity": "Severity",
+        "status": "Status",
+        "plan": "Plan",
+        "activations": "Activations"
+      }
+    }
+  },
   "govScenarios": {
     "activate": {
       "activate": "Activate a plan",
@@ -1128,10 +1272,6 @@
       }
     },
     "title": "Personal"
-  },
-  "placeholder": {
-    "govReports": "Aggregate reporting across areas, incidents and alerts.",
-    "notBuilt": "Not built yet"
   },
   "reports": {
     "config": {
