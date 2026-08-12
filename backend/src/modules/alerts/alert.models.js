@@ -77,6 +77,13 @@ AlertEvent.init(
 			allowNull: false,
 			defaultValue: false,
 		},
+		status: {
+			type: DataTypes.ENUM('pending', 'acknowledged', 'resolved'),
+			allowNull: false,
+			defaultValue: 'pending',
+		},
+		handled_at: { type: DataTypes.DATE, allowNull: true },
+		handled_note: { type: DataTypes.TEXT, allowNull: true },
 	},
 	{
 		sequelize,

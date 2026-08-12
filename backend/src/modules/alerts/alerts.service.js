@@ -34,6 +34,7 @@ const publicEvent = (event) => ({
 	metric: event.metric,
 	value: event.value,
 	isRead: event.is_read,
+	status: event.status,
 	createdAt: event.createdAt,
 });
 
