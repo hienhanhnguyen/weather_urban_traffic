@@ -2,7 +2,10 @@ const express = require('express');
 const validate = require('../../shared/validate');
 const authenticate = require('../../shared/authenticate');
 const authorize = require('../../shared/authorize');
-const { areaEvaluateLimiter } = require('../../shared/rate.limit');
+const {
+	areaEvaluateLimiter,
+	heatmapLimiter,
+} = require('../../shared/rate.limit');
 const schemas = require('./areas.schemas');
 const controller = require('./areas.controller');
 
@@ -13,6 +16,8 @@ router.use(authorize('admin'));
 
 router.get('/', controller.list);
 router.post('/', validate(schemas.create), controller.create);
+
+router.get('/heatmap', heatmapLimiter, controller.heatmap);
 
 router.get('/:id', validate(schemas.idParam, 'params'), controller.get);
 router.patch(

@@ -1,9 +1,14 @@
 const service = require('./areas.service');
 const alerts = require('./area.alerts.service');
+const heatmapService = require('./area.heatmap.service');
 
 module.exports = {
 	list: async (req, res) => {
 		res.status(200).json(await service.list(req.user.id));
+	},
+
+	heatmap: async (req, res) => {
+		res.status(200).json(await heatmapService.heatmap(req.user.id));
 	},
 
 	get: async (req, res) => {

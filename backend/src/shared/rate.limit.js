@@ -65,6 +65,11 @@ module.exports = {
 		limit: 10,
 		keyGenerator: byUserId,
 	}),
+	heatmapLimiter: build({
+		windowMs: MINUTE,
+		limit: 20,
+		keyGenerator: byUserId,
+	}),
 	weatherLimiter: build({ windowMs: MINUTE, limit: 60 }),
 	geoLimiter: build({ windowMs: MINUTE, limit: 90, keyGenerator: byUserId }),
 };
