@@ -18,6 +18,10 @@ const {
 const { ReportSchedule } = require('../modules/business/business.models');
 const { ManagedArea } = require('../modules/areas/area.model');
 const { AreaAlertRule } = require('../modules/areas/area.alert.model');
+const {
+	ResponseScenario,
+	ResponseScenarioStep,
+} = require('../modules/scenarios/scenario.models');
 
 
 User.belongsToMany(Role, {
@@ -66,6 +70,26 @@ ManagedArea.hasMany(AlertEvent, {
 });
 AlertEvent.belongsTo(ManagedArea, { foreignKey: 'area_id', as: 'managedArea' });
 
+ResponseScenario.hasMany(ResponseScenarioStep, {
+	foreignKey: 'scenario_id',
+	as: 'steps',
+	onDelete: 'CASCADE',
+});
+ResponseScenarioStep.belongsTo(ResponseScenario, {
+	foreignKey: 'scenario_id',
+	as: 'scenario',
+});
+
+ResponseScenario.hasMany(AlertEvent, {
+	foreignKey: 'scenario_id',
+	as: 'activations',
+	onDelete: 'SET NULL',
+});
+AlertEvent.belongsTo(ResponseScenario, {
+	foreignKey: 'scenario_id',
+	as: 'scenario',
+});
+
 SavedRoute.hasOne(ReportSchedule, {
 	foreignKey: 'route_id',
 	as: 'schedule',
@@ -96,6 +120,7 @@ for (const model of [
 	WeatherSearch,
 	ReportSchedule,
 	ManagedArea,
+	ResponseScenario,
 ]) {
 	model.belongsTo(User, { foreignKey: 'user_id', onDelete: 'CASCADE' });
 	User.hasMany(model, { foreignKey: 'user_id' });
@@ -119,4 +144,6 @@ module.exports = {
 	ReportSchedule,
 	ManagedArea,
 	AreaAlertRule,
+	ResponseScenario,
+	ResponseScenarioStep,
 };

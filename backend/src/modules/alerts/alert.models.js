@@ -63,6 +63,8 @@ AlertEvent.init(
 		user_id: { type: DataTypes.INTEGER, allowNull: false },
 		rule_id: { type: DataTypes.INTEGER, allowNull: true },
 		area_id: { type: DataTypes.INTEGER, allowNull: true },
+		scenario_id: { type: DataTypes.INTEGER, allowNull: true },
+		activated_at: { type: DataTypes.DATE, allowNull: true },
 		title: { type: DataTypes.STRING(255), allowNull: false },
 		body: { type: DataTypes.TEXT, allowNull: true },
 		severity: {

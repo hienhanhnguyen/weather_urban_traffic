@@ -10,9 +10,7 @@ module.exports = {
 	},
 
 	get: async (req, res) => {
-		res.status(200).json({
-			incident: await service.get(req.user.id, Number(req.params.id)),
-		});
+		res.status(200).json(await service.get(req.user.id, Number(req.params.id)));
 	},
 
 	updateStatus: async (req, res) => {
@@ -23,5 +21,15 @@ module.exports = {
 				{ status: req.body.status, note: req.body.note }
 			),
 		});
+	},
+
+	activateScenario: async (req, res) => {
+		res.status(200).json(
+			await service.activateScenario(
+				req.user.id,
+				Number(req.params.id),
+				req.body.scenario_id
+			)
+		);
 	},
 };

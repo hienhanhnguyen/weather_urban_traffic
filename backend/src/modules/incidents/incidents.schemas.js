@@ -30,6 +30,10 @@ module.exports = {
 		note: Joi.string().max(500).allow('', null),
 	}),
 
+	activateScenario: Joi.object({
+		scenario_id: Joi.number().integer().min(1).allow(null).required(),
+	}),
+
 	idParam: Joi.object({
 		id: Joi.number().integer().min(1).required(),
 	}),

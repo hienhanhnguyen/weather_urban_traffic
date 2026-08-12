@@ -1,6 +1,12 @@
 const { Op, fn, col } = require('sequelize');
-const { AlertEvent, ManagedArea } = require('../../shared/models');
+const {
+	AlertEvent,
+	ManagedArea,
+	ResponseScenario,
+	ResponseScenarioStep,
+} = require('../../shared/models');
 const { NotFoundError } = require('../../shared/errors');
+const scenarios = require('../scenarios/scenarios.service');
 const { rangeFor, summarise } = require('./incidents.report');
 
 const publicIncident = (event) => ({
@@ -13,6 +19,9 @@ const publicIncident = (event) => ({
 	metric: event.metric,
 	value: event.value,
 	status: event.status,
+	scenarioId: event.scenario_id,
+	scenarioName: event.scenario ? event.scenario.name : null,
+	activatedAt: event.activated_at,
 	handledAt: event.handled_at,
 	handledNote: event.handled_note,
 	isRead: event.is_read,
@@ -54,6 +63,12 @@ async function list(userId, query) {
 				model: ManagedArea,
 				as: 'managedArea',
 				attributes: ['name'],
+				required: false,
+			},
+			{
+				model: ResponseScenario,
+				as: 'scenario',
+				attributes: ['scenario_id', 'name'],
 				required: false,
 			},
 		],
@@ -115,6 +130,26 @@ async function ownedOrFail(userId, incidentId) {
 				attributes: ['name'],
 				required: false,
 			},
+			{
+				model: ResponseScenario,
+				as: 'scenario',
+				required: false,
+				include: [
+					{
+						model: ResponseScenarioStep,
+						as: 'steps',
+						required: false,
+					},
+				],
+			},
+		],
+		order: [
+			[
+				{ model: ResponseScenario, as: 'scenario' },
+				{ model: ResponseScenarioStep, as: 'steps' },
+				'position',
+				'ASC',
+			],
 		],
 	});
 
@@ -124,7 +159,14 @@ async function ownedOrFail(userId, incidentId) {
 }
 
 async function get(userId, incidentId) {
-	return publicIncident(await ownedOrFail(userId, incidentId));
+	const event = await ownedOrFail(userId, incidentId);
+
+	return {
+		incident: publicIncident(event),
+		scenario: event.scenario
+			? scenarios.publicScenario(event.scenario)
+			: null,
+	};
 }
 
 async function updateStatus(userId, incidentId, { status, note }) {
@@ -141,10 +183,24 @@ async function updateStatus(userId, incidentId, { status, note }) {
 	return publicIncident(event);
 }
 
+async function activateScenario(userId, incidentId, scenarioId) {
+	const event = await ownedOrFail(userId, incidentId);
+
+	if (scenarioId !== null) await scenarios.ownedOrFail(userId, scenarioId);
+
+	await event.update({
+		scenario_id: scenarioId,
+		activated_at: scenarioId === null ? null : new Date(),
+	});
+
+	return get(userId, incidentId);
+}
+
 module.exports = {
 	list,
 	summary,
 	get,
 	updateStatus,
+	activateScenario,
 	publicIncident,
 };
