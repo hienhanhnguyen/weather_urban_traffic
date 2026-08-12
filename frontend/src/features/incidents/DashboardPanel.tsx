@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Callout } from "@/components/ui/Callout";
 import { Select } from "@/components/ui/Select";
+import { HeatmapPanel } from "@/features/areas/HeatmapPanel";
 import { AreaTallyTable } from "./AreaTallyTable";
 import { KpiCards } from "./KpiCards";
 import {
@@ -75,7 +76,10 @@ export function DashboardPanel() {
               </Link>
             </div>
           ) : (
-            <AreaTallyTable areas={query.data.areas} />
+            <>
+              <HeatmapPanel tallies={query.data.areas} />
+              <AreaTallyTable areas={query.data.areas} />
+            </>
           )}
 
           <Link

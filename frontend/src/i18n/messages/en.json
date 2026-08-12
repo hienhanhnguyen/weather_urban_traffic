@@ -588,6 +588,49 @@
     "title": "Dashboard",
     "window": "Period"
   },
+  "govHeatmap": {
+    "conditions": {
+      "atRisk": "Areas over a limit",
+      "atRiskValue": "{count} of {total}",
+      "noData": "No reading",
+      "rainfall": "Average rainfall now",
+      "wind": "Strongest wind now",
+      "windiest": "at {name}"
+    },
+    "detail": {
+      "editRules": "Edit the watch list",
+      "facts": {
+        "precip": "Rainfall",
+        "precipprob": "Chance of rain",
+        "temp": "Temperature",
+        "wind": "Wind"
+      },
+      "incidentCounts": "{total} raised, {pending} still waiting",
+      "incidents": "Incidents in the selected period",
+      "noIncidents": "Nothing raised in this period.",
+      "noReading": "No weather reading arrived for this area.",
+      "noRules": "Nothing is being watched here yet.",
+      "observed": "Measured {time}",
+      "openIncidents": "Open the incident list",
+      "over": "{value}{unit} — at or over {threshold}{unit}",
+      "rules": "Watch list",
+      "under": "{value}{unit} — under {threshold}{unit}"
+    },
+    "empty": "Draw an area to see it here.",
+    "loadFailed": "Could not load the risk map.",
+    "pin": "{name}: {total} incidents",
+    "risks": {
+      "clear": "Within limits",
+      "critical": "Critical",
+      "info": "Info",
+      "none": "Not watched",
+      "unknown": "No reading",
+      "warning": "Warning"
+    },
+    "showAll": "Back to all areas",
+    "subtitle": "Every area you manage, shaded by how its live weather sits against the limits you set.",
+    "title": "Risk map"
+  },
   "govIncidents": {
     "actions": {
       "acknowledged": "Take it on",

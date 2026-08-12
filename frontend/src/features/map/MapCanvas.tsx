@@ -22,9 +22,16 @@ import {
   MAP_STYLE_LIGHT,
 } from "@/lib/map/config";
 
+export interface MapClick {
+  latitude: number;
+  longitude: number;
+  features: MapLayerMouseEvent["features"];
+}
+
 export interface MapCanvasProps {
   initialViewState?: Partial<ViewState>;
-  onClick?: (coordinates: { latitude: number; longitude: number }) => void;
+  interactiveLayerIds?: string[];
+  onClick?: (click: MapClick) => void;
   onReady?: (map: MapLibreMap) => void;
   mapRef?: React.Ref<MapRef>;
   interactive?: boolean;
@@ -33,6 +40,7 @@ export interface MapCanvasProps {
 
 export default function MapCanvas({
   initialViewState,
+  interactiveLayerIds,
   onClick,
   onReady,
   mapRef,
@@ -60,12 +68,14 @@ export default function MapCanvas({
         mapStyle={mapStyle}
         interactive={interactive}
         attributionControl={false}
+        interactiveLayerIds={interactiveLayerIds}
         onClick={
           onClick &&
           ((event: MapLayerMouseEvent) =>
             onClick({
               latitude: event.lngLat.lat,
               longitude: event.lngLat.lng,
+              features: event.features,
             }))
         }
         onLoad={(event) => {

@@ -588,6 +588,49 @@
     "title": "Bảng điều khiển",
     "window": "Khoảng thời gian"
   },
+  "govHeatmap": {
+    "conditions": {
+      "atRisk": "Khu vực vượt ngưỡng",
+      "atRiskValue": "{count} trên {total}",
+      "noData": "Chưa có số liệu",
+      "rainfall": "Lượng mưa trung bình",
+      "wind": "Gió mạnh nhất",
+      "windiest": "tại {name}"
+    },
+    "detail": {
+      "editRules": "Sửa danh sách theo dõi",
+      "facts": {
+        "precip": "Lượng mưa",
+        "precipprob": "Khả năng mưa",
+        "temp": "Nhiệt độ",
+        "wind": "Gió"
+      },
+      "incidentCounts": "{total} sự cố, {pending} còn chờ xử lý",
+      "incidents": "Sự cố trong khoảng đã chọn",
+      "noIncidents": "Không có sự cố nào trong khoảng này.",
+      "noReading": "Không lấy được số liệu thời tiết cho khu vực này.",
+      "noRules": "Chưa theo dõi chỉ số nào ở đây.",
+      "observed": "Đo {time}",
+      "openIncidents": "Mở danh sách sự cố",
+      "over": "{value}{unit} — đạt hoặc vượt {threshold}{unit}",
+      "rules": "Danh sách theo dõi",
+      "under": "{value}{unit} — dưới {threshold}{unit}"
+    },
+    "empty": "Vẽ một khu vực để xem tại đây.",
+    "loadFailed": "Không tải được bản đồ rủi ro.",
+    "pin": "{name}: {total} sự cố",
+    "risks": {
+      "clear": "Trong ngưỡng",
+      "critical": "Nghiêm trọng",
+      "info": "Thông tin",
+      "none": "Chưa theo dõi",
+      "unknown": "Chưa có số liệu",
+      "warning": "Cảnh báo"
+    },
+    "showAll": "Xem lại tất cả khu vực",
+    "subtitle": "Mọi khu vực bạn quản lý, tô màu theo thời tiết hiện tại so với ngưỡng bạn đặt.",
+    "title": "Bản đồ rủi ro"
+  },
   "govIncidents": {
     "actions": {
       "acknowledged": "Nhận xử lý",
