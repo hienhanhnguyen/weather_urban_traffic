@@ -8,7 +8,18 @@ const withAuth = (options: RequestOptions, accessToken: string): RequestOptions 
 	headers: { ...options.headers, Authorization: `Bearer ${accessToken}` },
 });
 
-const isAuthPath = (path: string) => path.startsWith('/auth/');
+const CREDENTIAL_PATHS = new Set([
+	'/auth/signup',
+	'/auth/signin',
+	'/auth/google',
+	'/auth/refresh',
+	'/auth/signout',
+	'/auth/password/forgot',
+	'/auth/password/verify-otp',
+	'/auth/password/reset',
+]);
+
+const isCredentialPath = (path: string) => CREDENTIAL_PATHS.has(path);
 
 export async function apiRequest<T>(
 	path: string,
@@ -16,8 +27,7 @@ export async function apiRequest<T>(
 ): Promise<T> {
 	const tokens = getTokens();
 
-	// /auth/* is how you obtain tokens; a 401 there means bad credentials.
-	if (!tokens || isAuthPath(path)) return rawRequest<T>(path, options);
+	if (!tokens || isCredentialPath(path)) return rawRequest<T>(path, options);
 
 	try {
 		return await rawRequest<T>(path, withAuth(options, tokens.accessToken));
@@ -26,7 +36,6 @@ export async function apiRequest<T>(
 
 		const next = await refreshTokens();
 
-		// rawRequest, not apiRequest — recursion is structurally impossible.
 		return rawRequest<T>(path, withAuth(options, next.accessToken));
 	}
 }

@@ -33,13 +33,22 @@ const SessionContext = createContext<Session | null>(null);
 // Server has no localStorage, so it always render the anonymous branch
 const serverSnapshot = (): TokenPair | null => null;
 
+const onClient = () => true;
+const onServer = () => false;
+
 export function useTokenPair(): TokenPair | null {
   return useSyncExternalStore(subscribe, getTokens, serverSnapshot);
+}
+
+function useHydrated(): boolean {
+  return useSyncExternalStore(subscribe, onClient, onServer);
 }
 
 export function SessionProvider({ children }: { children: React.ReactNode }) {
   const queryClient = useQueryClient();
   const tokens = useTokenPair();
+
+  const hydrated = useHydrated();
 
   const query = useQuery({
     queryKey: SESSION_QUERY_KEY,
@@ -84,7 +93,7 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
     const user = tokens ? (query.data ?? null) : null;
 
     let status: SessionStatus = "anonymous";
-    if (tokens && query.isPending) status = "loading";
+    if (!hydrated || (tokens && query.isPending)) status = "loading";
     else if (user) status = "authenticated";
 
     return {
@@ -94,7 +103,7 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
       signOut,
       hasRole: (role) => user?.roles.includes(role) ?? false,
     };
-  }, [tokens, query.data, query.isPending, adopt, signOut]);
+  }, [hydrated, tokens, query.data, query.isPending, adopt, signOut]);
 
   return (
     <SessionContext.Provider value={value}>{children}</SessionContext.Provider>
