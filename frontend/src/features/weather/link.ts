@@ -35,5 +35,6 @@ export function parsePlaceLink(params: URLSearchParams): WeatherPlace | null {
     latitude,
     longitude,
     label: (params.get("label") ?? "").slice(0, LABEL_MAX),
+    address: null,
   };
 }

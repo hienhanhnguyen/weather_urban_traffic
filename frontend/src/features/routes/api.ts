@@ -61,10 +61,19 @@ export const createRoute = (body: CreateRouteInput) =>
     body,
   });
 
-export const renameRoute = (id: number, name: string) =>
+export interface UpdateRouteInput {
+  name?: string;
+  start?: RouteEndpointInput;
+  end?: RouteEndpointInput;
+  profile?: RouteProfile;
+  distance_m?: number | null;
+  duration_s?: number | null;
+}
+
+export const updateRoute = (id: number, body: UpdateRouteInput) =>
   apiRequest<{ route: SavedRoute }>(`/routes/${id}`, {
     method: "PATCH",
-    body: { name },
+    body,
   }).then((response) => response.route);
 
 export const deleteRoute = (id: number) =>

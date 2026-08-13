@@ -12,6 +12,7 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { Callout } from "@/components/ui/Callout";
 import { LOCATIONS_QUERY_KEY, listLocations } from "@/features/locations/api";
+import { REVERSE_GEOCODE_QUERY_KEY, reverseGeocode } from "@/features/map/api";
 import {
   WEATHER_SEARCHES_QUERY_KEY,
   recordWeatherSearch,
@@ -54,8 +55,29 @@ export function WeatherPanel() {
           latitude: fallback.latitude,
           longitude: fallback.longitude,
           label: fallback.name,
+          address: fallback.address,
         }
       : null);
+
+  const lookup = useQuery({
+    queryKey: [
+      ...REVERSE_GEOCODE_QUERY_KEY,
+      place?.latitude ?? null,
+      place?.longitude ?? null,
+    ],
+    queryFn:
+      place && !place.address
+        ? () => reverseGeocode(place.latitude, place.longitude)
+        : skipToken,
+    staleTime: STALE_TIME,
+  });
+
+  const address =
+    place?.address ||
+    lookup.data?.address ||
+    lookup.data?.name ||
+    place?.label ||
+    t("unknownPlace");
 
   const current = useQuery({
     queryKey: place ? currentQueryKey(place, "metric") : ["weather", "current"],
@@ -147,7 +169,9 @@ export function WeatherPanel() {
         </Callout>
       )}
 
-      {current.data && <CurrentWeatherCard current={current.data} />}
+      {current.data && (
+        <CurrentWeatherCard current={current.data} address={address} />
+      )}
 
       {forecast.data && (
         <>

@@ -10,11 +10,11 @@ import type { SavedRoute } from "./api";
 
 export interface RouteRowProps {
   route: SavedRoute;
-  onRename: (route: SavedRoute) => void;
+  onEdit: (route: SavedRoute) => void;
   onDelete: (route: SavedRoute) => void;
 }
 
-export function RouteRow({ route, onRename, onDelete }: RouteRowProps) {
+export function RouteRow({ route, onEdit, onDelete }: RouteRowProps) {
   const t = useTranslations("routes");
   const tProfiles = useTranslations("map.route.profiles");
   const format = useRouteFormat();
@@ -44,8 +44,8 @@ export function RouteRow({ route, onRename, onDelete }: RouteRowProps) {
 
         <button
           type="button"
-          onClick={() => onRename(route)}
-          aria-label={t("renameOne", { name: route.name })}
+          onClick={() => onEdit(route)}
+          aria-label={t("editOne", { name: route.name })}
           className="rounded-md p-2 hover:bg-black/5 dark:hover:bg-white/10"
         >
           <Pencil aria-hidden="true" className="size-4" />

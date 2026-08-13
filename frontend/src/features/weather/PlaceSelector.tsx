@@ -13,6 +13,7 @@ export interface WeatherPlace {
   latitude: number;
   longitude: number;
   label: string;
+  address: string | null;
 }
 
 const SAVED_PLACEHOLDER = "";
@@ -59,6 +60,7 @@ export function PlaceSelector({
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
           label: t("myLocation"),
+          address: null,
         });
       },
       () => {
@@ -77,6 +79,7 @@ export function PlaceSelector({
             latitude: place.latitude,
             longitude: place.longitude,
             label: place.name,
+            address: place.address || null,
           })
         }
         focus={value ?? undefined}
@@ -98,6 +101,7 @@ export function PlaceSelector({
                 latitude: match.latitude,
                 longitude: match.longitude,
                 label: match.name,
+                address: match.address,
               });
             }}
             options={[

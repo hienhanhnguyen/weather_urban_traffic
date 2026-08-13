@@ -9,7 +9,7 @@ import { Pagination } from "@/components/ui/Pagination";
 import { pageCount } from "@/components/ui/pageRange";
 import { ROUTES_PAGE_SIZE, listRoutes, routesQueryKey, type SavedRoute } from "./api";
 import { DeleteRouteDialog } from "./DeleteRouteDialog";
-import { RenameRouteDialog } from "./RenameRouteDialog";
+import { EditRouteDialog } from "./EditRouteDialog";
 import { RouteRow } from "./RouteRow";
 
 export function RoutesPanel() {
@@ -17,7 +17,7 @@ export function RoutesPanel() {
   const tCommon = useTranslations("common");
 
   const [page, setPage] = useState(1);
-  const [renaming, setRenaming] = useState<SavedRoute | null>(null);
+  const [editing, setEditing] = useState<SavedRoute | null>(null);
   const [pendingDelete, setPendingDelete] = useState<SavedRoute | null>(null);
 
   const query = useQuery({
@@ -95,7 +95,7 @@ export function RoutesPanel() {
             <RouteRow
               key={route.id}
               route={route}
-              onRename={setRenaming}
+              onEdit={setEditing}
               onDelete={setPendingDelete}
             />
           ))}
@@ -109,11 +109,8 @@ export function RoutesPanel() {
         label={t("pagination")}
       />
 
-      {renaming && (
-        <RenameRouteDialog
-          route={renaming}
-          onClose={() => setRenaming(null)}
-        />
+      {editing && (
+        <EditRouteDialog route={editing} onClose={() => setEditing(null)} />
       )}
 
       {pendingDelete && (

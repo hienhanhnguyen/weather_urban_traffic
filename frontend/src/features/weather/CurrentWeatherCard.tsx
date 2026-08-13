@@ -29,7 +29,13 @@ function Stat({
   );
 }
 
-export function CurrentWeatherCard({ current }: { current: CurrentWeather }) {
+export function CurrentWeatherCard({
+  current,
+  address,
+}: {
+  current: CurrentWeather;
+  address: string;
+}) {
   const t = useTranslations("weather");
   const format = useFormatter();
 
@@ -63,7 +69,7 @@ export function CurrentWeatherCard({ current }: { current: CurrentWeather }) {
         </div>
 
         {current.observedAt && (
-          <p className="ml-auto self-start text-right text-xs opacity-60">
+          <p className="ml-auto max-w-56 self-start text-right text-xs opacity-60">
             {t("observedAt", {
               time: format.dateTime(new Date(current.observedAt), {
                 hour: "2-digit",
@@ -71,7 +77,7 @@ export function CurrentWeatherCard({ current }: { current: CurrentWeather }) {
                 timeZone: current.timezone,
               }),
             })}
-            <span className="block">{current.timezone}</span>
+            <span className="block">{address}</span>
           </p>
         )}
       </div>
