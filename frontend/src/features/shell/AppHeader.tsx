@@ -24,7 +24,7 @@ export function AppHeader() {
 
   return (
     <header className="sticky top-0 z-30 border-b border-border bg-background/90 backdrop-blur">
-      <div className="flex items-center gap-3 px-4 py-3">
+      <div className="flex h-16 items-center gap-3 px-4">
         <button
           type="button"
           onClick={openMobile}

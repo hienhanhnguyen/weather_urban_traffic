@@ -9,10 +9,15 @@ import { useSession } from "@/lib/auth/session";
 import { isActive, visibleSections } from "./nav";
 import { useSidebar } from "./sidebar-state";
 
-function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
+function NavLinks({
+  collapsed = false,
+  onNavigate,
+}: {
+  collapsed?: boolean;
+  onNavigate?: () => void;
+}) {
   const t = useTranslations("nav");
   const { user } = useSession();
-  const { collapsed } = useSidebar();
   const pathname = usePathname();
 
   if (!user) return null;
@@ -40,8 +45,12 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
                 aria-current={active ? "page" : undefined}
                 title={collapsed ? label : undefined}
                 className={
-                  "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors " +
+                  "flex items-center rounded-md py-2 text-sm transition-colors " +
                   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 " +
+                  // The label is `sr-only` when collapsed, so the icon is the
+                  // only thing left in the row: drop the text indent and let
+                  // it sit on the rail's centre line.
+                  (collapsed ? "justify-center px-0 " : "gap-3 px-3 ") +
                   (active
                     ? "bg-sky-600/10 font-medium text-sky-700 dark:text-sky-300"
                     : "hover:bg-black/5 dark:hover:bg-white/10")
@@ -117,25 +126,36 @@ export function Sidebar() {
         }
       >
         <div className="sticky top-0 flex h-dvh flex-col">
-          <div className="flex-1 overflow-y-auto">
-            <NavLinks />
+          <div className="flex h-16 shrink-0 items-center border-b border-border px-2">
+            <button
+              type="button"
+              onClick={toggleCollapsed}
+              aria-expanded={!collapsed}
+              title={collapsed ? t("expand") : undefined}
+              className={
+                "flex w-full items-center rounded-md py-2 text-sm opacity-70 transition-colors " +
+                "hover:bg-black/5 hover:opacity-100 dark:hover:bg-white/10 " +
+                "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 " +
+                (collapsed ? "justify-center px-0" : "gap-3 px-3")
+              }
+            >
+              {collapsed ? (
+                <PanelLeftOpen aria-hidden="true" className="size-4 shrink-0" />
+              ) : (
+                <PanelLeftClose
+                  aria-hidden="true"
+                  className="size-4 shrink-0"
+                />
+              )}
+              <span className={collapsed ? "sr-only" : undefined}>
+                {collapsed ? t("expand") : t("collapse")}
+              </span>
+            </button>
           </div>
 
-          <button
-            type="button"
-            onClick={toggleCollapsed}
-            aria-expanded={!collapsed}
-            className="flex items-center gap-3 border-t border-border px-5 py-3 text-sm opacity-70 hover:opacity-100"
-          >
-            {collapsed ? (
-              <PanelLeftOpen aria-hidden="true" className="size-4" />
-            ) : (
-              <PanelLeftClose aria-hidden="true" className="size-4" />
-            )}
-            <span className={collapsed ? "sr-only" : undefined}>
-              {collapsed ? t("expand") : t("collapse")}
-            </span>
-          </button>
+          <div className="flex-1 overflow-y-auto">
+            <NavLinks collapsed={collapsed} />
+          </div>
         </div>
       </aside>
 
