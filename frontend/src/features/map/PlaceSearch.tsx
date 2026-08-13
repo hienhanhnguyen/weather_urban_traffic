@@ -140,7 +140,7 @@ export function PlaceSearch({
         >
           {places.map((place, index) => (
             <li
-              key={place.id}
+              key={optionId(index)}
               id={optionId(index)}
               role="option"
               aria-selected={index === activeIndex}

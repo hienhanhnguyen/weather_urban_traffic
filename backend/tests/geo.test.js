@@ -140,6 +140,31 @@ test('search rejects a query that is too short before calling upstream', async (
 	assert.equal(called, false);
 });
 
+test('the same OSM object is only listed once', async () => {
+	const user = await createUser();
+
+	stubFetch(async () =>
+		json({
+			features: [
+				photonFeature(),
+				photonFeature({ name: 'Ben Thanh Market' }),
+				photonFeature({ osm_id: 39514796 }),
+			],
+		})
+	);
+
+	const res = await request(app)
+		.get('/api/geo/search?q=ben thanh')
+		.set(user.auth)
+		.expect(200);
+
+	assert.deepEqual(
+		res.body.places.map((place) => place.id),
+		['W39514795', 'W39514796']
+	);
+	assert.equal(res.body.places[0].name, 'Chợ Bến Thành');
+});
+
 test('a nameless feature falls back to its address', async () => {
 	const user = await createUser();
 

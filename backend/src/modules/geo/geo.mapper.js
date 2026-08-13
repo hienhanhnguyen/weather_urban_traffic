@@ -41,7 +41,16 @@ function toPlace(feature) {
 
 function toPlaces(payload) {
 	const features = Array.isArray(payload?.features) ? payload.features : [];
-	return features.map(toPlace).filter(Boolean);
+	const seen = new Set();
+
+	return features.reduce((places, feature) => {
+		const place = toPlace(feature);
+		if (place && !seen.has(place.id)) {
+			seen.add(place.id);
+			places.push(place);
+		}
+		return places;
+	}, []);
 }
 
 function toRoute(payload) {
