@@ -2,9 +2,10 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
-import { useFormatter, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Bell } from "lucide-react";
+import { useRelativeTime } from "@/i18n/relative-time";
 import {
   ALERT_EVENTS_QUERY_KEY,
   UNREAD_COUNT_QUERY_KEY,
@@ -25,7 +26,7 @@ const BELL_QUERY = { page: 1 } as const;
 export function NotificationBell() {
   const t = useTranslations("notifications");
   const tCommon = useTranslations("common");
-  const format = useFormatter();
+  const relativeTime = useRelativeTime();
   const queryClient = useQueryClient();
   const { status } = useNotifications();
 
@@ -177,7 +178,7 @@ export function NotificationBell() {
                       {event.body}
                     </span>
                     <span className="block text-xs opacity-50">
-                      {format.relativeTime(new Date(event.createdAt))}
+                      {relativeTime(new Date(event.createdAt))}
                     </span>
                   </span>
 

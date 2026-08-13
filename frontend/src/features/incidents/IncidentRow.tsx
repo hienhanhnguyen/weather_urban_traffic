@@ -1,6 +1,7 @@
 "use client";
 
 import { useFormatter } from "next-intl";
+import { useRelativeTime } from "@/i18n/relative-time";
 import type { Incident } from "./api";
 import { SeverityBadge, StatusBadge } from "./StatusBadge";
 
@@ -12,6 +13,7 @@ export interface IncidentRowProps {
 
 export function IncidentRow({ incident, selected, onSelect }: IncidentRowProps) {
   const format = useFormatter();
+  const relativeTime = useRelativeTime();
 
   const createdAt = new Date(incident.createdAt);
 
@@ -46,7 +48,7 @@ export function IncidentRow({ incident, selected, onSelect }: IncidentRowProps) 
             })}
           </time>
           {" · "}
-          {format.relativeTime(createdAt)}
+          {relativeTime(createdAt)}
         </p>
       </button>
     </li>

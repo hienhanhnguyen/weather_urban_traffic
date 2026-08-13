@@ -2,6 +2,7 @@
 
 import { useFormatter, useTranslations } from "next-intl";
 import { Trash2 } from "lucide-react";
+import { useRelativeTime } from "@/i18n/relative-time";
 import type { PushDevice } from "./api";
 
 export function PushDeviceRow({
@@ -17,6 +18,7 @@ export function PushDeviceRow({
 }) {
   const t = useTranslations("account.push");
   const format = useFormatter();
+  const relativeTime = useRelativeTime();
 
   const lastUsedAt = device.lastUsedAt ? new Date(device.lastUsedAt) : null;
   const createdAt = new Date(device.createdAt);
@@ -38,7 +40,7 @@ export function PushDeviceRow({
             <>
               {t("lastUsed")}{" "}
               <time dateTime={device.lastUsedAt ?? undefined}>
-                {format.relativeTime(lastUsedAt)}
+                {relativeTime(lastUsedAt)}
               </time>
             </>
           ) : (

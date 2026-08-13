@@ -1,6 +1,7 @@
 "use client";
 
 import { useFormatter, useTranslations } from "next-intl";
+import { useRelativeTime } from "@/i18n/relative-time";
 import type { AreaTally } from "./api";
 import { pendingShare } from "./filters";
 import { SeverityBadge } from "./StatusBadge";
@@ -8,6 +9,7 @@ import { SeverityBadge } from "./StatusBadge";
 export function AreaTallyTable({ areas }: { areas: AreaTally[] }) {
   const t = useTranslations("govDashboard.areas");
   const format = useFormatter();
+  const relativeTime = useRelativeTime();
 
   return (
     <section className="flex flex-col gap-3">
@@ -69,7 +71,7 @@ export function AreaTallyTable({ areas }: { areas: AreaTally[] }) {
                 <td className="px-4 py-2 opacity-70">
                   {area.lastAt ? (
                     <time dateTime={area.lastAt}>
-                      {format.relativeTime(new Date(area.lastAt))}
+                      {relativeTime(new Date(area.lastAt))}
                     </time>
                   ) : (
                     "—"

@@ -2,6 +2,7 @@
 
 import { useFormatter, useTranslations } from "next-intl";
 import { Check } from "lucide-react";
+import { useRelativeTime } from "@/i18n/relative-time";
 import { SeverityDot } from "@/features/notifications/SeverityDot";
 import type { AlertEvent } from "@/features/notifications/api";
 
@@ -18,6 +19,7 @@ export function HistoryEventRow({
 }: HistoryEventRowProps) {
   const t = useTranslations("history");
   const format = useFormatter();
+  const relativeTime = useRelativeTime();
 
   const createdAt = new Date(event.createdAt);
 
@@ -44,7 +46,7 @@ export function HistoryEventRow({
             })}
           </time>
           {" · "}
-          {format.relativeTime(createdAt)}
+          {relativeTime(createdAt)}
         </p>
       </div>
 

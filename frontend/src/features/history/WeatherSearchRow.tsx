@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useFormatter, useTranslations } from "next-intl";
 import { CloudSun } from "lucide-react";
+import { useRelativeTime } from "@/i18n/relative-time";
 import { WeatherIcon } from "@/features/weather/WeatherIcon";
 import { weatherHrefFor } from "@/features/weather/link";
 import { codeFromTag, conditionFor } from "@/features/weather/wmo";
@@ -12,6 +13,7 @@ export function WeatherSearchRow({ search }: { search: WeatherSearchEntry }) {
   const t = useTranslations("history.weather");
   const tConditions = useTranslations("weather.conditions");
   const format = useFormatter();
+  const relativeTime = useRelativeTime();
 
   const searchedAt = new Date(search.searchedAt);
   const code = codeFromTag(search.condition);
@@ -48,7 +50,7 @@ export function WeatherSearchRow({ search }: { search: WeatherSearchEntry }) {
             })}
           </time>
           {" · "}
-          {format.relativeTime(searchedAt)}
+          {relativeTime(searchedAt)}
         </p>
       </div>
 

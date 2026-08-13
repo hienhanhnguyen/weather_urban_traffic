@@ -4,6 +4,7 @@ import { useFormatter, useTranslations } from "next-intl";
 import Link from "next/link";
 import { ArrowRight, Droplets, Thermometer, Umbrella, Wind } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { useRelativeTime } from "@/i18n/relative-time";
 import { WeatherIcon } from "@/features/weather/WeatherIcon";
 import { conditionFor } from "@/features/weather/wmo";
 import { SeverityBadge } from "@/features/incidents/StatusBadge";
@@ -30,6 +31,7 @@ export function AreaRiskDetail({
   const tMetrics = useTranslations("areaAlerts.metrics");
   const tWeather = useTranslations("weather.conditions");
   const format = useFormatter();
+  const relativeTime = useRelativeTime();
 
   const reading = area.reading;
   const dash = "—";
@@ -95,7 +97,7 @@ export function AreaRiskDetail({
               {reading.observedAt && (
                 <p className="text-xs opacity-60">
                   {t("observed", {
-                    time: format.relativeTime(new Date(reading.observedAt)),
+                    time: relativeTime(new Date(reading.observedAt)),
                   })}
                 </p>
               )}

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useFormatter, useTranslations } from "next-intl";
 import { Map } from "lucide-react";
+import { useRelativeTime } from "@/i18n/relative-time";
 import { useRouteFormat } from "@/features/map/format";
 import { mapHrefFor } from "@/features/map/link";
 import { RouteLegs } from "@/features/routes/RouteLegs";
@@ -12,6 +13,7 @@ export function RouteSearchRow({ search }: { search: RouteSearchEntry }) {
   const t = useTranslations("history.routes");
   const tProfiles = useTranslations("map.route.profiles");
   const format = useFormatter();
+  const relativeTime = useRelativeTime();
   const routeFormat = useRouteFormat();
 
   const searchedAt = new Date(search.searchedAt);
@@ -40,7 +42,7 @@ export function RouteSearchRow({ search }: { search: RouteSearchEntry }) {
             })}
           </time>
           {" · "}
-          {format.relativeTime(searchedAt)}
+          {relativeTime(searchedAt)}
         </p>
       </div>
 

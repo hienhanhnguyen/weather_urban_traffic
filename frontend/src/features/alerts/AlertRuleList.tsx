@@ -1,8 +1,9 @@
 "use client";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useFormatter, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { Pencil, Trash2 } from "lucide-react";
+import { useRelativeTime } from "@/i18n/relative-time";
 import { SeverityDot } from "@/features/notifications/SeverityDot";
 import {
   ALERT_RULES_QUERY_KEY,
@@ -32,7 +33,7 @@ export function AlertRuleList({
   const tScope = useTranslations("notifications.scopes");
   const tSeverity = useTranslations("notifications.severities");
   const tError = useTranslations("errors");
-  const format = useFormatter();
+  const relativeTime = useRelativeTime();
 
   const queryClient = useQueryClient();
   const key = locationRulesQueryKey(locationId);
@@ -111,7 +112,7 @@ export function AlertRuleList({
               {rule.lastTriggeredAt && (
                 <p className="text-xs opacity-50">
                   {t("lastFired", {
-                    when: format.relativeTime(new Date(rule.lastTriggeredAt)),
+                    when: relativeTime(new Date(rule.lastTriggeredAt)),
                     value:
                       rule.lastValue === null
                         ? "—"
