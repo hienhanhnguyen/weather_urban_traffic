@@ -13,6 +13,7 @@
     "lint:frontend": "npm --prefix frontend run lint",
     "typecheck:frontend": "npm --prefix frontend run typecheck",
     "test:frontend": "npm --prefix frontend run test",
-    "test:backend": "npm --prefix backend run test"
+    "test:backend": "npm --prefix backend run test",
+    "seed:demo": "npm --prefix backend run seed:demo --"
   }
 }

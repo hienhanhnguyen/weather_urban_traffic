@@ -61,20 +61,25 @@ export function DailyForecast({
                 {t(`conditions.${condition.key}`)}
               </span>
 
-              {day.precipProbMax !== null && (
-                <span className="flex items-center gap-1 text-xs opacity-70">
-                  <Umbrella aria-hidden="true" className="size-3.5" />
-                  {Math.round(day.precipProbMax)}%
-                </span>
-              )}
+              <span className="flex w-14 items-center gap-1 text-xs tabular-nums opacity-70">
+                {day.precipProbMax !== null && (
+                  <>
+                    <Umbrella
+                      aria-hidden="true"
+                      className="size-3.5 shrink-0"
+                    />
+                    {Math.round(day.precipProbMax)}%
+                  </>
+                )}
+              </span>
 
-              <span className="hidden items-center gap-3 text-xs opacity-60 sm:flex">
-                <span className="flex items-center gap-1">
-                  <Sunrise aria-hidden="true" className="size-3.5" />
+              <span className="hidden items-center gap-3 text-xs tabular-nums opacity-60 sm:flex">
+                <span className="flex w-16 items-center gap-1">
+                  <Sunrise aria-hidden="true" className="size-3.5 shrink-0" />
                   {time(day.sunrise)}
                 </span>
-                <span className="flex items-center gap-1">
-                  <Sunset aria-hidden="true" className="size-3.5" />
+                <span className="flex w-16 items-center gap-1">
+                  <Sunset aria-hidden="true" className="size-3.5 shrink-0" />
                   {time(day.sunset)}
                 </span>
               </span>

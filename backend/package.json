@@ -10,7 +10,8 @@
     "migrate": "node scripts/migrate.js up",
     "migrate:down": "node scripts/migrate.js down",
     "migrate:status": "node scripts/migrate.js pending",
-    "migrate:test": "cross-env NODE_ENV=test node scripts/migrate.js up"
+    "migrate:test": "cross-env NODE_ENV=test node scripts/migrate.js up",
+    "seed:demo": "cross-env LOG_LEVEL=info node scripts/seed-demo.js"
   },
   "keywords": [],
   "author": "",
