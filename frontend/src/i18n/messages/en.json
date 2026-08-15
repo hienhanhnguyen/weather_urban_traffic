@@ -1010,8 +1010,8 @@
       "title": "Weather Forecast",
       "week": "7-Day Forecast"
     },
-    "greeting": "Welcome",
-    "greetingNamed": "Welcome, {name}",
+    "greeting": "Hello",
+    "greetingNamed": "Hello, {name}",
     "personal": {
       "title": "Personal"
     },
@@ -1021,8 +1021,7 @@
       "map": "Map",
       "mapDesc": "Rain & Traffic Radar"
     },
-    "summary": "Signed in as {email} · {accountType} account · roles: {roles}",
-    "welcome": "Welcome back!"
+    "subtitle": "Your weather, routes and alerts at a glance."
   },
   "locale": {
     "en": "English",
@@ -1153,7 +1152,8 @@
     "openMenu": "Open menu",
     "sections": {
       "business": "Business",
-      "government": "Government"
+      "government": "Government",
+      "personal": "Personal"
     },
     "skipToContent": "Skip to main content"
   },

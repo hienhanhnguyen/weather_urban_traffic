@@ -5,19 +5,20 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useSession } from "@/lib/auth/session";
 import { safeNext } from "@/lib/navigation/safe-next";
+import { landingPath } from "@/features/shell/nav";
 import { LocaleSwitcher } from "@/features/shell/LocaleSwitcher";
 import { ThemeToggle } from "@/features/shell/ThemeToggle";
 import { FullPageSpinner } from "@/components/ui/FullPageSpinner";
 
 function RedirectIfSignedIn({ children }: { children: React.ReactNode }) {
-  const { status } = useSession();
+  const { status, user } = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();
 
   useEffect(() => {
     if (status !== "authenticated") return;
-    router.replace(safeNext(searchParams.get("next"), "/home"));
-  }, [status, router, searchParams]);
+    router.replace(safeNext(searchParams.get("next"), landingPath(user)));
+  }, [status, user, router, searchParams]);
 
   if (status === "loading" || status === "authenticated") {
     return <FullPageSpinner />;

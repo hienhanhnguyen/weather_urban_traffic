@@ -5,7 +5,7 @@ import { useSession } from "@/lib/auth/session";
 import { FavoriteLocations } from "@/features/locations/FavoriteLocations";
 
 export default function HomePage() {
-  const t = useTranslations();
+  const t = useTranslations("home");
   const { user } = useSession();
 
   return (
@@ -13,16 +13,10 @@ export default function HomePage() {
       <section className="flex flex-col gap-2">
         <h1 className="text-2xl font-semibold tracking-tight">
           {user?.username
-            ? t("home.greetingNamed", { name: user.username })
-            : t("home.greeting")}
+            ? t("greetingNamed", { name: user.username })
+            : t("greeting")}
         </h1>
-        <p className="text-sm opacity-70">
-          {t("home.summary", {
-            email: user?.email ?? "",
-            accountType: user ? t(`accountType.${user.accountType}`) : "",
-            roles: user?.roles.join(", ") ?? "",
-          })}
-        </p>
+        <p className="text-sm opacity-70">{t("subtitle")}</p>
       </section>
 
       <FavoriteLocations />

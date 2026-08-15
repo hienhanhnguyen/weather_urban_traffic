@@ -10,6 +10,7 @@ import { sendEmailVerification, verifyEmail } from "@/features/auth/api";
 import { otpSchema, type OtpValues } from "@/features/auth/schemas";
 import { SESSION_QUERY_KEY, useSession } from "@/lib/auth/session";
 import { applyApiError } from "@/lib/forms/api-errors";
+import { landingPath } from "@/features/shell/nav";
 import { Button } from "@/components/ui/Button";
 import { Callout } from "@/components/ui/Callout";
 import { TextField } from "@/components/ui/TextField";
@@ -57,7 +58,7 @@ export default function VerifyEmailPage() {
     mutationFn: (values: OtpValues) => verifyEmail(values.code),
     onSuccess: (response) => {
       queryClient.setQueryData(SESSION_QUERY_KEY, response.user);
-      router.replace("/home");
+      router.replace(landingPath(response.user));
     },
     onError: (error) => {
       setSent(false);
@@ -67,8 +68,8 @@ export default function VerifyEmailPage() {
 
   // Already verified, or verified in another tab.
   useEffect(() => {
-    if (user?.emailVerified) router.replace("/home");
-  }, [user?.emailVerified, router]);
+    if (user?.emailVerified) router.replace(landingPath(user));
+  }, [user, router]);
 
   return (
     <div className="mx-auto flex w-full max-w-sm flex-col gap-4">
@@ -116,7 +117,11 @@ export default function VerifyEmailPage() {
         </Button>
       </form>
 
-      <Button type="button" variant="ghost" onClick={() => router.push("/home")}>
+      <Button
+        type="button"
+        variant="ghost"
+        onClick={() => router.push(landingPath(user))}
+      >
         {t("skip")}
       </Button>
     </div>

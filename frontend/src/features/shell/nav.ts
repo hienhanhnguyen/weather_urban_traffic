@@ -34,7 +34,14 @@ export interface NavSection {
   visible: (user: User) => boolean;
 }
 
-const anyone = () => true;
+const isAdmin = (user: User) => user.roles.includes("admin");
+
+// Shared between the personal section and the admin's own trailing section.
+const ACCOUNT: NavItem = {
+  href: "/account",
+  labelKey: "account",
+  icon: UserCog,
+};
 
 export const NAV_SECTIONS: NavSection[] = [
   {
@@ -46,9 +53,11 @@ export const NAV_SECTIONS: NavSection[] = [
       { href: "/locations", labelKey: "locations", icon: MapPin },
       { href: "/routes", labelKey: "routes", icon: Route },
       { href: "/history", labelKey: "history", icon: History },
-      { href: "/account", labelKey: "account", icon: UserCog },
+      ACCOUNT,
     ],
-    visible: anyone,
+    // An admin works the government console; the personal tools are not part
+    // of that job, so only the account tab below survives for them.
+    visible: (user) => !isAdmin(user),
   },
   {
     id: "business",
@@ -69,12 +78,24 @@ export const NAV_SECTIONS: NavSection[] = [
       { href: "/gov/scenarios", labelKey: "govScenarios", icon: SlidersHorizontal },
       { href: "/gov/reports", labelKey: "govReports", icon: Building2 },
     ],
-    visible: (user) => user.roles.includes("admin"),
+    visible: isAdmin,
+  },
+  {
+    id: "adminPersonal",
+    labelKey: "personal",
+    items: [ACCOUNT],
+    visible: isAdmin,
   },
 ];
 
 export function visibleSections(user: User): NavSection[] {
   return NAV_SECTIONS.filter((section) => section.visible(user));
+}
+
+// Where the app starts for this user - the first item of their first section,
+// so nobody lands on a page their own sidebar does not list.
+export function landingPath(user: User | null | undefined): string {
+  return user && isAdmin(user) ? "/gov/dashboard" : "/home";
 }
 
 export function isActive(pathname: string, href: string): boolean {

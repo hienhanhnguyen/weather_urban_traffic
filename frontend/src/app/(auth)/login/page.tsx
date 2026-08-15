@@ -12,6 +12,7 @@ import { signInSchema, type SignInValues } from "@/features/auth/schemas";
 import { useSession } from "@/lib/auth/session";
 import { applyApiError } from "@/lib/forms/api-errors";
 import { safeNext } from "@/lib/navigation/safe-next";
+import { landingPath } from "@/features/shell/nav";
 import { Button } from "@/components/ui/Button";
 import { Callout } from "@/components/ui/Callout";
 import { TextField } from "@/components/ui/TextField";
@@ -43,7 +44,9 @@ export default function LoginPage() {
     mutationFn: signIn,
     onSuccess: (response) => {
       adopt(response);
-      router.replace(safeNext(searchParams.get("next"), "/home"));
+      router.replace(
+        safeNext(searchParams.get("next"), landingPath(response.user)),
+      );
     },
     onError: (error) => {
       setFormError(

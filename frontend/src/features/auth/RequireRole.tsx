@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useSession } from "@/lib/auth/session";
+import { landingPath } from "@/features/shell/nav";
 import type { AccountType, Role } from "@/lib/auth/types";
 
 interface RequireRoleProps {
@@ -33,7 +34,7 @@ export function RequireRole({
       <h1 className="text-xl font-semibold">{t("title")}</h1>
       <p className="mt-2 text-sm opacity-70">{t("description")}</p>
       <Link
-        href="/home"
+        href={landingPath(user)}
         className="mt-6 inline-block text-sm text-sky-700 underline underline-offset-4 dark:text-sky-300"
       >
         {t("back")}

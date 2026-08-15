@@ -1010,8 +1010,8 @@
       "title": "Dự báo thời tiết",
       "week": "Dự báo 7 ngày"
     },
-    "greeting": "Chào mừng",
-    "greetingNamed": "Chào mừng, {name}",
+    "greeting": "Chào mừng quay trở lại SWTIS",
+    "greetingNamed": "Xin chào, {name}",
     "personal": {
       "title": "Cá nhân"
     },
@@ -1021,8 +1021,7 @@
       "map": "Bản đồ",
       "mapDesc": "Radar mưa & giao thông"
     },
-    "summary": "Đang đăng nhập với {email} · tài khoản {accountType} · vai trò: {roles}",
-    "welcome": "Chào mừng trở lại!"
+    "subtitle": "Nắm trọn thời tiết và lịch trình trước khi bước ra khỏi cửa."
   },
   "locale": {
     "en": "English",
@@ -1153,7 +1152,8 @@
     "openMenu": "Mở menu",
     "sections": {
       "business": "Doanh nghiệp",
-      "government": "Chính quyền"
+      "government": "Chính quyền",
+      "personal": "Cá nhân"
     },
     "skipToContent": "Chuyển tới nội dung chính"
   },
